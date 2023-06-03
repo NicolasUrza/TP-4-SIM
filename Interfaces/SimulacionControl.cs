@@ -25,7 +25,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         {
             //programar para cargar la simulacion en un dgv
             //usar el metodo ListaString() de FilaSimulacion() para cargarlas
-            
+
         }
     }
 }

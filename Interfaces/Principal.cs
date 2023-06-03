@@ -10,7 +10,7 @@ namespace TP_4_SIM_Aeropuerto
         {
             InitializeComponent();
         }
-        private static double[] valoresIniciales = new double[] { 10, 6, 48, 5, 0.4, 0.6, 1,3 };
+        private static double[] valoresIniciales = new double[] { 10, 6, 48, 5, 0.4, 0.6, 1, 3 };
 
         private void Principal_Load(object sender, EventArgs e)
         {
@@ -34,7 +34,7 @@ namespace TP_4_SIM_Aeropuerto
             // se podria poner un ValidarParametros() en lugar del try
             try
             {
-                
+
                 var param = new Parametros();
                 param.MediaLlegadaAvion = double.Parse(this.txtLlegadaAvion.Text);
                 param.MediaAterrizaje = double.Parse(this.txtAterrizaje.Text);
@@ -58,7 +58,7 @@ namespace TP_4_SIM_Aeropuerto
 
 
 
-            
+
         }
         public bool ValidarParametros()
         {
@@ -75,12 +75,12 @@ namespace TP_4_SIM_Aeropuerto
             // creamos el control de resultados
             var res = new ResultadosControl(simulacion, metricas);
             res.Dock = DockStyle.Fill;
-            
+
             //lo mostramos
             this.pnSolucion.Controls.Add(res);
-            
-            
+
+
         }
-        
+
     }
 }

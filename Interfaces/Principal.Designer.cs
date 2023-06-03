@@ -28,319 +28,332 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnParametros = new System.Windows.Forms.Panel();
-            this.txtMediaCarga = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtAerolineaB = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtAerolineaA = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtIntencionMuelle = new System.Windows.Forms.TextBox();
-            this.lblCarga = new System.Windows.Forms.Label();
-            this.btnGenerarSimulacion = new System.Windows.Forms.Button();
-            this.txtIntencionCarga = new System.Windows.Forms.TextBox();
-            this.lblIntención = new System.Windows.Forms.Label();
-            this.txtMediaMuelle = new System.Windows.Forms.TextBox();
-            this.lblMuelle = new System.Windows.Forms.Label();
-            this.txtAterrizaje = new System.Windows.Forms.TextBox();
-            this.lblAterrizaje = new System.Windows.Forms.Label();
-            this.txtLlegadaAvion = new System.Windows.Forms.TextBox();
-            this.lblLLegadaAviones = new System.Windows.Forms.Label();
-            this.txtDesde = new System.Windows.Forms.TextBox();
-            this.lblMostrarDesde = new System.Windows.Forms.Label();
-            this.txtCantIteraciones = new System.Windows.Forms.TextBox();
-            this.lblCantIteraciones = new System.Windows.Forms.Label();
-            this.pnSolucion = new System.Windows.Forms.Panel();
-            this.pnParametros.SuspendLayout();
-            this.SuspendLayout();
+            pnParametros = new Panel();
+            txtMediaCarga = new TextBox();
+            label5 = new Label();
+            label4 = new Label();
+            label2 = new Label();
+            txtAerolineaB = new TextBox();
+            label3 = new Label();
+            txtAerolineaA = new TextBox();
+            label1 = new Label();
+            txtIntencionMuelle = new TextBox();
+            lblCarga = new Label();
+            btnGenerarSimulacion = new Button();
+            txtIntencionCarga = new TextBox();
+            lblIntención = new Label();
+            txtMediaMuelle = new TextBox();
+            lblMuelle = new Label();
+            txtAterrizaje = new TextBox();
+            lblAterrizaje = new Label();
+            txtLlegadaAvion = new TextBox();
+            lblLLegadaAviones = new Label();
+            txtDesde = new TextBox();
+            lblMostrarDesde = new Label();
+            txtCantIteraciones = new TextBox();
+            lblCantIteraciones = new Label();
+            pnSolucion = new Panel();
+            pnParametros.SuspendLayout();
+            SuspendLayout();
             // 
             // pnParametros
             // 
-            this.pnParametros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnParametros.Controls.Add(this.txtMediaCarga);
-            this.pnParametros.Controls.Add(this.label5);
-            this.pnParametros.Controls.Add(this.label4);
-            this.pnParametros.Controls.Add(this.label2);
-            this.pnParametros.Controls.Add(this.txtAerolineaB);
-            this.pnParametros.Controls.Add(this.label3);
-            this.pnParametros.Controls.Add(this.txtAerolineaA);
-            this.pnParametros.Controls.Add(this.label1);
-            this.pnParametros.Controls.Add(this.txtIntencionMuelle);
-            this.pnParametros.Controls.Add(this.lblCarga);
-            this.pnParametros.Controls.Add(this.btnGenerarSimulacion);
-            this.pnParametros.Controls.Add(this.txtIntencionCarga);
-            this.pnParametros.Controls.Add(this.lblIntención);
-            this.pnParametros.Controls.Add(this.txtMediaMuelle);
-            this.pnParametros.Controls.Add(this.lblMuelle);
-            this.pnParametros.Controls.Add(this.txtAterrizaje);
-            this.pnParametros.Controls.Add(this.lblAterrizaje);
-            this.pnParametros.Controls.Add(this.txtLlegadaAvion);
-            this.pnParametros.Controls.Add(this.lblLLegadaAviones);
-            this.pnParametros.Controls.Add(this.txtDesde);
-            this.pnParametros.Controls.Add(this.lblMostrarDesde);
-            this.pnParametros.Controls.Add(this.txtCantIteraciones);
-            this.pnParametros.Controls.Add(this.lblCantIteraciones);
-            this.pnParametros.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnParametros.Location = new System.Drawing.Point(0, 0);
-            this.pnParametros.Name = "pnParametros";
-            this.pnParametros.Size = new System.Drawing.Size(984, 201);
-            this.pnParametros.TabIndex = 0;
+            pnParametros.BorderStyle = BorderStyle.FixedSingle;
+            pnParametros.Controls.Add(txtMediaCarga);
+            pnParametros.Controls.Add(label5);
+            pnParametros.Controls.Add(label4);
+            pnParametros.Controls.Add(label2);
+            pnParametros.Controls.Add(txtAerolineaB);
+            pnParametros.Controls.Add(label3);
+            pnParametros.Controls.Add(txtAerolineaA);
+            pnParametros.Controls.Add(label1);
+            pnParametros.Controls.Add(txtIntencionMuelle);
+            pnParametros.Controls.Add(lblCarga);
+            pnParametros.Controls.Add(btnGenerarSimulacion);
+            pnParametros.Controls.Add(txtIntencionCarga);
+            pnParametros.Controls.Add(lblIntención);
+            pnParametros.Controls.Add(txtMediaMuelle);
+            pnParametros.Controls.Add(lblMuelle);
+            pnParametros.Controls.Add(txtAterrizaje);
+            pnParametros.Controls.Add(lblAterrizaje);
+            pnParametros.Controls.Add(txtLlegadaAvion);
+            pnParametros.Controls.Add(lblLLegadaAviones);
+            pnParametros.Controls.Add(txtDesde);
+            pnParametros.Controls.Add(lblMostrarDesde);
+            pnParametros.Controls.Add(txtCantIteraciones);
+            pnParametros.Controls.Add(lblCantIteraciones);
+            pnParametros.Dock = DockStyle.Top;
+            pnParametros.Location = new Point(0, 0);
+            pnParametros.Margin = new Padding(3, 4, 3, 4);
+            pnParametros.Name = "pnParametros";
+            pnParametros.Size = new Size(1125, 267);
+            pnParametros.TabIndex = 0;
             // 
             // txtMediaCarga
             // 
-            this.txtMediaCarga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtMediaCarga.Location = new System.Drawing.Point(335, 108);
-            this.txtMediaCarga.Name = "txtMediaCarga";
-            this.txtMediaCarga.Size = new System.Drawing.Size(100, 23);
-            this.txtMediaCarga.TabIndex = 24;
+            txtMediaCarga.BackColor = Color.FromArgb(191, 191, 217);
+            txtMediaCarga.Location = new Point(393, 148);
+            txtMediaCarga.Margin = new Padding(3, 4, 3, 4);
+            txtMediaCarga.Name = "txtMediaCarga";
+            txtMediaCarga.Size = new Size(114, 27);
+            txtMediaCarga.TabIndex = 24;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.label5.Location = new System.Drawing.Point(219, 109);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 17);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Media Carga: ";
+            label5.AutoSize = true;
+            label5.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(230, 230, 240);
+            label5.Location = new Point(250, 145);
+            label5.Name = "label5";
+            label5.Size = new Size(137, 22);
+            label5.TabIndex = 23;
+            label5.Text = "Media Carga: ";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.label4.Location = new System.Drawing.Point(25, 167);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(191, 17);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Llegada Avion Aerolinea:";
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.ForeColor = Color.FromArgb(230, 230, 240);
+            label4.Location = new Point(29, 223);
+            label4.Name = "label4";
+            label4.Size = new Size(237, 22);
+            label4.TabIndex = 22;
+            label4.Text = "Llegada Avion Aerolinea:";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.label2.Location = new System.Drawing.Point(345, 167);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 17);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "B:";
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(230, 230, 240);
+            label2.Location = new Point(394, 223);
+            label2.Name = "label2";
+            label2.Size = new Size(30, 22);
+            label2.TabIndex = 21;
+            label2.Text = "B:";
             // 
             // txtAerolineaB
             // 
-            this.txtAerolineaB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtAerolineaB.Location = new System.Drawing.Point(375, 166);
-            this.txtAerolineaB.Name = "txtAerolineaB";
-            this.txtAerolineaB.Size = new System.Drawing.Size(60, 23);
-            this.txtAerolineaB.TabIndex = 20;
+            txtAerolineaB.BackColor = Color.FromArgb(191, 191, 217);
+            txtAerolineaB.Location = new Point(429, 221);
+            txtAerolineaB.Margin = new Padding(3, 4, 3, 4);
+            txtAerolineaB.Name = "txtAerolineaB";
+            txtAerolineaB.Size = new Size(68, 27);
+            txtAerolineaB.TabIndex = 20;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.label3.Location = new System.Drawing.Point(215, 167);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(24, 17);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "A:";
+            label3.AutoSize = true;
+            label3.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(230, 230, 240);
+            label3.Location = new Point(246, 223);
+            label3.Name = "label3";
+            label3.Size = new Size(30, 22);
+            label3.TabIndex = 19;
+            label3.Text = "A:";
             // 
             // txtAerolineaA
             // 
-            this.txtAerolineaA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtAerolineaA.Location = new System.Drawing.Point(245, 166);
-            this.txtAerolineaA.Name = "txtAerolineaA";
-            this.txtAerolineaA.Size = new System.Drawing.Size(60, 23);
-            this.txtAerolineaA.TabIndex = 18;
+            txtAerolineaA.BackColor = Color.FromArgb(191, 191, 217);
+            txtAerolineaA.Location = new Point(280, 221);
+            txtAerolineaA.Margin = new Padding(3, 4, 3, 4);
+            txtAerolineaA.Name = "txtAerolineaA";
+            txtAerolineaA.Size = new Size(68, 27);
+            txtAerolineaA.TabIndex = 18;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.label1.Location = new System.Drawing.Point(311, 138);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 17);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Muelle:";
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(230, 230, 240);
+            label1.Location = new Point(355, 184);
+            label1.Name = "label1";
+            label1.Size = new Size(75, 22);
+            label1.TabIndex = 17;
+            label1.Text = "Muelle:";
             // 
             // txtIntencionMuelle
             // 
-            this.txtIntencionMuelle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtIntencionMuelle.Location = new System.Drawing.Point(375, 137);
-            this.txtIntencionMuelle.Name = "txtIntencionMuelle";
-            this.txtIntencionMuelle.Size = new System.Drawing.Size(60, 23);
-            this.txtIntencionMuelle.TabIndex = 16;
+            txtIntencionMuelle.BackColor = Color.FromArgb(191, 191, 217);
+            txtIntencionMuelle.Location = new Point(429, 183);
+            txtIntencionMuelle.Margin = new Padding(3, 4, 3, 4);
+            txtIntencionMuelle.Name = "txtIntencionMuelle";
+            txtIntencionMuelle.Size = new Size(68, 27);
+            txtIntencionMuelle.TabIndex = 16;
             // 
             // lblCarga
             // 
-            this.lblCarga.AutoSize = true;
-            this.lblCarga.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCarga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.lblCarga.Location = new System.Drawing.Point(181, 137);
-            this.lblCarga.Name = "lblCarga";
-            this.lblCarga.Size = new System.Drawing.Size(58, 17);
-            this.lblCarga.TabIndex = 15;
-            this.lblCarga.Text = "Carga:";
+            lblCarga.AutoSize = true;
+            lblCarga.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCarga.ForeColor = Color.FromArgb(230, 230, 240);
+            lblCarga.Location = new Point(207, 183);
+            lblCarga.Name = "lblCarga";
+            lblCarga.Size = new Size(72, 22);
+            lblCarga.TabIndex = 15;
+            lblCarga.Text = "Carga:";
             // 
             // btnGenerarSimulacion
             // 
-            this.btnGenerarSimulacion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGenerarSimulacion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.btnGenerarSimulacion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.btnGenerarSimulacion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(15)))), ((int)(((byte)(22)))));
-            this.btnGenerarSimulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerarSimulacion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnGenerarSimulacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.btnGenerarSimulacion.Location = new System.Drawing.Point(776, 39);
-            this.btnGenerarSimulacion.Name = "btnGenerarSimulacion";
-            this.btnGenerarSimulacion.Size = new System.Drawing.Size(164, 131);
-            this.btnGenerarSimulacion.TabIndex = 14;
-            this.btnGenerarSimulacion.Text = "Generar";
-            this.btnGenerarSimulacion.UseVisualStyleBackColor = true;
-            this.btnGenerarSimulacion.Click += new System.EventHandler(this.btnGenerarSimulacion_Click);
+            btnGenerarSimulacion.Cursor = Cursors.Hand;
+            btnGenerarSimulacion.FlatAppearance.BorderColor = Color.FromArgb(230, 230, 240);
+            btnGenerarSimulacion.FlatAppearance.MouseDownBackColor = Color.FromArgb(230, 230, 240);
+            btnGenerarSimulacion.FlatAppearance.MouseOverBackColor = Color.FromArgb(14, 15, 22);
+            btnGenerarSimulacion.FlatStyle = FlatStyle.Flat;
+            btnGenerarSimulacion.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGenerarSimulacion.ForeColor = Color.FromArgb(230, 230, 240);
+            btnGenerarSimulacion.Location = new Point(887, 52);
+            btnGenerarSimulacion.Margin = new Padding(3, 4, 3, 4);
+            btnGenerarSimulacion.Name = "btnGenerarSimulacion";
+            btnGenerarSimulacion.Size = new Size(187, 175);
+            btnGenerarSimulacion.TabIndex = 14;
+            btnGenerarSimulacion.Text = "Generar";
+            btnGenerarSimulacion.UseVisualStyleBackColor = true;
+            btnGenerarSimulacion.Click += btnGenerarSimulacion_Click;
             // 
             // txtIntencionCarga
             // 
-            this.txtIntencionCarga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtIntencionCarga.Location = new System.Drawing.Point(245, 138);
-            this.txtIntencionCarga.Name = "txtIntencionCarga";
-            this.txtIntencionCarga.Size = new System.Drawing.Size(60, 23);
-            this.txtIntencionCarga.TabIndex = 11;
+            txtIntencionCarga.BackColor = Color.FromArgb(191, 191, 217);
+            txtIntencionCarga.Location = new Point(280, 184);
+            txtIntencionCarga.Margin = new Padding(3, 4, 3, 4);
+            txtIntencionCarga.Name = "txtIntencionCarga";
+            txtIntencionCarga.Size = new Size(68, 27);
+            txtIntencionCarga.TabIndex = 11;
             // 
             // lblIntención
             // 
-            this.lblIntención.AutoSize = true;
-            this.lblIntención.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblIntención.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.lblIntención.Location = new System.Drawing.Point(99, 138);
-            this.lblIntención.Name = "lblIntención";
-            this.lblIntención.Size = new System.Drawing.Size(76, 17);
-            this.lblIntención.TabIndex = 10;
-            this.lblIntención.Text = "Intención";
+            lblIntención.AutoSize = true;
+            lblIntención.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblIntención.ForeColor = Color.FromArgb(230, 230, 240);
+            lblIntención.Location = new Point(113, 184);
+            lblIntención.Name = "lblIntención";
+            lblIntención.Size = new Size(94, 22);
+            lblIntención.TabIndex = 10;
+            lblIntención.Text = "Intención";
             // 
             // txtMediaMuelle
             // 
-            this.txtMediaMuelle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtMediaMuelle.Location = new System.Drawing.Point(335, 79);
-            this.txtMediaMuelle.Name = "txtMediaMuelle";
-            this.txtMediaMuelle.Size = new System.Drawing.Size(100, 23);
-            this.txtMediaMuelle.TabIndex = 9;
+            txtMediaMuelle.BackColor = Color.FromArgb(191, 191, 217);
+            txtMediaMuelle.Location = new Point(394, 109);
+            txtMediaMuelle.Margin = new Padding(3, 4, 3, 4);
+            txtMediaMuelle.Name = "txtMediaMuelle";
+            txtMediaMuelle.Size = new Size(114, 27);
+            txtMediaMuelle.TabIndex = 9;
             // 
             // lblMuelle
             // 
-            this.lblMuelle.AutoSize = true;
-            this.lblMuelle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblMuelle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.lblMuelle.Location = new System.Drawing.Point(219, 80);
-            this.lblMuelle.Name = "lblMuelle";
-            this.lblMuelle.Size = new System.Drawing.Size(111, 17);
-            this.lblMuelle.TabIndex = 8;
-            this.lblMuelle.Text = "Media Muelle: ";
+            lblMuelle.AutoSize = true;
+            lblMuelle.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblMuelle.ForeColor = Color.FromArgb(230, 230, 240);
+            lblMuelle.Location = new Point(250, 107);
+            lblMuelle.Name = "lblMuelle";
+            lblMuelle.Size = new Size(140, 22);
+            lblMuelle.TabIndex = 8;
+            lblMuelle.Text = "Media Muelle: ";
             // 
             // txtAterrizaje
             // 
-            this.txtAterrizaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtAterrizaje.Location = new System.Drawing.Point(335, 50);
-            this.txtAterrizaje.Name = "txtAterrizaje";
-            this.txtAterrizaje.Size = new System.Drawing.Size(100, 23);
-            this.txtAterrizaje.TabIndex = 7;
+            txtAterrizaje.BackColor = Color.FromArgb(191, 191, 217);
+            txtAterrizaje.Location = new Point(394, 70);
+            txtAterrizaje.Margin = new Padding(3, 4, 3, 4);
+            txtAterrizaje.Name = "txtAterrizaje";
+            txtAterrizaje.Size = new Size(114, 27);
+            txtAterrizaje.TabIndex = 7;
             // 
             // lblAterrizaje
             // 
-            this.lblAterrizaje.AutoSize = true;
-            this.lblAterrizaje.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAterrizaje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.lblAterrizaje.Location = new System.Drawing.Point(197, 51);
-            this.lblAterrizaje.Name = "lblAterrizaje";
-            this.lblAterrizaje.Size = new System.Drawing.Size(133, 17);
-            this.lblAterrizaje.TabIndex = 6;
-            this.lblAterrizaje.Text = "Media Aterrizaje:";
+            lblAterrizaje.AutoSize = true;
+            lblAterrizaje.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAterrizaje.ForeColor = Color.FromArgb(230, 230, 240);
+            lblAterrizaje.Location = new Point(225, 68);
+            lblAterrizaje.Name = "lblAterrizaje";
+            lblAterrizaje.Size = new Size(166, 22);
+            lblAterrizaje.TabIndex = 6;
+            lblAterrizaje.Text = "Media Aterrizaje:";
             // 
             // txtLlegadaAvion
             // 
-            this.txtLlegadaAvion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtLlegadaAvion.Location = new System.Drawing.Point(335, 21);
-            this.txtLlegadaAvion.Name = "txtLlegadaAvion";
-            this.txtLlegadaAvion.Size = new System.Drawing.Size(100, 23);
-            this.txtLlegadaAvion.TabIndex = 5;
+            txtLlegadaAvion.BackColor = Color.FromArgb(191, 191, 217);
+            txtLlegadaAvion.Location = new Point(394, 27);
+            txtLlegadaAvion.Margin = new Padding(3, 4, 3, 4);
+            txtLlegadaAvion.Name = "txtLlegadaAvion";
+            txtLlegadaAvion.Size = new Size(114, 27);
+            txtLlegadaAvion.TabIndex = 5;
             // 
             // lblLLegadaAviones
             // 
-            this.lblLLegadaAviones.AutoSize = true;
-            this.lblLLegadaAviones.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLLegadaAviones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.lblLLegadaAviones.Location = new System.Drawing.Point(150, 23);
-            this.lblLLegadaAviones.Name = "lblLLegadaAviones";
-            this.lblLLegadaAviones.Size = new System.Drawing.Size(180, 17);
-            this.lblLLegadaAviones.TabIndex = 4;
-            this.lblLLegadaAviones.Text = "Media Llegada Aviones:";
+            lblLLegadaAviones.AutoSize = true;
+            lblLLegadaAviones.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblLLegadaAviones.ForeColor = Color.FromArgb(230, 230, 240);
+            lblLLegadaAviones.Location = new Point(171, 31);
+            lblLLegadaAviones.Name = "lblLLegadaAviones";
+            lblLLegadaAviones.Size = new Size(226, 22);
+            lblLLegadaAviones.TabIndex = 4;
+            lblLLegadaAviones.Text = "Media Llegada Aviones:";
             // 
             // txtDesde
             // 
-            this.txtDesde.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtDesde.Location = new System.Drawing.Point(630, 49);
-            this.txtDesde.Name = "txtDesde";
-            this.txtDesde.Size = new System.Drawing.Size(100, 23);
-            this.txtDesde.TabIndex = 3;
+            txtDesde.BackColor = Color.FromArgb(191, 191, 217);
+            txtDesde.Location = new Point(741, 66);
+            txtDesde.Margin = new Padding(3, 4, 3, 4);
+            txtDesde.Name = "txtDesde";
+            txtDesde.Size = new Size(114, 27);
+            txtDesde.TabIndex = 3;
             // 
             // lblMostrarDesde
             // 
-            this.lblMostrarDesde.AutoSize = true;
-            this.lblMostrarDesde.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblMostrarDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.lblMostrarDesde.Location = new System.Drawing.Point(485, 50);
-            this.lblMostrarDesde.Name = "lblMostrarDesde";
-            this.lblMostrarDesde.Size = new System.Drawing.Size(124, 17);
-            this.lblMostrarDesde.TabIndex = 2;
-            this.lblMostrarDesde.Text = "Mostrar Desde: ";
+            lblMostrarDesde.AutoSize = true;
+            lblMostrarDesde.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblMostrarDesde.ForeColor = Color.FromArgb(230, 230, 240);
+            lblMostrarDesde.Location = new Point(554, 67);
+            lblMostrarDesde.Name = "lblMostrarDesde";
+            lblMostrarDesde.Size = new Size(155, 22);
+            lblMostrarDesde.TabIndex = 2;
+            lblMostrarDesde.Text = "Mostrar Desde: ";
             // 
             // txtCantIteraciones
             // 
-            this.txtCantIteraciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
-            this.txtCantIteraciones.Location = new System.Drawing.Point(630, 20);
-            this.txtCantIteraciones.Name = "txtCantIteraciones";
-            this.txtCantIteraciones.Size = new System.Drawing.Size(100, 23);
-            this.txtCantIteraciones.TabIndex = 1;
+            txtCantIteraciones.BackColor = Color.FromArgb(191, 191, 217);
+            txtCantIteraciones.Location = new Point(741, 28);
+            txtCantIteraciones.Margin = new Padding(3, 4, 3, 4);
+            txtCantIteraciones.Name = "txtCantIteraciones";
+            txtCantIteraciones.Size = new Size(114, 27);
+            txtCantIteraciones.TabIndex = 1;
             // 
             // lblCantIteraciones
             // 
-            this.lblCantIteraciones.AutoSize = true;
-            this.lblCantIteraciones.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCantIteraciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.lblCantIteraciones.Location = new System.Drawing.Point(445, 21);
-            this.lblCantIteraciones.Name = "lblCantIteraciones";
-            this.lblCantIteraciones.Size = new System.Drawing.Size(191, 17);
-            this.lblCantIteraciones.TabIndex = 0;
-            this.lblCantIteraciones.Text = "Cantidad de Iteraciones: ";
+            lblCantIteraciones.AutoSize = true;
+            lblCantIteraciones.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCantIteraciones.ForeColor = Color.FromArgb(230, 230, 240);
+            lblCantIteraciones.Location = new Point(509, 28);
+            lblCantIteraciones.Name = "lblCantIteraciones";
+            lblCantIteraciones.Size = new Size(239, 22);
+            lblCantIteraciones.TabIndex = 0;
+            lblCantIteraciones.Text = "Cantidad de Iteraciones: ";
             // 
             // pnSolucion
             // 
-            this.pnSolucion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(40)))));
-            this.pnSolucion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnSolucion.Location = new System.Drawing.Point(0, 201);
-            this.pnSolucion.Name = "pnSolucion";
-            this.pnSolucion.Size = new System.Drawing.Size(984, 360);
-            this.pnSolucion.TabIndex = 1;
+            pnSolucion.BackColor = Color.FromArgb(28, 30, 40);
+            pnSolucion.Dock = DockStyle.Fill;
+            pnSolucion.Location = new Point(0, 267);
+            pnSolucion.Margin = new Padding(3, 4, 3, 4);
+            pnSolucion.Name = "pnSolucion";
+            pnSolucion.Size = new Size(1125, 481);
+            pnSolucion.TabIndex = 1;
             // 
             // Principal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(27)))), ((int)(((byte)(39)))));
-            this.ClientSize = new System.Drawing.Size(984, 561);
-            this.Controls.Add(this.pnSolucion);
-            this.Controls.Add(this.pnParametros);
-            this.Name = "Principal";
-            this.Text = "Aeropuerto";
-            this.Load += new System.EventHandler(this.Principal_Load);
-            this.pnParametros.ResumeLayout(false);
-            this.pnParametros.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(25, 27, 39);
+            ClientSize = new Size(1125, 748);
+            Controls.Add(pnSolucion);
+            Controls.Add(pnParametros);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Principal";
+            Text = "Aeropuerto";
+            Load += Principal_Load;
+            pnParametros.ResumeLayout(false);
+            pnParametros.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

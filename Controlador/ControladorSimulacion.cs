@@ -37,23 +37,25 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         }
         //Eventos
         //programar lo que pasaria en cada caso
-        public void LlegadaAvion()
+        public FilaSimulacion LlegadaAvion()
         {
-
+            return new FilaSimulacion();
         }
-        public void FinAterrizaje()
+        public FilaSimulacion FinAterrizaje()
         {
-
+            return new FilaSimulacion();
         }
-        public void FinCarga()
+        public FilaSimulacion FinCarga()
         {
-
+            return new FilaSimulacion();
         }
-        public void FinOperaciones()
+        public FilaSimulacion FinOperaciones()
         {
-
+            return new FilaSimulacion();
         }
-        public void LlegadaAvionAerolinea() {
+        public FilaSimulacion LlegadaAvionAerolinea() {
+
+            return new FilaSimulacion();
         }
     
 
