@@ -19,7 +19,6 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public PuestoCarga puestoCarga {get; set; }
         public Pista pista { get; set; }
         public Acumuladores acumuladores { get; set; }
-        
         public Avion[] aviones { get; set; }
         public AvionAerolinea[] avionesAerolinea { get; set; }
         

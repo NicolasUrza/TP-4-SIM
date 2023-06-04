@@ -15,7 +15,6 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         public ControladorSimulacion( Principal pri, Parametros par)
         {
             this.principalForm = pri;
-            
             this.parametros = par;
             resultadosDesde = new FilaSimulacion[par.CantidadDeIteraciones - par.Desde];
 
@@ -35,15 +34,17 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 // completar con todos los else
                 if (proximoEstado.Item1 == "llegada_avion")
                 {
-                    LlegadaAvion(filaActual);
+                   filaActual = LlegadaAvion(filaActual);
+                }
+                else if(proximoEstado.Item1 == "fin_de_carga")
+                {
+                    filaActual = FinCarga(filaActual);
                 }
 
                 //programar
                 //guardar la fila actual en el array de resultadosDesde si corresponde
 
             }
-
-
 
             // calcular las metricas
             var metricas = new Metricas();
@@ -55,22 +56,34 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         //programar lo que pasaria en cada caso
         public FilaSimulacion LlegadaAvion(FilaSimulacion filaActual)
         {
+            var nuevaFila = new FilaSimulacion(filaActual);
+            //programar
+            
             return new FilaSimulacion();
         }
         public FilaSimulacion FinAterrizaje(FilaSimulacion filaActual)
         {
+ 
+            var nuevaFila = new FilaSimulacion(filaActual);
+            // programar
+
             return new FilaSimulacion();
         }
         public FilaSimulacion FinCarga(FilaSimulacion filaActual)
         {
+            var nuevaFila = new FilaSimulacion(filaActual);
+            //programar
             return new FilaSimulacion();
         }
         public FilaSimulacion FinOperaciones(FilaSimulacion filaActual)
         {
+            var nuevaFila = new FilaSimulacion(filaActual);
+            //programar
             return new FilaSimulacion();
         }
         public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual) {
-
+            var nuevaFila = new FilaSimulacion(filaActual);
+            //programar
             return new FilaSimulacion();
         }
     

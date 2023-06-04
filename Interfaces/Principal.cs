@@ -12,23 +12,32 @@ namespace TP_4_SIM_Aeropuerto
         }
         private static double[] valoresIniciales = new double[] { 10, 6, 48, 5, 0.4, 0.6, 1, 3 };
 
-        private void Principal_Load(object sender, EventArgs e)
+
+      
+        public bool ValidarParametros()
         {
-            this.txtLlegadaAvion.Text = valoresIniciales[0].ToString();
-            this.txtAterrizaje.Text = valoresIniciales[1].ToString();
-            this.txtMediaMuelle.Text = valoresIniciales[2].ToString();
-            this.txtMediaCarga.Text = valoresIniciales[3].ToString();
-            this.txtIntencionCarga.Text = valoresIniciales[4].ToString();
-            this.txtIntencionMuelle.Text = valoresIniciales[5].ToString();
-            this.txtAerolineaA.Text = valoresIniciales[6].ToString();
-            this.txtAerolineaB.Text = valoresIniciales[7].ToString();
+            //programar
+            return true;
+        }
+
+        public void CargarResultados(FilaSimulacion[] simulacion, Metricas metricas)
+        {
+            //programar
+            //el controlador llama a este metodo para mostrar los resultados
+            //limpiamos el panel
+            this.pnSolucion.Controls.Clear();
+            // creamos el control de resultados
+            var res = new ResultadosControl(simulacion, metricas);
+            res.Dock = DockStyle.Fill;
+
+            //lo mostramos
+            this.pnSolucion.Controls.Add(res);
+
 
         }
 
-        private void btnGenerarSimulacion_Click(object sender, EventArgs e)
+        private void btnGenerarSimulacion_Click_1(object sender, EventArgs e)
         {
-
-
 
             // cargamos los parametros
             // se podria poner un ValidarParametros() en lugar del try
@@ -55,32 +64,18 @@ namespace TP_4_SIM_Aeropuerto
                 MessageBox.Show("Los parametros ingresados no son validos", "informacion", MessageBoxButtons.OK);
                 return;
             }
-
-
-
-
         }
-        public bool ValidarParametros()
+
+        private void Principal_Load_1(object sender, EventArgs e)
         {
-            //programar
-            return true;
+            this.txtLlegadaAvion.Text = valoresIniciales[0].ToString();
+            this.txtAterrizaje.Text = valoresIniciales[1].ToString();
+            this.txtMediaMuelle.Text = valoresIniciales[2].ToString();
+            this.txtMediaCarga.Text = valoresIniciales[3].ToString();
+            this.txtIntencionCarga.Text = valoresIniciales[4].ToString();
+            this.txtIntencionMuelle.Text = valoresIniciales[5].ToString();
+            this.txtAerolineaA.Text = valoresIniciales[6].ToString();
+            this.txtAerolineaB.Text = valoresIniciales[7].ToString();
         }
-
-        public void CargarResultados(FilaSimulacion[] simulacion, Metricas metricas)
-        {
-            //programar
-            //el controlador llama a este metodo para mostrar los resultados
-            //limpiamos el panel
-            this.pnSolucion.Controls.Clear();
-            // creamos el control de resultados
-            var res = new ResultadosControl(simulacion, metricas);
-            res.Dock = DockStyle.Fill;
-
-            //lo mostramos
-            this.pnSolucion.Controls.Add(res);
-
-
-        }
-
     }
 }
