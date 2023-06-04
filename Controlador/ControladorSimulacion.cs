@@ -25,7 +25,23 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         {
             //programar
             //simulacion, usar los parametros de la inicializacion
-           
+            var filaActual = new FilaSimulacion();
+            //hacemos un for hasta la cantidad de iteraciones
+            for(int i=0; i< parametros.CantidadDeIteraciones; i++)
+            {
+                //determinamos el proximo estado y reloj
+                var proximoEstado = filaActual.siguienteEventoyReloj();
+                // ejecutamos el evento
+                // completar con todos los else
+                if (proximoEstado.Item1 == "llegada_avion")
+                {
+                    LlegadaAvion(filaActual);
+                }
+
+                //programar
+                //guardar la fila actual en el array de resultadosDesde si corresponde
+
+            }
 
 
 
@@ -37,23 +53,23 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         }
         //Eventos
         //programar lo que pasaria en cada caso
-        public FilaSimulacion LlegadaAvion()
+        public FilaSimulacion LlegadaAvion(FilaSimulacion filaActual)
         {
             return new FilaSimulacion();
         }
-        public FilaSimulacion FinAterrizaje()
+        public FilaSimulacion FinAterrizaje(FilaSimulacion filaActual)
         {
             return new FilaSimulacion();
         }
-        public FilaSimulacion FinCarga()
+        public FilaSimulacion FinCarga(FilaSimulacion filaActual)
         {
             return new FilaSimulacion();
         }
-        public FilaSimulacion FinOperaciones()
+        public FilaSimulacion FinOperaciones(FilaSimulacion filaActual)
         {
             return new FilaSimulacion();
         }
-        public FilaSimulacion LlegadaAvionAerolinea() {
+        public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual) {
 
             return new FilaSimulacion();
         }
