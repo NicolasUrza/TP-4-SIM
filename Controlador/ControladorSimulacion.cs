@@ -12,6 +12,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         private Principal principalForm;
         private Parametros parametros;
         private FilaSimulacion[] resultadosDesde;
+        private Random generadorRandom = new Random();
         public ControladorSimulacion( Principal pri, Parametros par)
         {
             this.principalForm = pri;
@@ -29,16 +30,18 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             for(int i=0; i< parametros.CantidadDeIteraciones; i++)
             {
                 //determinamos el proximo estado y reloj
-                var proximoEstado = filaActual.siguienteEventoyReloj();
+                var proximo = filaActual.siguienteEventoyReloj();
+                var proximoEstado = proximo.Item1;
+                var nuevoReloj = proximo.Item2;
                 // ejecutamos el evento
                 // completar con todos los else
-                if (proximoEstado.Item1 == "llegada_avion")
+                if (proximoEstado == "llegada_avion")
                 {
-                   filaActual = LlegadaAvion(filaActual);
+                    filaActual = LlegadaAvion(filaActual, nuevoReloj);
                 }
-                else if(proximoEstado.Item1 == "fin_de_carga")
+                else if(proximoEstado == "fin_de_carga")
                 {
-                    filaActual = FinCarga(filaActual);
+                    filaActual = FinCarga(filaActual, nuevoReloj);
                 }
 
                 //programar
@@ -54,14 +57,14 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         }
         //Eventos
         //programar lo que pasaria en cada caso
-        public FilaSimulacion LlegadaAvion(FilaSimulacion filaActual)
+        public FilaSimulacion LlegadaAvion(FilaSimulacion filaActual,double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
             //programar
             
             return new FilaSimulacion();
         }
-        public FilaSimulacion FinAterrizaje(FilaSimulacion filaActual)
+        public FilaSimulacion FinAterrizaje(FilaSimulacion filaActual, double nuevoReloj)
         {
  
             var nuevaFila = new FilaSimulacion(filaActual);
@@ -69,22 +72,42 @@ namespace TP_4_SIM_Aeropuerto.Controlador
 
             return new FilaSimulacion();
         }
-        public FilaSimulacion FinCarga(FilaSimulacion filaActual)
+        public FilaSimulacion FinCarga(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
             //programar
             return new FilaSimulacion();
         }
-        public FilaSimulacion FinOperaciones(FilaSimulacion filaActual)
+        public FilaSimulacion FinOperaciones(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
             //programar
             return new FilaSimulacion();
         }
-        public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual) {
+        public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual, double nuevoReloj)
+        {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.reloj = nuevoReloj;
             //programar
-            return new FilaSimulacion();
+            var rnd = generadorRandom.NextDouble();
+            var nuevaLlegadaAerolinea = new LlegadaAvionAerolinea(rnd, parametros.AerolineaA, parametros.AerolineaB, nuevoReloj);
+            if (filaActual.buscarAterrizaje())
+            {
+                var avionAero = new AvionAerolinea("EP", nuevoReloj);
+                nuevaFila.pista.AumentarColaPrioritaria();
+                nuevaFila.avionesAerolinea.Append(avionAero);
+            }
+            else
+            {
+                //cuando no hay aviones aterrizando
+                var rndAterrizaje = generadorRandom.NextDouble();
+                var finAterrizaje = new FinAterrizaje(rnd, parametros.MediaAterrizaje, nuevoReloj);
+                var avionAero = new AvionAerolinea("AT", nuevoReloj);
+                nuevaFila.avionesAerolinea.Append(avionAero);
+                nuevaFila.finAterrizaje = finAterrizaje;
+            }
+
+            return nuevaFila;
         }
     
 

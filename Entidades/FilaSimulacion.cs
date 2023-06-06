@@ -66,7 +66,27 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             return str;
         }
 
+        //busca si hay aviones aterrizando
+        public bool buscarAterrizaje()
+        {
+            foreach(var avion in aviones)
+            {
+                if(avion.estado == "AT")
+                {
+                    return true;
+                }
+            }
 
+            foreach (var avion in avionesAerolinea)
+            {
+                if (avion.estado == "AT")
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
     }
 }
