@@ -60,14 +60,18 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         public FilaSimulacion LlegadaAvion(FilaSimulacion filaActual,double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "llegada_avion";
+            nuevaFila.reloj = nuevoReloj;
             //programar
-            
+
             return new FilaSimulacion();
         }
         public FilaSimulacion FinAterrizaje(FilaSimulacion filaActual, double nuevoReloj)
         {
  
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "fin_aterrizaje";
+            nuevaFila.reloj = nuevoReloj;
             // programar
 
             return new FilaSimulacion();
@@ -75,18 +79,23 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         public FilaSimulacion FinCarga(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "fin_carga";
+            nuevaFila.reloj = nuevoReloj;
             //programar
             return new FilaSimulacion();
         }
         public FilaSimulacion FinOperaciones(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "fin_operaciones";
+            nuevaFila.reloj = nuevoReloj;
             //programar
             return new FilaSimulacion();
         }
         public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "llegada_avion_aerolinea";
             nuevaFila.reloj = nuevoReloj;
             //programar
             var rnd = generadorRandom.NextDouble();
