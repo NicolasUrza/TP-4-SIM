@@ -13,6 +13,9 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         private Parametros parametros;
         private FilaSimulacion[] resultadosDesde;
         private Random generadorRandom = new Random();
+        private bool desdeActivado = false; // para matar no para desligar-destruir 
+
+
         public ControladorSimulacion( Principal pri, Parametros par)
         {
             this.principalForm = pri;
