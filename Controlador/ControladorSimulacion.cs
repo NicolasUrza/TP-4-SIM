@@ -30,6 +30,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             for(int i=0; i< parametros.CantidadDeIteraciones; i++)
             {
                 //determinamos el proximo estado y reloj
+                //programar este metodo
                 var proximo = filaActual.siguienteEventoyReloj();
                 var proximoEstado = proximo.Item1;
                 var nuevoReloj = proximo.Item2;
@@ -46,11 +47,14 @@ namespace TP_4_SIM_Aeropuerto.Controlador
 
                 //programar
                 //guardar la fila actual en el array de resultadosDesde si corresponde
-
+                // guardar hasta 500 desde el Parametro.desde
+                
             }
-
+            
             // calcular las metricas
             var metricas = new Metricas();
+            // aca calcular las metricas con los acumuladores que quedaron guardados en la ultima fila
+            
             //deovlvemos los resultados al form
             this.principalForm.CargarResultados(resultadosDesde, metricas);
 
