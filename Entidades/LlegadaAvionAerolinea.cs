@@ -8,11 +8,11 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 {
     public class LlegadaAvionAerolinea
     {
-        private double rnd;
-        private double tiempoEntreLlegadas;
-        private double proximaLlegada;
-        private int a;
-        private int b;
+        public double rnd;
+        public double tiempoEntreLlegadas;
+        public double proximaLlegada;
+        public int a;
+        public int b;
         public LlegadaAvionAerolinea()
         {
             

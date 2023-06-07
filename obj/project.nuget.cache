@@ -4,5 +4,12 @@
   "success": true,
   "projectFilePath": "D:\\Facultad\\Cuarto\\Simulacion\\TPS\\Aeropuerto\\TP-4-SIM-Aeropuerto.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché D:\\Facultad\\Cuarto\\Simulacion\\TPS\\Aeropuerto\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

@@ -16,6 +16,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
     public partial class SimulacionControl : UserControl
     {
         private FilaSimulacion[] simulacion;
+        Color headerColor = Color.FromArgb(0, 51, 102);
         public SimulacionControl(FilaSimulacion[] f)
         {
             InitializeComponent();
@@ -235,7 +236,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             r1.Y += 1;
             r1.Width = r1.Width + sum - 2;
             r1.Height = r1.Height / 3 - 2;
-            e.Graphics.FillRectangle(new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor), r1);
+            e.Graphics.FillRectangle(new SolidBrush(headerColor), r1);
             StringFormat format = new StringFormat();
             format.Alignment = StringAlignment.Center;
             format.LineAlignment = StringAlignment.Center;

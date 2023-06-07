@@ -14,13 +14,25 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public Muelle[] muelles { get; set; } 
         public FinOperacion()
         {
-                muelles = new Muelle[5];
+                muelles = new Muelle[5] ;
+            for(int i =0; i < 5; i++)
+            {
+                muelles[i] = new Muelle();
+            }
         }
         public FinOperacion(FinOperacion finOperacion)
         {
             rnd = finOperacion.rnd;
             tiempo = finOperacion.tiempo;
-            muelles = finOperacion.muelles;
+            var muelles = new Muelle[5];
+            var i= 0;
+            foreach(Muelle m in finOperacion.muelles)
+            {
+                muelles[i] = new Muelle(m);
+                i++;
+            }
+            this.muelles = muelles;
+
         }
         public FinOperacion(double rnd, double tiempo, double mediaMuelle, Muelle[] muelles)
         {
@@ -39,6 +51,11 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             //ocupa un muelle libre en muelles
             //programar
+        }
+        public Muelle BuscarMuelleOcupado(double reloj)
+        {
+            
+            return new Muelle();
         }
     }
 }

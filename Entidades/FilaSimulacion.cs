@@ -56,7 +56,32 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public (string, double) siguienteEventoyReloj()
         {
             //programar para devolver el evento y el reloj del proximo evento
-            return ("", 0);
+            List<(string, double)> Events = new List<(string,double)>();
+            Events.Add(("llegada_avion",this.llegadaAvion.proximaLlegada));
+
+            Events.Add(("fin_carga", this.finCarga.tiempoFinCarga));
+            Events.Add(("fin_operaciones", this.finAterrizaje.proximoFinAterrizaje));
+            Events.Add(("llegada_avion_aerolinea", this.llegadaAvionAerolinea.proximaLlegada));
+            Events.Add(("fin_aterrizaje", this.finAterrizaje.proximoFinAterrizaje));
+
+            double smaller = -1;
+            string nextEvent = "";
+
+            for (int i = 0; i < Events.Count; i++)
+            {
+                if(i == 0)
+                {
+                    smaller = Events[i].Item2;
+                    nextEvent = Events[i].Item1;
+                }
+                else if (Events[i].Item2 < smaller && Events[i].Item2 != 0)
+                {
+                    smaller = Events[i].Item2;
+                    nextEvent = Events[i].Item1;
+                }
+            }
+
+            return (nextEvent, smaller);
         }
         
         public string[] ListaString()

@@ -13,11 +13,14 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         private Parametros parametros;
         private FilaSimulacion[] resultadosDesde;
         private Random generadorRandom = new Random();
+        private bool desdeActivado = false; // para matar no para desligar-destruir 
+
+
         public ControladorSimulacion( Principal pri, Parametros par)
         {
             this.principalForm = pri;
             this.parametros = par;
-            resultadosDesde = new FilaSimulacion[par.CantidadDeIteraciones - par.Desde];
+            resultadosDesde = new FilaSimulacion[500];
 
         }
 
@@ -26,10 +29,13 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             //programar
             //simulacion, usar los parametros de la inicializacion
             var filaActual = new FilaSimulacion();
+            var indice = 0;
+
             //hacemos un for hasta la cantidad de iteraciones
-            for(int i=0; i< parametros.CantidadDeIteraciones; i++)
+            for (int i=0; i< parametros.CantidadDeIteraciones; i++)
             {
                 //determinamos el proximo estado y reloj
+                //programar este metodo
                 var proximo = filaActual.siguienteEventoyReloj();
                 var proximoEstado = proximo.Item1;
                 var nuevoReloj = proximo.Item2;
@@ -39,7 +45,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 {
                     filaActual = LlegadaAvion(filaActual, nuevoReloj);
                 }
-                else if(proximoEstado == "fin_de_carga")
+                else if(proximoEstado == "fin_carga")
                 {
                     filaActual = FinCarga(filaActual, nuevoReloj);
                 }
@@ -52,15 +58,37 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     filaActual = FinOperaciones(filaActual, nuevoReloj);
 
                 }
-                
+
 
                 //programar
                 //guardar la fila actual en el array de resultadosDesde si corresponde
+                // guardar hasta 500 desde el Parametro.desde
+
+                if (i >= parametros.Desde - 1 & i <= parametros.Desde + 499)
+                {
+                    desdeActivado = true;
+                    resultadosDesde[indice] = new FilaSimulacion(filaActual);
+                    indice++;
+                }
+                else if (i > parametros.Desde + 499)
+                {
+                    desdeActivado = false;
+                }
 
             }
 
             // calcular las metricas
             var metricas = new Metricas();
+            // aca calcular las metricas con los acumuladores que quedaron guardados en la ultima fila
+
+            metricas.tiempoEsperaPromedioAterrizaje = filaActual.acumuladores.totalAvionesAterr >0? filaActual.acumuladores.acumTiempoEsperaAterr / filaActual.acumuladores.totalAvionesAterr:0;
+
+            metricas.porcentajeAterrGratis = filaActual.acumuladores.totalAvionesAterr >0 ? (filaActual.acumuladores.cantAvionesAterrGratis / filaActual.acumuladores.totalAvionesAterr) * 100: 0;
+
+            metricas.porcentajeCargaronCombustible = filaActual.acumuladores.totalAvionesAterr > 0? (filaActual.acumuladores.cantAvionesCargaron / filaActual.acumuladores.totalAvionesAterr) * 100 :0;
+
+            metricas.beneficiosPorHora = ((filaActual.acumuladores.cantAvionesAterrDescuento * 3000) + (filaActual.acumuladores.totalAvionesAterr * 6000)) / filaActual.reloj;
+
             //deovlvemos los resultados al form
             this.principalForm.CargarResultados(resultadosDesde, metricas);
 
@@ -70,14 +98,18 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         public FilaSimulacion LlegadaAvion(FilaSimulacion filaActual,double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "llegada_avion";
+            nuevaFila.reloj = nuevoReloj;
             //programar
-            
+
             return new FilaSimulacion();
         }
         public FilaSimulacion FinAterrizaje(FilaSimulacion filaActual, double nuevoReloj)
         {
  
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "fin_aterrizaje";
+            nuevaFila.reloj = nuevoReloj;
             // programar
 
             return new FilaSimulacion();
@@ -85,18 +117,23 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         public FilaSimulacion FinCarga(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "fin_carga";
+            nuevaFila.reloj = nuevoReloj;
             //programar
             return new FilaSimulacion();
         }
         public FilaSimulacion FinOperaciones(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "fin_operaciones";
+            nuevaFila.reloj = nuevoReloj;
             //programar
             return new FilaSimulacion();
         }
         public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
+            nuevaFila.evento = "llegada_avion_aerolinea";
             nuevaFila.reloj = nuevoReloj;
             //programar
             var rnd = generadorRandom.NextDouble();

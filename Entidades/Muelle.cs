@@ -16,6 +16,11 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             estado = "Libre";
             horaFin = 0;
         }
+        public Muelle(Muelle m)
+        {
+            estado = m.estado;
+            horaFin = m.horaFin;
+        }
         public void OcuparMuelle(double horaFin)
         {
             estado = "Ocupado";
