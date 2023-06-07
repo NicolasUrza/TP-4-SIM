@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\barri\\Desktop\\TP-4-SIM\\TP-4-SIM-Aeropuerto.csproj": {}
+    "D:\\Facultad\\Cuarto\\Simulacion\\TPS\\Aeropuerto\\TP-4-SIM-Aeropuerto.csproj": {}
   },
   "projects": {
-    "C:\\Users\\barri\\Desktop\\TP-4-SIM\\TP-4-SIM-Aeropuerto.csproj": {
+    "D:\\Facultad\\Cuarto\\Simulacion\\TPS\\Aeropuerto\\TP-4-SIM-Aeropuerto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\barri\\Desktop\\TP-4-SIM\\TP-4-SIM-Aeropuerto.csproj",
+        "projectUniqueName": "D:\\Facultad\\Cuarto\\Simulacion\\TPS\\Aeropuerto\\TP-4-SIM-Aeropuerto.csproj",
         "projectName": "TP-4-SIM-Aeropuerto",
-        "projectPath": "C:\\Users\\barri\\Desktop\\TP-4-SIM\\TP-4-SIM-Aeropuerto.csproj",
-        "packagesPath": "C:\\Users\\barri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\barri\\Desktop\\TP-4-SIM\\obj\\",
+        "projectPath": "D:\\Facultad\\Cuarto\\Simulacion\\TPS\\Aeropuerto\\TP-4-SIM-Aeropuerto.csproj",
+        "packagesPath": "C:\\Users\\Nicolas\\.nuget\\packages\\",
+        "outputPath": "D:\\Facultad\\Cuarto\\Simulacion\\TPS\\Aeropuerto\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\barri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Nicolas\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

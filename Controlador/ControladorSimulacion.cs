@@ -43,6 +43,16 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 {
                     filaActual = FinCarga(filaActual, nuevoReloj);
                 }
+                else if (proximoEstado == "fin_operaciones")
+                {
+                    filaActual = FinOperaciones(filaActual, nuevoReloj);
+                }
+                else if (proximoEstado == "llegada_avion_aerolinea")
+                {
+                    filaActual = FinOperaciones(filaActual, nuevoReloj);
+
+                }
+                
 
                 //programar
                 //guardar la fila actual en el array de resultadosDesde si corresponde

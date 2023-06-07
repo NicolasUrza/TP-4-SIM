@@ -18,7 +18,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         public ResultadosControl(FilaSimulacion[] f, Metricas m)
         {
             InitializeComponent();
-            simulacion = new SimulacionControl( f);
+            simulacion = new SimulacionControl(f);
             simulacion.Dock = DockStyle.Fill;
             conclusion = new ConclusionControl(m);
             conclusion.Dock = DockStyle.Fill;
@@ -26,13 +26,23 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
 
         private void btnSimulacion_Click(object sender, EventArgs e)
         {
-            //programar para mostrar la simulacion en el panel de resultados
-            
+            pnResultados.Controls.Clear();
+            pnResultados.Controls.Add(simulacion);
+
+            simulacion.Dock = DockStyle.Fill;
+
+            simulacion.Show();
+
         }
 
         private void btnConclusion_Click(object sender, EventArgs e)
         {
             //programar para mostrar la conclusion en el panel de resultados
+        }
+
+        private void pnResultados_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
