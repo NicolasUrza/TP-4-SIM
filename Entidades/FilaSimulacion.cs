@@ -28,10 +28,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 evento = "";
                 reloj = 0;
                 llegadaAvion = new LlegadaAvion();
+            llegadaAvion.proximaLlegada = 1.67;
                 finAterrizaje = new FinAterrizaje();
+            
                 intencion = new Intencion();
                 finOperacion = new FinOperacion();
                 llegadaAvionAerolinea = new LlegadaAvionAerolinea();
+            llegadaAvionAerolinea.proximaLlegada = 2.67;
                 finCarga = new FinCarga();
                 puestoCarga = new PuestoCarga();
                 pista = new Pista();
@@ -96,8 +99,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             {
                 this.evento,
                 this.reloj.ToString(),
-                this.llegadaAvion.rnd.ToString(),
-                this.llegadaAvion.tiempoEntreAviones.ToString(),
+                this.llegadaAvion.rnd != 0? this.llegadaAvion.ToString(): " ",
+                this.llegadaAvion.tiempoEntreAviones!= 0? this.llegadaAvion.tiempoEntreAviones.ToString(): " ",
                 this.llegadaAvion.proximaLlegada.ToString(),
 
             };
