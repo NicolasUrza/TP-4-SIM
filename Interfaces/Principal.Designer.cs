@@ -188,6 +188,7 @@
             // 
             // btnGenerarSimulacion
             // 
+            this.btnGenerarSimulacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGenerarSimulacion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnGenerarSimulacion.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.btnGenerarSimulacion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
@@ -281,6 +282,7 @@
             // 
             // txtDesde
             // 
+            this.txtDesde.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDesde.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
             this.txtDesde.Location = new System.Drawing.Point(648, 50);
             this.txtDesde.Name = "txtDesde";
@@ -289,6 +291,7 @@
             // 
             // lblMostrarDesde
             // 
+            this.lblMostrarDesde.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblMostrarDesde.AutoSize = true;
             this.lblMostrarDesde.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblMostrarDesde.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
@@ -300,6 +303,7 @@
             // 
             // txtCantIteraciones
             // 
+            this.txtCantIteraciones.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtCantIteraciones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(217)))));
             this.txtCantIteraciones.Location = new System.Drawing.Point(648, 21);
             this.txtCantIteraciones.Name = "txtCantIteraciones";
@@ -308,6 +312,7 @@
             // 
             // lblCantIteraciones
             // 
+            this.lblCantIteraciones.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblCantIteraciones.AutoSize = true;
             this.lblCantIteraciones.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblCantIteraciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
@@ -334,6 +339,7 @@
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.pnSolucion);
             this.Controls.Add(this.pnParametros);
+            this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "Principal";
             this.Text = "Aeropuerto";
             this.Load += new System.EventHandler(this.Principal_Load_1);

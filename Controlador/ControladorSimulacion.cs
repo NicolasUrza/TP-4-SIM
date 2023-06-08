@@ -20,7 +20,15 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         {
             this.principalForm = pri;
             this.parametros = par;
-            resultadosDesde = new FilaSimulacion[500];
+            if(parametros.CantidadDeIteraciones < parametros.Desde + 499)
+            {
+                resultadosDesde = new FilaSimulacion[parametros.CantidadDeIteraciones - parametros.Desde + 1];
+            }
+            else
+            {
+                resultadosDesde = new FilaSimulacion[500];
+            }
+            
 
         }
 
@@ -58,13 +66,17 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     filaActual = FinOperaciones(filaActual, nuevoReloj);
 
                 }
+                else if (proximoEstado == "fin_aterrizaje")
+                {
+                    filaActual = FinAterrizaje(filaActual, nuevoReloj);
+                }
 
 
                 //programar
                 //guardar la fila actual en el array de resultadosDesde si corresponde
                 // guardar hasta 500 desde el Parametro.desde
 
-                if (i >= parametros.Desde - 1 & i <= parametros.Desde + 499)
+                if (i >= parametros.Desde - 1 & i < parametros.Desde + 499)
                 {
                     desdeActivado = true;
                     resultadosDesde[indice] = new FilaSimulacion(filaActual);
