@@ -42,6 +42,16 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             //hacemos un for hasta la cantidad de iteraciones
             for (int i=0; i< parametros.CantidadDeIteraciones; i++)
             {
+                if (i >= parametros.Desde - 1 & i < parametros.Desde + 499)
+                {
+                    desdeActivado = true;
+                    resultadosDesde[indice] = new FilaSimulacion(filaActual, true);
+                    indice++;
+                }
+                else if (i > parametros.Desde + 499)
+                {
+                    desdeActivado = false;
+                }
                 //determinamos el proximo estado y reloj
                 //programar este metodo
                 var proximo = filaActual.siguienteEventoyReloj();
@@ -63,7 +73,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 }
                 else if (proximoEstado == "llegada_avion_aerolinea")
                 {
-                    filaActual = FinOperaciones(filaActual, nuevoReloj);
+                    filaActual = LlegadaAvionAerolinea(filaActual, nuevoReloj);
 
                 }
                 else if (proximoEstado == "fin_aterrizaje")
@@ -76,16 +86,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 //guardar la fila actual en el array de resultadosDesde si corresponde
                 // guardar hasta 500 desde el Parametro.desde
 
-                if (i >= parametros.Desde - 1 & i < parametros.Desde + 499)
-                {
-                    desdeActivado = true;
-                    resultadosDesde[indice] = new FilaSimulacion(filaActual, true);
-                    indice++;
-                }
-                else if (i > parametros.Desde + 499)
-                {
-                    desdeActivado = false;
-                }
+                
 
             }
 
@@ -162,7 +163,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 var rndAterrizaje = generadorRandom.NextDouble();
                 var finAterrizaje = new FinAterrizaje(rnd, parametros.MediaAterrizaje, nuevoReloj);
                 var avionAero = new AvionAerolinea("AT", nuevoReloj);
-                nuevaFila.avionesAerolinea.Append(avionAero);
+                nuevaFila.avionesAerolinea.Add(avionAero);
                 nuevaFila.finAterrizaje = finAterrizaje;
             }
 

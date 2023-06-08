@@ -90,7 +90,13 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 this.dataGridView1.Columns.Add("estado_avion"+ i.ToString(), "Estado");
                 this.dataGridView1.Columns.Add("hora_llegada" + i.ToString(), "Hora Llegada");
             }
-            
+            i = 0;
+            foreach (AvionAerolinea a in simulacion[simulacion.Length - 1].avionesAerolinea)
+            {
+                this.dataGridView1.Columns.Add("estado_avion" + i.ToString(), "Estado");
+                this.dataGridView1.Columns.Add("hora_llegada" + i.ToString(), "Hora Llegada");
+            }
+
 
             //this.dataGridView1.Columns.Add("estado_avion_2", "Estado");
             //this.dataGridView1.Columns.Add("hora_llegada_2", "Hora Llegada");
@@ -225,6 +231,20 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 {
                     CustomizeCell(i, e, "Avion 5", 2);
                 }
+            }
+
+            int c = 0;
+            foreach (Avion a in simulacion[simulacion.Length - 1].aviones)
+            {
+                CustomizeCell(38 + c * 2, e, "Avion" + (c + 1).ToString(), 2);
+                c++;
+            }
+            int constante = 1;
+            foreach(AvionAerolinea av in simulacion[simulacion.Length -1].avionesAerolinea)
+            {
+                CustomizeCell(38 + c * 2, e, " Avion A" + (constante).ToString(), 2);
+                c++;
+                constante++;
             }
         }
 

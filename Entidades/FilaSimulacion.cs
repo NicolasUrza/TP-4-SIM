@@ -19,8 +19,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public PuestoCarga puestoCarga {get; set; }
         public Pista pista { get; set; }
         public Acumuladores acumuladores { get; set; }
-        public Avion[] aviones { get; set; }
-        public AvionAerolinea[] avionesAerolinea { get; set; }
+        public List<Avion> aviones { get; set; }
+        public List<AvionAerolinea> avionesAerolinea { get; set; }
         
         public FilaSimulacion()
         {
@@ -34,13 +34,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 intencion = new Intencion();
                 finOperacion = new FinOperacion();
                 llegadaAvionAerolinea = new LlegadaAvionAerolinea();
-            llegadaAvionAerolinea.proximaLlegada = 2.67;
+            llegadaAvionAerolinea.proximaLlegada = 0.67;
                 finCarga = new FinCarga();
                 puestoCarga = new PuestoCarga();
                 pista = new Pista();
                 acumuladores = new Acumuladores();
-            aviones = new Avion[0];
-            avionesAerolinea = new AvionAerolinea[0];
+            aviones = new List<Avion>();
+            avionesAerolinea = new List<AvionAerolinea>();
 
         }
         public FilaSimulacion(FilaSimulacion f, bool keep =false)
@@ -102,6 +102,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.llegadaAvion.rnd != 0? this.llegadaAvion.ToString(): " ",
                 this.llegadaAvion.tiempoEntreAviones!= 0? this.llegadaAvion.tiempoEntreAviones.ToString(): " ",
                 this.llegadaAvion.proximaLlegada.ToString(),
+                this.finAterrizaje.rnd != 0? this.finAterrizaje.ToString():  " ",
+                this.finAterrizaje.tiempoAterrizaje != 0 ? this.finAterrizaje.tiempoAterrizaje.ToString(): " ",
+                this.intencion.rnd!=0? this.finAterrizaje.rnd.ToString():" ",
+                this.intencion.intencion,
+                this.finOperacion.rnd != 0? this.finOperacion.rnd.ToString(): " ",
+                this.finOperacion.tiempo != 0? this.finOperacion.tiempo.ToString(): " ",
+
 
             };
             return str;
