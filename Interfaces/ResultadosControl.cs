@@ -26,7 +26,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         private void btnSimulacion_Click(object sender, EventArgs e)
         {
             MostrarSimulacion();
-            
+
 
 
         }
@@ -43,7 +43,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         }
         private void MostrarSimulacion()
         {
-            
+
             pnResultados.Controls.Clear();
             pnResultados.Controls.Add(simulacion);
             // cambiar el backcolor del boton simulacion

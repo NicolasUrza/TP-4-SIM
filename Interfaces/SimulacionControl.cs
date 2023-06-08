@@ -85,9 +85,9 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Columns.Add("Cant_avion_aterrizados", "Total aviones aterrizados");
             this.dataGridView1.Columns.Add("Cant_avion_descuento", "Cant aterrizados aviones con descuento ");
             int i = 1;
-            foreach(Avion a in simulacion[simulacion.Length - 1].aviones)
+            foreach (Avion a in simulacion[simulacion.Length - 1].aviones)
             {
-                this.dataGridView1.Columns.Add("estado_avion"+ i.ToString(), "Estado");
+                this.dataGridView1.Columns.Add("estado_avion" + i.ToString(), "Estado");
                 this.dataGridView1.Columns.Add("hora_llegada" + i.ToString(), "Hora Llegada");
             }
             i = 0;
@@ -240,7 +240,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 c++;
             }
             int constante = 1;
-            foreach(AvionAerolinea av in simulacion[simulacion.Length -1].avionesAerolinea)
+            foreach (AvionAerolinea av in simulacion[simulacion.Length - 1].avionesAerolinea)
             {
                 CustomizeCell(38 + c * 2, e, " Avion A" + (constante).ToString(), 2);
                 c++;
