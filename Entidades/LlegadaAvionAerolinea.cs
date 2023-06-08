@@ -25,15 +25,19 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.CalcularSiguienteAvion(relojActual);
 
         }
-        public LlegadaAvionAerolinea(LlegadaAvionAerolinea llaa)
+        public LlegadaAvionAerolinea(LlegadaAvionAerolinea llaa, bool keep =false)
         {
             // sirve para clonar un llegada avion aerolinea
-
-            this.rnd = llaa.rnd;
-            this.tiempoEntreLlegadas = llaa.tiempoEntreLlegadas;
+            if (keep)
+            {
+                this.rnd = llaa.rnd;
+                this.tiempoEntreLlegadas = llaa.tiempoEntreLlegadas;
+                this.a = llaa.a;
+                this.b = llaa.b;
+            }
+            
             this.proximaLlegada = llaa.proximaLlegada;
-            this.a = llaa.a;
-            this.b = llaa.b;
+          
             
         }
         public void CalcularSiguienteAvion(double relojActual)

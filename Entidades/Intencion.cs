@@ -22,11 +22,15 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.rnd = rnd;
             GenerarIntencion();    
         }
-        public Intencion(Intencion i)
+        public Intencion(Intencion i, bool keep =false)
         {
+            if (keep)
+            {
                 this.rnd = i.rnd;
                 this.intencionCarga = i.intencionCarga;
                 this.intencionMuelle = i.intencionMuelle;
+            }
+                
                 this.intencion = i.intencion;
         }
         public void GenerarIntencion()

@@ -20,10 +20,14 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 muelles[i] = new Muelle();
             }
         }
-        public FinOperacion(FinOperacion finOperacion)
+        public FinOperacion(FinOperacion finOperacion, bool keep = false)
         {
-            rnd = finOperacion.rnd;
-            tiempo = finOperacion.tiempo;
+            if (keep)
+            {
+                rnd = finOperacion.rnd;
+                tiempo = finOperacion.tiempo;
+            }
+           
             var muelles = new Muelle[5];
             var i= 0;
             foreach(Muelle m in finOperacion.muelles)

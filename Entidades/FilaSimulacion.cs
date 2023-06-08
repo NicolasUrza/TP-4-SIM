@@ -36,21 +36,26 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 puestoCarga = new PuestoCarga();
                 pista = new Pista();
                 acumuladores = new Acumuladores();
+            aviones = new Avion[0];
+            avionesAerolinea = new AvionAerolinea[0];
+
         }
-        public FilaSimulacion(FilaSimulacion f)
+        public FilaSimulacion(FilaSimulacion f, bool keep =false)
         {
             //para copiar una fila simulacion
             this.evento = f.evento;
             this.reloj = f.reloj;
-            this.llegadaAvion = new LlegadaAvion(f.llegadaAvion);
+            this.llegadaAvion = new LlegadaAvion(f.llegadaAvion, keep);
             this.pista = new Pista(f.pista);
-            this.finCarga = new FinCarga(f.finCarga);
+            this.finCarga = new FinCarga(f.finCarga, keep);
             this.puestoCarga = new PuestoCarga(f.puestoCarga);
             this.acumuladores = new Acumuladores(f.acumuladores);
-            this.finAterrizaje = new FinAterrizaje(f.finAterrizaje);
-            this.intencion = new Intencion(f.intencion);
-            this.llegadaAvionAerolinea = new LlegadaAvionAerolinea(f.llegadaAvionAerolinea);
-            this.finOperacion = new FinOperacion(f.finOperacion);
+            this.finAterrizaje = new FinAterrizaje(f.finAterrizaje, keep);
+            this.intencion = new Intencion(f.intencion, keep);
+            this.llegadaAvionAerolinea = new LlegadaAvionAerolinea(f.llegadaAvionAerolinea, keep);
+            this.finOperacion = new FinOperacion(f.finOperacion, keep);
+            this.aviones = f.aviones;
+            this.avionesAerolinea = f.avionesAerolinea;
         }
 
         public (string, double) siguienteEventoyReloj()
@@ -87,7 +92,15 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public string[] ListaString()
         {
             //programar para devolver un vector de string con los datos de la fila
-            var str = new string[2];
+            var str = new string[]
+            {
+                this.evento,
+                this.reloj.ToString(),
+                this.llegadaAvion.rnd.ToString(),
+                this.llegadaAvion.tiempoEntreAviones.ToString(),
+                this.llegadaAvion.proximaLlegada.ToString(),
+
+            };
             return str;
         }
 

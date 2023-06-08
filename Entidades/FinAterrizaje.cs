@@ -22,12 +22,16 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.media = media;
             GenerarTiempoAterrizaje(relojActual);
         }
-        public FinAterrizaje(FinAterrizaje f)
+        public FinAterrizaje(FinAterrizaje f, bool keep =false)
         {
             // sirve para clonar un fin aterrizaje
+            if (keep)
+            {
                 this.rnd = f.rnd;
                 this.media = f.media;
                 this.tiempoAterrizaje = f.tiempoAterrizaje;
+            }
+                
                 this.proximoFinAterrizaje = f.proximoFinAterrizaje;
         }
         public void GenerarTiempoAterrizaje(double relojActual)

@@ -79,7 +79,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 if (i >= parametros.Desde - 1 & i < parametros.Desde + 499)
                 {
                     desdeActivado = true;
-                    resultadosDesde[indice] = new FilaSimulacion(filaActual);
+                    resultadosDesde[indice] = new FilaSimulacion(filaActual, true);
                     indice++;
                 }
                 else if (i > parametros.Desde + 499)

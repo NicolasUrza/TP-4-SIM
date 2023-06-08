@@ -19,8 +19,9 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         Color headerColor = Color.FromArgb(0, 51, 102);
         public SimulacionControl(FilaSimulacion[] f)
         {
-            InitializeComponent();
             this.simulacion = f;
+
+            InitializeComponent();
             CargarSimulacion();
         }
         private void CargarSimulacion()
@@ -83,22 +84,25 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Columns.Add("Acum_tiempo_espera", "Acum tiempo espera de aterrizaje");
             this.dataGridView1.Columns.Add("Cant_avion_aterrizados", "Total aviones aterrizados");
             this.dataGridView1.Columns.Add("Cant_avion_descuento", "Cant aterrizados aviones con descuento ");
+            int i = 1;
+            foreach(Avion a in simulacion[simulacion.Length - 1].aviones)
+            {
+                this.dataGridView1.Columns.Add("estado_avion"+ i.ToString(), "Estado");
+                this.dataGridView1.Columns.Add("hora_llegada" + i.ToString(), "Hora Llegada");
+            }
+            
 
+            //this.dataGridView1.Columns.Add("estado_avion_2", "Estado");
+            //this.dataGridView1.Columns.Add("hora_llegada_2", "Hora Llegada");
 
-            this.dataGridView1.Columns.Add("estado_avion_1", "Estado");
-            this.dataGridView1.Columns.Add("hora_llegada_1", "Hora Llegada");
+            //this.dataGridView1.Columns.Add("estado_avion_3", "Estado");
+            //this.dataGridView1.Columns.Add("hora_llegada_3", "Hora Llegada");
 
-            this.dataGridView1.Columns.Add("estado_avion_2", "Estado");
-            this.dataGridView1.Columns.Add("hora_llegada_2", "Hora Llegada");
+            //this.dataGridView1.Columns.Add("estado_avion_4", "Estado");
+            //this.dataGridView1.Columns.Add("hora_llegada_4", "Hora Llegada");
 
-            this.dataGridView1.Columns.Add("estado_avion_3", "Estado");
-            this.dataGridView1.Columns.Add("hora_llegada_3", "Hora Llegada");
-
-            this.dataGridView1.Columns.Add("estado_avion_4", "Estado");
-            this.dataGridView1.Columns.Add("hora_llegada_4", "Hora Llegada");
-
-            this.dataGridView1.Columns.Add("estado_avion_5", "Estado");
-            this.dataGridView1.Columns.Add("hora_llegada_5", "Hora Llegada");
+            //this.dataGridView1.Columns.Add("estado_avion_5", "Estado");
+            //this.dataGridView1.Columns.Add("hora_llegada_5", "Hora Llegada");
 
             this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dataGridView1.ColumnHeadersHeight = this.dataGridView1.ColumnHeadersHeight * 3 + 20;
@@ -107,6 +111,11 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Paint += new PaintEventHandler(dataGridView1_Paint);
             this.dataGridView1.Scroll += new ScrollEventHandler(dataGridView1_Scroll);
             this.dataGridView1.ColumnWidthChanged += new DataGridViewColumnEventHandler(dataGridView1_ColumnWidthChanged);
+
+            foreach (FilaSimulacion f in simulacion)
+            {
+                this.dataGridView1.Rows.Add(f.ListaString());
+            }
         }
 
         private void dataGridView1_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)

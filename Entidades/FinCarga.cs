@@ -22,13 +22,18 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.mediaCarga = mediaCarga;
             GenerarTiempoCarga(relojActual);
         }
-        public FinCarga(FinCarga f)
+        public FinCarga(FinCarga f, bool keep=false)
         {
             //sirve para clonar un fin de carga
-            rnd = f.rnd;
+            if (keep)
+            {
+                rnd = f.rnd;
+                tiempoCarga = f.tiempoCarga;
+                mediaCarga = f.mediaCarga;
+
+            }
             tiempoFinCarga = f.tiempoFinCarga;
-            tiempoCarga = f.tiempoCarga;
-            mediaCarga = f.mediaCarga;
+
         }
         public void GenerarTiempoCarga(double relojActual)
         {
