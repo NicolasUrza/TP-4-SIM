@@ -91,7 +91,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
             return (nextEvent, smaller);
         }
-        
+
         public string[] ListaString()
         {
             //programar para devolver un vector de string con los datos de la fila
@@ -99,18 +99,51 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             {
                 this.evento,
                 this.reloj.ToString(),
-                this.llegadaAvion.rnd != 0? this.llegadaAvion.ToString(): " ",
+                this.llegadaAvion.rnd != 0? this.llegadaAvion.rnd.ToString(): " ",
                 this.llegadaAvion.tiempoEntreAviones!= 0? this.llegadaAvion.tiempoEntreAviones.ToString(): " ",
                 this.llegadaAvion.proximaLlegada.ToString(),
-                this.finAterrizaje.rnd != 0? this.finAterrizaje.ToString():  " ",
+                this.finAterrizaje.rnd != 0? this.finAterrizaje.rnd.ToString():  " ",
                 this.finAterrizaje.tiempoAterrizaje != 0 ? this.finAterrizaje.tiempoAterrizaje.ToString(): " ",
+                this.finAterrizaje.proximoFinAterrizaje !=0 ? this.finAterrizaje.proximoFinAterrizaje.ToString(): " ",
                 this.intencion.rnd!=0? this.finAterrizaje.rnd.ToString():" ",
                 this.intencion.intencion,
                 this.finOperacion.rnd != 0? this.finOperacion.rnd.ToString(): " ",
                 this.finOperacion.tiempo != 0? this.finOperacion.tiempo.ToString(): " ",
 
 
+
             };
+            foreach (Muelle m in this.finOperacion.muelles)
+            {
+                str = str.Concat(new string[] { m.estado, m.horaFin.ToString() }).ToArray();
+            }
+            str = str.Concat(new string[] {
+                this.llegadaAvionAerolinea.rnd != 0? this.llegadaAvionAerolinea.rnd.ToString(): " ",
+                this.llegadaAvionAerolinea.tiempoEntreLlegadas != 0? this.llegadaAvionAerolinea.tiempoEntreLlegadas.ToString(): " ",
+                this.llegadaAvionAerolinea.proximaLlegada.ToString(),
+                this.finCarga.rnd != 0? this.finCarga.rnd.ToString(): " ",
+                this.finCarga.tiempoCarga != 0? this.finCarga.tiempoCarga.ToString(): " ",
+                this.finCarga.tiempoFinCarga !=0? this.finCarga.tiempoFinCarga.ToString(): " ",
+                this.puestoCarga.estado,
+                this.puestoCarga.cola.ToString(),
+                this.pista.estado,
+                this.pista.cola.ToString(),
+                this.pista.colaPrioritaria.ToString(),
+                this.acumuladores.cantAvionesAterrGratis.ToString(),
+                this.acumuladores.cantAvionesCargaron.ToString(),
+                this.acumuladores.acumTiempoEsperaAterr.ToString(),
+                this.acumuladores.totalAvionesAterr.ToString(),
+                this.acumuladores.cantAvionesAterrDescuento.ToString(),
+
+            }).ToArray();
+            foreach (Avion a in this.aviones)
+            {
+                str = str.Concat(new string[] { a.estado, a.horaLlegada.ToString() }).ToArray();
+            }
+            foreach (AvionAerolinea a in this.avionesAerolinea)
+            {
+                str = str.Concat(new string[] { a.estado, a.horaLlegada.ToString() }).ToArray();
+            }
             return str;
         }
 

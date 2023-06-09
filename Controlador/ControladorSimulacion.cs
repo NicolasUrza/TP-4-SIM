@@ -149,7 +149,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.evento = "llegada_avion_aerolinea";
             nuevaFila.reloj = nuevoReloj;
             //programar
-            var rnd = generadorRandom.NextDouble();
+            var rnd = GenerarRandom();
             var nuevaLlegadaAerolinea = new LlegadaAvionAerolinea(rnd, parametros.AerolineaA, parametros.AerolineaB, nuevoReloj);
             if (filaActual.buscarAterrizaje())
             {
@@ -169,7 +169,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
 
             return nuevaFila;
         }
-    
+        public double GenerarRandom()
+        {
+            return Math.Truncate(generadorRandom.NextDouble()*100)/100;
+        }
+
 
     }
 }

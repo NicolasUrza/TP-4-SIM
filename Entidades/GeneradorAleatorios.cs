@@ -11,12 +11,12 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public static double GenerarExponencial(double rnd, double media)
         {
             var lambda = 1 / media;
-            var muestra = Math.Truncate((-Math.Log(1 - rnd) / lambda) * 10000) / 10000;
+            var muestra = Math.Truncate((-Math.Log(1 - rnd) / lambda) * 100) / 100;
             return muestra; 
         }
         public static double GenerarUniformeAB(double rnd, int a, int b)
         {
-            return (Math.Truncate((rnd * (b - a) + a) * 10000) / 10000);
+            return (Math.Truncate((rnd * (b - a) + a) * 100) / 100);
        
         }
         

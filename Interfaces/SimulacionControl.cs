@@ -28,11 +28,6 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         {
             //programar para cargar la simulacion en un dgv
             //usar el metodo ListaString() de FilaSimulacion() para cargarlas
-
-        }
-
-        private void SimulacionControl_Load(object sender, EventArgs e)
-        {
             this.dataGridView1.Columns.Add("Evento", "Evento");
             this.dataGridView1.Columns.Add("Reloj", "Reloj");
 
@@ -117,11 +112,19 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Paint += new PaintEventHandler(dataGridView1_Paint);
             this.dataGridView1.Scroll += new ScrollEventHandler(dataGridView1_Scroll);
             this.dataGridView1.ColumnWidthChanged += new DataGridViewColumnEventHandler(dataGridView1_ColumnWidthChanged);
+            this.dataGridView1.Dock = DockStyle.Fill;
+
 
             foreach (FilaSimulacion f in simulacion)
             {
                 this.dataGridView1.Rows.Add(f.ListaString());
             }
+
+        }
+
+        private void SimulacionControl_Load(object sender, EventArgs e)
+        {
+           
         }
 
         private void dataGridView1_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
