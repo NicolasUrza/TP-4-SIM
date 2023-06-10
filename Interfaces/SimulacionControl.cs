@@ -23,12 +23,13 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
 
             InitializeComponent();
             CargarSimulacion();
+            this.dataGridView1.AllowUserToOrderColumns = false;
+
         }
         private void CargarSimulacion()
         {
             //programar para cargar la simulacion en un dgv
             //usar el metodo ListaString() de FilaSimulacion() para cargarlas
-            this.dataGridView1.Columns.Add("Evento", "Evento");
             this.dataGridView1.Columns.Add("Reloj", "Reloj");
 
             this.dataGridView1.Columns.Add("RND_LlegadaAvion", "RND");
@@ -92,7 +93,6 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 this.dataGridView1.Columns.Add("hora_llegada" + i.ToString(), "Hora Llegada");
             }
 
-
             //this.dataGridView1.Columns.Add("estado_avion_2", "Estado");
             //this.dataGridView1.Columns.Add("hora_llegada_2", "Hora Llegada");
 
@@ -112,13 +112,19 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Paint += new PaintEventHandler(dataGridView1_Paint);
             this.dataGridView1.Scroll += new ScrollEventHandler(dataGridView1_Scroll);
             this.dataGridView1.ColumnWidthChanged += new DataGridViewColumnEventHandler(dataGridView1_ColumnWidthChanged);
-            this.dataGridView1.Dock = DockStyle.Fill;
-
-
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            
+            var cantAvionesTotal = simulacion[simulacion.Length - 1].aviones.Count();
+            foreach (DataGridViewTextBoxColumn d in dataGridView1.Columns)
+            {
+                d.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
             foreach (FilaSimulacion f in simulacion)
             {
-                this.dataGridView1.Rows.Add(f.ListaString());
+                this.dataGridView1.Rows.Add(f.ListaString(cantAvionesTotal));
             }
+            
 
         }
 
@@ -132,6 +138,8 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             Rectangle rtHeader = this.dataGridView1.DisplayRectangle;
             rtHeader.Height = this.dataGridView1.ColumnHeadersHeight / 2;
             this.dataGridView1.Invalidate(rtHeader);
+            this.dataGridView1.AllowUserToOrderColumns = false;
+
         }
 
         private void dataGridView1_Scroll(object sender, ScrollEventArgs e)
@@ -139,6 +147,8 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             Rectangle rtHeader = this.dataGridView1.DisplayRectangle;
             rtHeader.Height = this.dataGridView1.ColumnHeadersHeight / 2;
             this.dataGridView1.Invalidate(rtHeader);
+            this.dataGridView1.AllowUserToOrderColumns = false;
+
         }
 
         private void dataGridView1_Paint(object sender, PaintEventArgs e)
@@ -249,6 +259,8 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 c++;
                 constante++;
             }
+            this.dataGridView1.AllowUserToOrderColumns = false;
+
         }
 
         private void CustomizeCell(int index, PaintEventArgs e, string header, int cellsOverlapped)
@@ -277,6 +289,8 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             new SolidBrush(this.dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor),
             r1,
             format);
+            this.dataGridView1.AllowUserToOrderColumns = false;
+
 
         }
 
@@ -291,10 +305,18 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 e.PaintContent(r2);
                 e.Handled = true;
             }
+            this.dataGridView1.AllowUserToOrderColumns = false;
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this.dataGridView1.AllowUserToOrderColumns = false;
 
         }
     }

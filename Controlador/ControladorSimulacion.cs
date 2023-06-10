@@ -40,8 +40,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             var indice = 0;
 
             //hacemos un for hasta la cantidad de iteraciones
+
             for (int i=0; i< parametros.CantidadDeIteraciones; i++)
             {
+                //guardar la fila actual en el array de resultadosDesde si corresponde
+                // guardar hasta 500 desde el Parametro.desde
                 if (i >= parametros.Desde - 1 & i < parametros.Desde + 499)
                 {
                     desdeActivado = true;
@@ -83,8 +86,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
 
 
                 //programar
-                //guardar la fila actual en el array de resultadosDesde si corresponde
-                // guardar hasta 500 desde el Parametro.desde
+               
 
                 
 

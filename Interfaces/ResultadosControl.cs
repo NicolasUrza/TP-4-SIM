@@ -19,6 +19,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         {
             InitializeComponent();
             simulacion = new SimulacionControl(f);
+            simulacion.Dock = DockStyle.Fill;
             conclusion = new ConclusionControl(m);
             conclusion.Dock = DockStyle.Fill;
         }
@@ -37,10 +38,6 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             MostrarConclusion();
         }
 
-        private void pnResultados_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
         private void MostrarSimulacion()
         {
 

@@ -57,8 +57,16 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.intencion = new Intencion(f.intencion, keep);
             this.llegadaAvionAerolinea = new LlegadaAvionAerolinea(f.llegadaAvionAerolinea, keep);
             this.finOperacion = new FinOperacion(f.finOperacion, keep);
-            this.aviones = f.aviones;
-            this.avionesAerolinea = f.avionesAerolinea;
+            this.aviones = new List<Avion>();
+            foreach (var avion in f.aviones)
+            {
+                this.aviones.Add(new Avion(avion));
+            }
+            this.avionesAerolinea = new List<AvionAerolinea>();
+            foreach (var avionAerolinea in f.avionesAerolinea)
+            {
+                    this.avionesAerolinea.Add(new AvionAerolinea(avionAerolinea));
+            }
         }
 
         public (string, double) siguienteEventoyReloj()
@@ -92,7 +100,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             return (nextEvent, smaller);
         }
 
-        public string[] ListaString()
+        public string[] ListaString( int cantAvionesTotales)
         {
             //programar para devolver un vector de string con los datos de la fila
             var str = new string[]
@@ -136,9 +144,14 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.acumuladores.cantAvionesAterrDescuento.ToString(),
 
             }).ToArray();
+            
             foreach (Avion a in this.aviones)
             {
                 str = str.Concat(new string[] { a.estado, a.horaLlegada.ToString() }).ToArray();
+            }
+            for (int i = 0; i< cantAvionesTotales - this.aviones.Count; i++)
+            {
+                    str = str.Concat(new string[] { " ", " " }).ToArray();
             }
             foreach (AvionAerolinea a in this.avionesAerolinea)
             {
