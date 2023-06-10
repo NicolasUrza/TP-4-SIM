@@ -141,9 +141,44 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         {
             var nuevaFila = new FilaSimulacion(filaActual);
             nuevaFila.evento = "fin_operaciones";
+            var clock = filaActual.reloj;
+
+            /// busco el muelle con el clock
+            filaActual.finOperacion.BuscarMuelleOcupado(clock);
+
+            /// mato el avion 
+            if (!desdeActivado)
+            {
+                Muelle muelle = nuevaFila.finOperacion.BuscarMuelleOcupado(clock);
+                var avion = muelle.avionEnMuelle;
+
+                if (avion.GetType() == typeof(Avion))
+                {
+                    nuevaFila.aviones.Remove((Avion)avion);
+                }
+
+                if (avion.GetType() == typeof(AvionAerolinea))
+                {
+                    nuevaFila.avionesAerolinea.Remove((AvionAerolinea)avion);
+                }
+            
+            /// desocupo el muelle 
+                muelle.LiberarMuelle();
+            }
+            else
+            {
+                Muelle muelle = nuevaFila.finOperacion.BuscarMuelleOcupado(clock);
+                var avion = muelle.avionEnMuelle;
+                avion.MATAR(); 
+                muelle.LiberarMuelle();
+            }
+
+
             nuevaFila.reloj = nuevoReloj;
-            //programar
-            return new FilaSimulacion();
+          
+
+
+            return nuevaFila;
         }
         public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual, double nuevoReloj)
         {

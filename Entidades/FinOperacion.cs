@@ -58,8 +58,22 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         }
         public Muelle BuscarMuelleOcupado(double reloj)
         {
-            
+            foreach (Muelle muell in muelles)
+            {
+                if (muell.horaFin== reloj)
+                {
+                    return muell;
+                }
+            }
             return new Muelle();
         }
+
+
+
+
+
+
+
+
     }
 }
