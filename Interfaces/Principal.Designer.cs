@@ -323,7 +323,7 @@
             this.pnSolucion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnSolucion.Location = new System.Drawing.Point(0, 201);
             this.pnSolucion.Name = "pnSolucion";
-            this.pnSolucion.Size = new System.Drawing.Size(984, 360);
+            this.pnSolucion.Size = new System.Drawing.Size(984, 410);
             this.pnSolucion.TabIndex = 1;
             // 
             // Principal
@@ -331,10 +331,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(27)))), ((int)(((byte)(39)))));
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(984, 611);
             this.Controls.Add(this.pnSolucion);
             this.Controls.Add(this.pnParametros);
             this.Name = "Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aeropuerto";
             this.Load += new System.EventHandler(this.Principal_Load_1);
             this.pnParametros.ResumeLayout(false);

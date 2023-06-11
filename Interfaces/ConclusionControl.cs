@@ -23,7 +23,10 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         private void CargarConclusion()
         {
             //programar para mostrar las conclusiones
-            
+            porcAterrFree.Text = Convert.ToInt64(resultadosSimulacion.porcentajeAterrGratis).ToString() + "%";
+            porcCargoComb.Text = Convert.ToInt64(resultadosSimulacion.porcentajeCargaronCombustible).ToString() + "%";
+            tiempoMedioAt.Text = Convert.ToInt64(resultadosSimulacion.tiempoEsperaPromedioAterrizaje).ToString() + " minutos";
+            benefPorHora.Text = "€ " + Convert.ToInt64(resultadosSimulacion.beneficiosPorHora).ToString();
         }
     }
 }

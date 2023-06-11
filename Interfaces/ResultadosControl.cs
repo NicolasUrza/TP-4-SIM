@@ -40,5 +40,10 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
 
             conclusion.Show();
         }
+
+        private void pnResultados_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -77,11 +77,13 @@
             // 
             // pnResultados
             // 
+            this.pnResultados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(40)))));
             this.pnResultados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnResultados.Location = new System.Drawing.Point(0, 100);
             this.pnResultados.Name = "pnResultados";
             this.pnResultados.Size = new System.Drawing.Size(984, 260);
             this.pnResultados.TabIndex = 2;
+            this.pnResultados.Paint += new System.Windows.Forms.PaintEventHandler(this.pnResultados_Paint);
             // 
             // ResultadosControl
             // 
