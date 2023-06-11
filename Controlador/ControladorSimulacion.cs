@@ -105,7 +105,9 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 var avionAero = new AvionAerolinea("AT", nuevoReloj);
                 nuevaFila.avionesAerolinea.Append(avionAero);
                 nuevaFila.finAterrizaje = finAterrizaje;
+
             }
+            nuevaFila.llegadaAvionAerolinea = nuevaLlegadaAerolinea;
 
             return nuevaFila;
         }

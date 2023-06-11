@@ -33,6 +33,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         private void btnConclusion_Click(object sender, EventArgs e)
         {
             //programar para mostrar la conclusion en el panel de resultados
+            conclusion.Show();
         }
     }
 }
