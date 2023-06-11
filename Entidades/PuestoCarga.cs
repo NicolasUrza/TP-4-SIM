@@ -50,5 +50,10 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             return estado == "Libre";
         }
+
+        public void ReducirCola()
+        {
+            cola--;
+        }
     }
 }

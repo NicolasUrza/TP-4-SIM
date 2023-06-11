@@ -11,11 +11,11 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public double rnd { get; set; }
         public double tiempo { get; set; }
         public double mediaMuelle { get; set; }
-        public Muelle[] muelles { get; set; } 
+        public Muelle[] muelles { get; set; }
         public FinOperacion()
         {
-                muelles = new Muelle[5] ;
-            for(int i =0; i < 5; i++)
+            muelles = new Muelle[5];
+            for (int i = 0; i < 5; i++)
             {
                 muelles[i] = new Muelle();
             }
@@ -27,10 +27,10 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 rnd = finOperacion.rnd;
                 tiempo = finOperacion.tiempo;
             }
-           
+
             var muelles = new Muelle[5];
-            var i= 0;
-            foreach(Muelle m in finOperacion.muelles)
+            var i = 0;
+            foreach (Muelle m in finOperacion.muelles)
             {
                 muelles[i] = new Muelle(m);
                 i++;
@@ -43,19 +43,39 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.rnd = rnd;
             this.tiempo = tiempo;
             this.muelles = muelles;
-            
+
         }
+
+        public void calcularSiguienteFin()
+        {
+            this.tiempo = GeneradorAleatorios.GenerarExponencial(this.rnd, mediaMuelle);
+        }
+
+
         public Muelle BuscarMuelleLibre()
         {
-            //busca un muelle libre en muelles
-            //programar
+            foreach (var m in muelles)
+            {
+                if (m.estado == "Libre")
+                {
+                    return m; 
+                }
+            }
             return muelles[0];
         }
-        public void ocuparMuelle(double rnd, double media)
+        public void ocuparMuelle(double rnd, double media, Muelle muelle, IAvion a, double reloj)
         {
-            //ocupa un muelle libre en muelles
-            //programar
+            this.rnd = rnd;
+            this.mediaMuelle = media;
+            calcularSiguienteFin();
+
+            muelle.OcuparMuelle(this.tiempo+reloj, a);
+
+
         }
+
+
+
         public Muelle BuscarMuelleOcupado(double reloj)
         {
             foreach (Muelle muell in muelles)

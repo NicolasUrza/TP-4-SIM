@@ -57,5 +57,18 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             colaPrioritaria++;
         }
 
+        public void DisminuirCola()
+        {
+            cola--;
+        }
+
+        public void DisminuirColaPrioritaria()
+        {
+            colaPrioritaria--;
+        }
+
+
+
+
     }
 }
