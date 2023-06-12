@@ -30,15 +30,20 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 rnd = f.rnd;
                 tiempoCarga = f.tiempoCarga;
                 mediaCarga = f.mediaCarga;
-
             }
             tiempoFinCarga = f.tiempoFinCarga;
-
         }
         public void GenerarTiempoCarga(double relojActual)
         {
-            //programar
-            //calcular el tiempo y el fin carga, con el reloj actual y el generador de aleatorios         
+            this.tiempoCarga = GeneradorAleatorios.GenerarExponencial(rnd, mediaCarga);
+        }
+
+        public void OcuparCarga(double rnd, double mediaCarg, double Reloj)
+        {
+            this.rnd = rnd;
+            mediaCarga = mediaCarg;
+            this.GenerarTiempoCarga(Reloj);
+            this.tiempoFinCarga = tiempoCarga + Reloj;
         }
     }
 }

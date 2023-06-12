@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\4totpsim\\TP-4-SIM-Aeropuerto.csproj": {}
+    "C:\\Users\\santi\\OneDrive\\Escritorio\\tpSim\\TP-4-SIM\\TP-4-SIM-Aeropuerto.csproj": {}
   },
   "projects": {
-    "E:\\4totpsim\\TP-4-SIM-Aeropuerto.csproj": {
+    "C:\\Users\\santi\\OneDrive\\Escritorio\\tpSim\\TP-4-SIM\\TP-4-SIM-Aeropuerto.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\4totpsim\\TP-4-SIM-Aeropuerto.csproj",
+        "projectUniqueName": "C:\\Users\\santi\\OneDrive\\Escritorio\\tpSim\\TP-4-SIM\\TP-4-SIM-Aeropuerto.csproj",
         "projectName": "TP-4-SIM-Aeropuerto",
-        "projectPath": "E:\\4totpsim\\TP-4-SIM-Aeropuerto.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "E:\\4totpsim\\obj\\",
+        "projectPath": "C:\\Users\\santi\\OneDrive\\Escritorio\\tpSim\\TP-4-SIM\\TP-4-SIM-Aeropuerto.csproj",
+        "packagesPath": "C:\\Users\\santi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\santi\\OneDrive\\Escritorio\\tpSim\\TP-4-SIM\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\santi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows7.0"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -45,7 +45,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -57,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.311\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

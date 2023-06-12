@@ -18,8 +18,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public PuestoCarga(PuestoCarga p)
         {
             //sirve para clonar un puesto de carga
-                estado = p.estado;
-                cola = p.cola;
+            this.estado = p.estado;
+            this.cola = p.cola;
         }
         public PuestoCarga(string estado, int cola)
         {
@@ -28,27 +28,27 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         }
         public void OcuparPuestoCarga()
         {
-            estado = "Ocupado";
+            this.estado = "Ocupado";
         }
         public void LiberarPuestoCarga()
         {
-            if (cola == 0)
+            if (this.cola == 0)
             {
-                estado = "Libre";
+                this.estado = "Libre";
             }
             else
             {
-                cola--;
+                this.cola--;
             }
         }
 
         public void AumentarCola()
         {
-            cola++;
+            this.cola++;
         }
         public bool EstaLibre()
         {
-            return estado == "Libre";
+            return this.estado == "Libre";
         }
     }
 }

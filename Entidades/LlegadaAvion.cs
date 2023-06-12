@@ -14,7 +14,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public double proximaLlegada;
         public LlegadaAvion()
         {
-            
+            this.proximaLlegada = 1.62;
         }
         
         public LlegadaAvion(double rnd, double media, double relojActual)
@@ -37,9 +37,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         }
         public void calcularSiguienteAvion(double relojActual)
         {
-            //programar
-            //usar el generador con el random y la media
-            
+            tiempoEntreAviones = GeneradorAleatorios.GenerarPoisson(this.media);
+            proximaLlegada = tiempoEntreAviones + relojActual;
         }
     }
 }
