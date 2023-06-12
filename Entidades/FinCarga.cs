@@ -20,7 +20,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             this.rnd = rnd;
             this.mediaCarga = mediaCarga;
-            GenerarTiempoCarga(relojActual);
+            GenerarTiempoCarga();
         }
         public FinCarga(FinCarga f, bool keep=false)
         {
