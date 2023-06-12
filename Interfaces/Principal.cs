@@ -41,8 +41,8 @@ namespace TP_4_SIM_Aeropuerto
 
             // cargamos los parametros
             // se podria poner un ValidarParametros() en lugar del try
-            try
-            {
+            //try
+            //{
 
                 var param = new Parametros();
                 param.MediaLlegadaAvion = double.Parse(this.txtLlegadaAvion.Text);
@@ -58,12 +58,12 @@ namespace TP_4_SIM_Aeropuerto
                 var controlador = new ControladorSimulacion(this, param);
 
                 controlador.GenerarSimulacion();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Los parametros ingresados no son validos", "informacion", MessageBoxButtons.OK);
-                return;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Los parametros ingresados no son validos", "informacion", MessageBoxButtons.OK);
+            //    return;
+            //}
         }
 
         private void Principal_Load_1(object sender, EventArgs e)
