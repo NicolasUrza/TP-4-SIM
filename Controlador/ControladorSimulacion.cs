@@ -130,6 +130,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 var rndAterrizaje = generadorRandom.NextDouble();
                 var finAterrizaje = new FinAterrizaje(rndAterrizaje, parametros.MediaAterrizaje, nuevoReloj);
                 var avion = new Avion("AT", nuevoReloj);
+                nuevaFila.pista.OcuparPista();
                 nuevaFila.aviones.Add(avion);
                 nuevaFila.finAterrizaje = finAterrizaje;
             }
@@ -147,59 +148,53 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.evento = "fin_aterrizaje";
             nuevaFila.reloj = nuevoReloj;
 
-            switch (intencion.intencion)
+            
+            nuevaFila.acumuladores.AumentarTotalAvionesAterr();
+
+            if (nuevaFila.pista.cola == 0 && nuevaFila.pista.colaPrioritaria == 0)
             {
-                case "Muelle":
-                    {
-                        var muellesLibres = nuevaFila.finOperacion.BuscarMuellesLibres();
-                        if (muellesLibres.Count != 0)
+                switch (intencion.intencion)
+                {
+                    case "Muelle":
                         {
-                            nuevaFila.finOperacion.ocuparMuelle(nuevoReloj, nuevaFila.aviones.Find(x => x.estado == "AT"));
-                            if(nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "M";
+                            var muellesLibres = nuevaFila.finOperacion.BuscarMuellesLibres();
+                            if (muellesLibres.Count != 0)
+                            {
+                                nuevaFila.finOperacion.ocuparMuelle(nuevoReloj, nuevaFila.aviones.Find(x => x.estado == "AT"));
+                                if (nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "M";
+                                if (nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null) nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "M";
+                            }
+                        }
+                        break;
+                    case "Cargar":
+                        if (nuevaFila.puestoCarga.EstaLibre())
+                        {
+                            nuevaFila.puestoCarga.OcuparPuestoCarga();
+                            if (nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "C";
+                            if (nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null) nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "C";
                         }
                         else
                         {
-                            if (nuevaFila.pista.estado == "Libre")
-                            {
-                                nuevaFila.pista.OcuparPista();
-                                //! No deberia ser "Esperando Muelle"
-                                //nuevaFila.aviones.Find(x => x.estado == "AT").estado = "EM";
-                                //nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "EM";
-                            }
-                            else
-                            {
-                                if (nuevaFila.aviones.Find(x => x.estado == "AT") is not null)
-                                {
-                                    nuevaFila.pista.AumentarCola();
-                                    nuevaFila.aviones.Find(x => x.estado == "AT").estado = "EP";
-                                }
-                                else if (nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null)
-                                {
-                                    nuevaFila.pista.AumentarColaPrioritaria();
-                                    nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "EP";
-                                }
-                            }
+                            nuevaFila.puestoCarga.AumentarCola();
+                            if (nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "EC";
+                            if (nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null) nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "EC";
                         }
-                    }
-                    break;
-                case "Cargar":
-                    if(nuevaFila.puestoCarga.EstaLibre())
-                    {
-                        nuevaFila.puestoCarga.OcuparPuestoCarga();
-                        if(nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "C";
-                        if(nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null) nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "C";
-                    } 
-                    else
-                    {
-                        nuevaFila.puestoCarga.AumentarCola();
-                        if(nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "EC";
-                        if(nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null) nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "EC";
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
             }
-            
+            else if (nuevaFila.pista.colaPrioritaria != 0)
+            {
+                nuevaFila.finAterrizaje.AvionAerolineasProximo(nuevoReloj, nuevaFila.avionesAerolinea).estado = "AT";
+                nuevaFila.acumuladores.AumentarAcumTiempoEsperaAterr(nuevoReloj - nuevaFila.finAterrizaje.AvionAerolineasProximo(nuevoReloj, nuevaFila.avionesAerolinea).horaLlegada);
+            }
+            else if (nuevaFila.pista.cola != 0)
+            {
+                nuevaFila.finAterrizaje.AvionProximo(nuevoReloj, nuevaFila.aviones).estado = "AT";
+                nuevaFila.acumuladores.AumentarAcumTiempoEsperaAterr(nuevoReloj - nuevaFila.finAterrizaje.AvionProximo(nuevoReloj, nuevaFila.aviones).horaLlegada);
+            }
+
             return nuevaFila;
         }
         public FilaSimulacion FinCarga(FilaSimulacion filaActual, double nuevoReloj)
