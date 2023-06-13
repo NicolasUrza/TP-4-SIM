@@ -28,21 +28,21 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             evento = "";
             reloj = 0;
             llegadaAvion = new LlegadaAvion();
-            // llegadaAvion.proximaLlegada = 1.67;
+            llegadaAvion.proximaLlegada = 1.62;
             finAterrizaje = new FinAterrizaje();
             intencion = new Intencion();
             finOperacion = new FinOperacion();
             var ae = new AvionAerolinea();
-            finOperacion.muelles[0].OcuparMuelle(0.2, ae);
+            //finOperacion.muelles[0].OcuparMuelle(0.2, ae);
             llegadaAvionAerolinea = new LlegadaAvionAerolinea();
-            // llegadaAvionAerolinea.proximaLlegada = 0.67;
+            //llegadaAvionAerolinea.proximaLlegada = 0.67;
             finCarga = new FinCarga();
             puestoCarga = new PuestoCarga();
             pista = new Pista();
             acumuladores = new Acumuladores();
             aviones = new List<Avion>();
             avionesAerolinea = new List<AvionAerolinea>();
-            avionesAerolinea.Add(ae);
+            //avionesAerolinea.Add(ae);
         }
         public FilaSimulacion(FilaSimulacion f, bool keep =false)
         {

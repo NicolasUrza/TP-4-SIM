@@ -14,7 +14,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public double proximaLlegada;
         public LlegadaAvion()
         {
-            this.proximaLlegada = 1.62;
+            //this.proximaLlegada = 1.62;
         }
         
         public LlegadaAvion(double rnd, double media, double relojActual)
