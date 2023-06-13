@@ -75,6 +75,18 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             return muelles.FindAll(x => x.estado == "Libre");
         }
 
-        
+        public double ProximoFinOperacion()
+        {
+            double horaFin = this.muelles[0].horaFin;
+            for (int i = 1; i < 5; i++)
+            {
+                if ((muelles[i].horaFin < horaFin && muelles[i].horaFin != 0) || horaFin == 0)
+                {
+                    horaFin = muelles[i].horaFin;
+                }
+
+            }
+            return horaFin;
+        }
     }
 }
