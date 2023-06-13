@@ -30,10 +30,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 rnd = f.rnd;
                 tiempoCarga = f.tiempoCarga;
                 mediaCarga = f.mediaCarga;
-
             }
             tiempoFinCarga = f.tiempoFinCarga;
-
         }
         public void GenerarTiempoCarga()
         {

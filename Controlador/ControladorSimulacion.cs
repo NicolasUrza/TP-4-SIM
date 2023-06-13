@@ -115,106 +115,116 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             var nuevaFila = new FilaSimulacion(filaActual);
             nuevaFila.evento = "llegada_avion";
             nuevaFila.reloj = nuevoReloj;
-            //programar
 
-            return new FilaSimulacion();
+            var rnd = GenerarRandom();
+            nuevaFila.llegadaAvion = new LlegadaAvion(rnd, parametros.MediaLlegadaAvion, nuevoReloj);
+            if (filaActual.buscarAterrizaje())
+            {
+                var avion = new Avion("EP", nuevoReloj);
+                nuevaFila.pista.AumentarCola();
+                nuevaFila.aviones.Append(avion);
+            }
+            else
+            {
+                //cuando no hay aviones aterrizando
+                var rndAterrizaje = generadorRandom.NextDouble();
+                var finAterrizaje = new FinAterrizaje(rndAterrizaje, parametros.MediaAterrizaje, nuevoReloj);
+                var avion = new Avion("AT", nuevoReloj);
+                nuevaFila.aviones.Add(avion);
+                nuevaFila.finAterrizaje = finAterrizaje;
+            }
+
+            return nuevaFila;
         }
         public FilaSimulacion FinAterrizaje(FilaSimulacion filaActual, double nuevoReloj)
         {
- 
             var nuevaFila = new FilaSimulacion(filaActual);
+
+            var rnd = GenerarRandom();
+            var intencion = new Intencion(rnd);
+            nuevaFila.intencion = intencion;
+
             nuevaFila.evento = "fin_aterrizaje";
             nuevaFila.reloj = nuevoReloj;
-            // programar
 
-            return new FilaSimulacion();
+            switch (intencion.intencion)
+            {
+                case "Muelle":
+                    {
+                        var muellesLibres = nuevaFila.finOperacion.BuscarMuellesLibres();
+                        if (muellesLibres.Count != 0)
+                        {
+                            nuevaFila.finOperacion.ocuparMuelle(nuevoReloj, nuevaFila.aviones.Find(x => x.estado == "AT"));
+                            if(nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "M";
+                        }
+                        else
+                        {
+                            if (nuevaFila.pista.estado == "Libre")
+                            {
+                                nuevaFila.pista.OcuparPista();
+                                //! No deberia ser "Esperando Muelle"
+                                //nuevaFila.aviones.Find(x => x.estado == "AT").estado = "EM";
+                                //nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "EM";
+                            }
+                            else
+                            {
+                                if (nuevaFila.aviones.Find(x => x.estado == "AT") is not null)
+                                {
+                                    nuevaFila.pista.AumentarCola();
+                                    nuevaFila.aviones.Find(x => x.estado == "AT").estado = "EP";
+                                }
+                                else if (nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null)
+                                {
+                                    nuevaFila.pista.AumentarColaPrioritaria();
+                                    nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "EP";
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "Cargar":
+                    if(nuevaFila.puestoCarga.EstaLibre())
+                    {
+                        nuevaFila.puestoCarga.OcuparPuestoCarga();
+                        if(nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "C";
+                        if(nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null) nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "C";
+                    } 
+                    else
+                    {
+                        nuevaFila.puestoCarga.AumentarCola();
+                        if(nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "EC";
+                        if(nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null) nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "EC";
+                    }
+                    break;
+                default:
+                    break;
+            }
+            
+            return nuevaFila;
         }
         public FilaSimulacion FinCarga(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
             nuevaFila.evento = "fin_carga";
             nuevaFila.reloj = nuevoReloj;
-            // mato y libero al puesto de cargga y avion 
-            nuevaFila.puestoCarga.LiberarPuestoCarga();
-           
-           foreach (var avion in nuevaFila.avionesAerolinea)
-           {
-                if (desdeActivado && avion.estado =="C")
-                {
-                    avion.MATAR();
-                    break;
-                }
-                if (!desdeActivado && avion.estado =="C")
-                {
-                    nuevaFila.avionesAerolinea.Remove(avion);
-                }
-
-           }
-           foreach (var avion in nuevaFila.aviones)
-            {
-                if (desdeActivado && avion.estado == "C")
-                {
-                    avion.MATAR();
-                    break;
-                }
-                if (!desdeActivado && avion.estado == "C")
-                {
-                    nuevaFila.aviones.Remove(avion);
-                }
-
-            }
-
-           // compruevo cola y ocupo servidor, y cambio estado avion
-            if (nuevaFila.puestoCarga.cola != 0 )
-            {
-                nuevaFila.puestoCarga.OcuparPuestoCarga();
-
-                var banderaPrioridad = false;
-
-                foreach (var avion in nuevaFila.avionesAerolinea)
-                {
-                    if (avion.estado == "EC")
-                    {
-                        avion.Cargando();
-                        banderaPrioridad = true;
-                        break;
-                    }
-
-                }
-
-                if (!banderaPrioridad)
-                {
-                    foreach (var a in nuevaFila.aviones)
-                    {
-                        if (a.estado == "EC")
-                        {
-                            a.Cargando();
-
-                            break;
-                        }
-                    }
-                }
-
-
-            }
-            var rnd = GenerarRandom();
-
-            nuevaFila.finCarga.OcuparCarga(rnd, this.parametros.MediaCarga, nuevoReloj); 
-
-            return  nuevaFila;
+            //programar
+            return new FilaSimulacion();
         }
         public FilaSimulacion FinOperaciones(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
             nuevaFila.evento = "fin_operaciones";
-            nuevaFila.reloj = nuevoReloj;
-            
+            var clock = filaActual.reloj;
+
+            // Seteo la mediaDeCarga en el Objeto finOperacion
+            var rnd = GenerarRandom();
+            nuevaFila.finOperacion = new FinOperacion(rnd, nuevoReloj, this.parametros.MediaCarga, nuevaFila.finOperacion.muelles);
 
             /// mato el avion 
             if (!desdeActivado)
             {
-                Muelle muelle = nuevaFila.finOperacion.BuscarMuelleOcupado(nuevoReloj);
-
+                /// busco el muelle con el clock
+                Muelle muelle = nuevaFila.finOperacion.BuscarMuelleOcupado(clock);
                 var avion = muelle.avionEnMuelle;
 
                 if (avion.GetType() == typeof(Avion))
@@ -234,19 +244,41 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             {
                 Muelle muelle = nuevaFila.finOperacion.BuscarMuelleOcupado(nuevoReloj);
                 var avion = muelle.avionEnMuelle;
-                avion.MATAR(); 
-                muelle.LiberarMuelle();
+                if (avion is not null)
+                {
+                    avion.MATAR();
+                    muelle.LiberarMuelle();
+                }; 
             }
 
             /// creacion del nuevo fin_operacion 
             
             bool banderaPrioritario = false;
 
+            nuevaFila.reloj = nuevoReloj;
+
+            /// creacion del nuevo fin_operacion 
+
+            bool banderaPrioritario = false;
+
             var avionOcupa = new IAvion();
-            var rnd = GenerarRandom();
-            var muelleOcupar = nuevaFila.finOperacion.BuscarMuelleLibre();
+            //var rnd = GenerarRandom();
+            //var muelleOcupar = nuevaFila.finOperacion.BuscarMuelleLibre();
 
             foreach (var avion in nuevaFila.avionesAerolinea)
+            {
+                if (avion.estado == "EM")
+                {
+                    avionOcupa = avion;
+                    avion.EnMuelle();
+                    banderaPrioritario = true;
+                    break;
+                }
+            }
+
+            if (!banderaPrioritario)
+            {
+                foreach (var avion in nuevaFila.aviones)
                 {
                     if (avion.estado == "EM")
                     {
@@ -255,7 +287,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                         banderaPrioritario = true;
                         break;
                     }
+                }
             }
+
+            nuevaFila.finOperacion.ocuparMuelle(nuevoReloj, avionOcupa);
+
 
             if (!banderaPrioritario)
             {

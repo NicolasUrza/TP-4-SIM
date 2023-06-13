@@ -12,9 +12,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public double media { get; set; }
         public double tiempoAterrizaje { get; set; }
         public double proximoFinAterrizaje { get; set; }
-        public FinAterrizaje()
-        {
-        }
+        public FinAterrizaje() {}
         public FinAterrizaje(double rnd, double media, double relojActual)
         {
             //recibe el random y la media y calcula su tiempoEntreAviones y su proxima llegada
@@ -22,7 +20,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.media = media;
             GenerarTiempoAterrizaje(relojActual);
         }
-        public FinAterrizaje(FinAterrizaje f, bool keep =false)
+        public FinAterrizaje(FinAterrizaje f, bool keep = false)
         {
             // sirve para clonar un fin aterrizaje
             if (keep)
@@ -31,13 +29,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.media = f.media;
                 this.tiempoAterrizaje = f.tiempoAterrizaje;
             }
-                
-                this.proximoFinAterrizaje = f.proximoFinAterrizaje;
+
+            this.proximoFinAterrizaje = f.proximoFinAterrizaje;
         }
         public void GenerarTiempoAterrizaje(double relojActual)
         {
-            //programar
-            //usar el generador con el random y la media
+            tiempoAterrizaje = GeneradorAleatorios.GenerarExponencial(rnd, media);
+            proximoFinAterrizaje = tiempoAterrizaje + relojActual;
         }
     }
 }
