@@ -257,10 +257,6 @@ namespace TP_4_SIM_Aeropuerto.Controlador
 
             nuevaFila.reloj = nuevoReloj;
 
-            /// creacion del nuevo fin_operacion 
-
-            bool banderaPrioritario = false;
-
             var avionOcupa = new IAvion();
             //var rnd = GenerarRandom();
             //var muelleOcupar = nuevaFila.finOperacion.BuscarMuelleLibre();
@@ -307,13 +303,13 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 }
             }
 
-            nuevaFila.finOperacion.ocuparMuelle(rnd, this.parametros.MediaMuelle, muelleOcupar, avionOcupa, nuevoReloj);
+            nuevaFila.finOperacion.ocuparMuelle( nuevoReloj, avionOcupa);
             return nuevaFila;
         }
 
 
 
-
+        
         public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual, double nuevoReloj)
         {
             var nuevaFila = new FilaSimulacion(filaActual);
