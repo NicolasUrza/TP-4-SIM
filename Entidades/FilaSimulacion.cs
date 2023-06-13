@@ -25,22 +25,26 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public FilaSimulacion()
         {
             //estado inicial
-            evento = "";
-            reloj = 0;
-            llegadaAvion = new LlegadaAvion();
-            //llegadaAvion.proximaLlegada = 1.67;
-            finAterrizaje = new FinAterrizaje();
-            intencion = new Intencion();
-            finOperacion = new FinOperacion();
+                evento = "";
+                reloj = 0;
+                llegadaAvion = new LlegadaAvion();
+            llegadaAvion.proximaLlegada = 1.67;
+                finAterrizaje = new FinAterrizaje();
+            
+                intencion = new Intencion();
+                finOperacion = new FinOperacion();
+
+            var ae = new AvionAerolinea();
+            finOperacion.muelles[0].OcuparMuelle(0.2, ae);
             llegadaAvionAerolinea = new LlegadaAvionAerolinea();
-            //llegadaAvionAerolinea.proximaLlegada = 0.67;
-            finCarga = new FinCarga();
-            puestoCarga = new PuestoCarga();
-            pista = new Pista();
-            acumuladores = new Acumuladores();
+            llegadaAvionAerolinea.proximaLlegada = 0.67;
+                finCarga = new FinCarga();
+                puestoCarga = new PuestoCarga();
+                pista = new Pista();
+                acumuladores = new Acumuladores();
             aviones = new List<Avion>();
             avionesAerolinea = new List<AvionAerolinea>();
-
+            avionesAerolinea.Add(ae);
         }
         public FilaSimulacion(FilaSimulacion f, bool keep =false)
         {
@@ -74,8 +78,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             List<(string, double)> Events = new List<(string,double)>();
             Events.Add(("llegada_avion",this.llegadaAvion.proximaLlegada));
             Events.Add(("fin_carga", this.finCarga.tiempoFinCarga));
-            //TODO: Arreglar el metodo la hora del proximo Fin de Operaciones
-            //Events.Add(("fin_operaciones", this.finAterrizaje.proximoFinAterrizaje));
+            Events.Add(("fin_operaciones", this.finOperacion.ProximoFinOperacion()));
             Events.Add(("llegada_avion_aerolinea", this.llegadaAvionAerolinea.proximaLlegada));
             Events.Add(("fin_aterrizaje", this.finAterrizaje.proximoFinAterrizaje));
 
@@ -89,7 +92,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                     smaller = Events[i].Item2;
                     nextEvent = Events[i].Item1;
                 }
-                else if (Events[i].Item2 < smaller && Events[i].Item2 != 0)
+                else if ((smaller == 0 )|| (Events[i].Item2 < smaller && Events[i].Item2 != 0))
                 {
                     smaller = Events[i].Item2;
                     nextEvent = Events[i].Item1;
