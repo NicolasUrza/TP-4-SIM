@@ -43,8 +43,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public void CalcularSiguienteAvion(double relojActual)
         {
             //Calcula el siguiente avion con el reloj actual y el generador de aleatorios
-            tiempoEntreLlegadas = GeneradorAleatorios.GenerarUniformeAB(rnd, a, b);
-            proximaLlegada = tiempoEntreLlegadas + relojActual;
+            this.tiempoEntreLlegadas = GeneradorAleatorios.GenerarUniformeAB(rnd, a, b);
+            proximaLlegada = Math.Truncate((this.tiempoEntreLlegadas + relojActual)*100)/100;
         }
 
     }

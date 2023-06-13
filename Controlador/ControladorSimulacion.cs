@@ -233,7 +233,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             else
             {
                 Muelle muelle = nuevaFila.finOperacion.BuscarMuelleOcupado(nuevoReloj);
-                var avion = muelle.avionEnMuelle;
+                var avion = (IAvion) muelle.avionEnMuelle;
                 avion.MATAR(); 
                 muelle.LiberarMuelle();
             }
