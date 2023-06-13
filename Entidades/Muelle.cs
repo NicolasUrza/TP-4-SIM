@@ -23,13 +23,14 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             estado = m.estado;
             horaFin = m.horaFin;
+            avionEnMuelle = m.avionEnMuelle;
         }
 
         public void OcuparMuelle(double horaFin, IAvion avion )
         {
             estado = "Ocupado";
-            this.horaFin = horaFin;
-            avionEnMuelle = avion;
+            this.horaFin = Math.Truncate(horaFin * 100)/100;
+            this.avionEnMuelle = avion;
 
         }
         public void LiberarMuelle()

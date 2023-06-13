@@ -304,12 +304,9 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             else
             {
                 Muelle muelle = nuevaFila.finOperacion.BuscarMuelleOcupado(nuevoReloj);
-                var avion = muelle.avionEnMuelle;
-                if (avion is not null)
-                {
-                    avion.MATAR();
-                    muelle.LiberarMuelle();
-                }; 
+                var avion = (IAvion) muelle.avionEnMuelle;
+                avion?.MATAR(); 
+                muelle.LiberarMuelle();
             }
 
             /// creacion del nuevo fin_operacion 
