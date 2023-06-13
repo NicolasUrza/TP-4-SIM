@@ -186,7 +186,6 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     if(nuevaFila.puestoCarga.EstaLibre())
                     {
                         nuevaFila.puestoCarga.OcuparPuestoCarga();
-                        //TODO: Llamar al metodo que ocupa el puesto de Carga
                         if(nuevaFila.aviones.Find(x => x.estado == "AT") is not null) nuevaFila.aviones.Find(x => x.estado == "AT").estado = "C";
                         if(nuevaFila.avionesAerolinea.Find(x => x.estado == "AT") is not null) nuevaFila.avionesAerolinea.Find(x => x.estado == "AT").estado = "C";
                     } 

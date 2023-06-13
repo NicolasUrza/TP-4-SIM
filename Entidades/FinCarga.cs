@@ -41,7 +41,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             this.rnd = rnd;
             mediaCarga = mediaCarg;
-            this.GenerarTiempoCarga(Reloj);
+            this.GenerarTiempoCarga();
             this.tiempoFinCarga = tiempoCarga + Reloj;
         }
     }
