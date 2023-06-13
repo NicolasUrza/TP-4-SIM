@@ -18,20 +18,20 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             return (Math.Truncate((rnd * (b - a) + a) * 100) / 100);
         }
-        public static double GenerarPoisson(double lambda)
-        {
-            Random random = new Random();
-            double L = Math.Exp(-lambda);
-            double p = 1.0;
-            int k = 0;
+        //public static double GenerarPoisson(double lambda)
+        //{
+        //    Random random = new Random();
+        //    double L = Math.Exp(-lambda);
+        //    double p = 1.0;
+        //    int k = 0;
 
-            do
-            {
-                k++;
-                p *= random.NextDouble();
-            } while (p > L);
+        //    do
+        //    {
+        //        k++;
+        //        p *= random.NextDouble();
+        //    } while (p > L);
 
-            return k - 1;
-        }
+        //    return k - 1;
+        //}
     }
 }

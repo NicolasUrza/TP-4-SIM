@@ -35,7 +35,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public void GenerarTiempoAterrizaje(double relojActual)
         {
             tiempoAterrizaje = GeneradorAleatorios.GenerarExponencial(rnd, media);
-            proximoFinAterrizaje = tiempoAterrizaje + relojActual;
+            proximoFinAterrizaje = Math.Truncate((tiempoAterrizaje + relojActual)*100)/100;
         }
     }
 }
