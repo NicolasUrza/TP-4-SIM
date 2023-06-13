@@ -17,9 +17,21 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public static double GenerarUniformeAB(double rnd, int a, int b)
         {
             return (Math.Truncate((rnd * (b - a) + a) * 100) / 100);
-       
         }
-        
-        
+        public static double GenerarPoisson(double lambda)
+        {
+            Random random = new Random();
+            double L = Math.Exp(-lambda);
+            double p = 1.0;
+            int k = 0;
+
+            do
+            {
+                k++;
+                p *= random.NextDouble();
+            } while (p > L);
+
+            return k - 1;
+        }
     }
 }

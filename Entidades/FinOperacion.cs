@@ -11,14 +11,21 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public double rnd { get; set; }
         public double tiempo { get; set; }
         public double mediaMuelle { get; set; }
-        public Muelle[] muelles { get; set; }
+        public List<Muelle> muelles { get; set; } 
         public FinOperacion()
         {
-            muelles = new Muelle[5];
-            for (int i = 0; i < 5; i++)
+            muelles = new List<Muelle>();
+            for (int i =0; i < 5; i++)
             {
-                muelles[i] = new Muelle();
+                muelles.Add(new Muelle());
             }
+        }
+        public FinOperacion(double rnd, double tiempo, double mediaMuelle, List<Muelle> muelles)
+        {
+            this.rnd = rnd;
+            this.tiempo = tiempo;
+            this.mediaMuelle = mediaMuelle;
+            this.muelles = muelles;
         }
         public FinOperacion(FinOperacion finOperacion, bool keep = false)
         {
@@ -27,55 +34,27 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 rnd = finOperacion.rnd;
                 tiempo = finOperacion.tiempo;
             }
-
-            var muelles = new Muelle[5];
-            var i = 0;
-            foreach (Muelle m in finOperacion.muelles)
-            {
-                muelles[i] = new Muelle(m);
-                i++;
-            }
+           
+            var muelles = new List<Muelle>();
+            finOperacion.muelles.ForEach(muelle =>  muelles.Add(new Muelle(muelle)));
             this.muelles = muelles;
-
         }
-        public FinOperacion(double rnd, double tiempo, double mediaMuelle, Muelle[] muelles)
-        {
-            this.rnd = rnd;
-            this.tiempo = tiempo;
-            this.muelles = muelles;
-
-        }
-
         public void calcularSiguienteFin()
         {
-            this.tiempo = GeneradorAleatorios.GenerarExponencial(this.rnd, mediaMuelle);
+            this.tiempo = GeneradorAleatorios.GenerarExponencial(this.rnd, this.mediaMuelle);
         }
-
-
-        public Muelle BuscarMuelleLibre()
+        public void ocuparMuelle(double reloj, IAvion avion)
         {
-            foreach (var m in muelles)
+            this.calcularSiguienteFin();
+
+            var indexItemToUpdate = this.muelles.FindIndex(x => x.estado == "Libre");
+            if (indexItemToUpdate != -1)
             {
-                if (m.estado == "Libre")
-                {
-                    return m; 
-                }
+                this.muelles[indexItemToUpdate].estado = "Ocupado";
+                this.muelles[indexItemToUpdate].horaFin = reloj + this.tiempo;
+                this.muelles[indexItemToUpdate].avionEnMuelle = avion;
             }
-            return muelles[0];
         }
-        public void ocuparMuelle(double rnd, double media, Muelle muelle, IAvion a, double reloj)
-        {
-            this.rnd = rnd;
-            this.mediaMuelle = media;
-            calcularSiguienteFin();
-
-            muelle.OcuparMuelle(this.tiempo+reloj, a);
-
-
-        }
-
-
-
         public Muelle BuscarMuelleOcupado(double reloj)
         {
             foreach (Muelle muell in muelles)
@@ -88,12 +67,11 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             return new Muelle();
         }
 
+        public List<Muelle> BuscarMuellesLibres()
+        {
+            return muelles.FindAll(x => x.estado == "Libre");
+        }
 
-
-
-
-
-
-
+        
     }
 }
