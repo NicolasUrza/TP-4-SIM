@@ -30,25 +30,19 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 rnd = f.rnd;
                 tiempoCarga = f.tiempoCarga;
                 mediaCarga = f.mediaCarga;
-
             }
             tiempoFinCarga = f.tiempoFinCarga;
-
         }
         public void GenerarTiempoCarga()
         {
-            this.tiempoCarga = GeneradorAleatorios.GenerarExponencial(rnd, mediaCarga);   
+            this.tiempoCarga = GeneradorAleatorios.GenerarExponencial(rnd, mediaCarga);
         }
-
-
-        public void OcuparCarga(double rnd, double mediaCarg, double Reloj )
+        public void OcuparCarga(double rnd, double mediaCarg, double Reloj)
         {
             this.rnd = rnd;
-            mediaCarga = mediaCarg; 
-            GenerarTiempoCarga();
+            mediaCarga = mediaCarg;
+            this.GenerarTiempoCarga();
             this.tiempoFinCarga = tiempoCarga + Reloj;
-
         }
-
     }
 }

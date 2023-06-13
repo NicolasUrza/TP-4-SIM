@@ -24,7 +24,6 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             estado = m.estado;
             horaFin = m.horaFin;
             avionEnMuelle = m.avionEnMuelle;
-
         }
 
         public void OcuparMuelle(double horaFin, IAvion avion )
