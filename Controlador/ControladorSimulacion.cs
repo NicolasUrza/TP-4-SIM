@@ -97,14 +97,23 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             // calcular las metricas
             var metricas = new Metricas();
             // aca calcular las metricas con los acumuladores que quedaron guardados en la ultima fila
+            if (filaActual.acumuladores.totalAvionesAterr > 0)
+            {
+                metricas.tiempoEsperaPromedioAterrizaje = filaActual.acumuladores.acumTiempoEsperaAterr / filaActual.acumuladores.totalAvionesAterr;
 
-            metricas.tiempoEsperaPromedioAterrizaje = filaActual.acumuladores.totalAvionesAterr >0? filaActual.acumuladores.acumTiempoEsperaAterr / filaActual.acumuladores.totalAvionesAterr:0;
+                metricas.porcentajeAterrGratis = (double)((double)filaActual.acumuladores.cantAvionesAterrGratis / (double)filaActual.acumuladores.totalAvionesAterr) *100;
 
-            metricas.porcentajeAterrGratis = filaActual.acumuladores.totalAvionesAterr >0 ? (filaActual.acumuladores.cantAvionesAterrGratis / filaActual.acumuladores.totalAvionesAterr) * 100: 0;
+            metricas.porcentajeCargaronCombustible = (double)((double)filaActual.acumuladores.cantAvionesCargaron / (double)filaActual.acumuladores.totalAvionesAterr) * 100;
+            }
+            else
+            {
+                metricas.porcentajeAterrGratis = 0;
+                metricas.porcentajeCargaronCombustible = 0;
+                metricas.tiempoEsperaPromedioAterrizaje = 0;
+            }
 
-            metricas.porcentajeCargaronCombustible = filaActual.acumuladores.totalAvionesAterr > 0? (filaActual.acumuladores.cantAvionesCargaron / filaActual.acumuladores.totalAvionesAterr) * 100 :0;
 
-            metricas.beneficiosPorHora = ((filaActual.acumuladores.cantAvionesAterrDescuento * 3000) + (filaActual.acumuladores.totalAvionesAterr * 6000)) / filaActual.reloj;
+            metricas.beneficiosPorHora = ((filaActual.acumuladores.cantAvionesAterrDescuento * 3000) + ((filaActual.acumuladores.totalAvionesAterr - filaActual.acumuladores.cantAvionesAterrDescuento - filaActual.acumuladores.cantAvionesAterrGratis) * 6000)) / filaActual.reloj;
 
             //deovlvemos los resultados al form
             this.principalForm.CargarResultados(resultadosDesde, metricas);
@@ -169,6 +178,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.intencion = nuevaIntencion;
             if(nuevaIntencion.intencion == "Carga")
             {
+                
                 if (nuevaFila.puestoCarga.EstaLibre())
                 {
                     avion.Cargando();
@@ -231,18 +241,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             {
                 nuevaFila = filaActual;
             }
-            if (desdeActivado)
-            {
-                nuevaFila = new FilaSimulacion(filaActual);
-            }
-            else
-            {
-                nuevaFila = filaActual;
-            }
 
 
             nuevaFila.evento = "fin_carga";
             nuevaFila.reloj = nuevoReloj;
+            nuevaFila.acumuladores.AumentarAvionesCargaron();
             // mato y libero al puesto de cargga y avion 
             nuevaFila.puestoCarga.LiberarPuestoCarga();
             IAvion avionAMatar = new IAvion();

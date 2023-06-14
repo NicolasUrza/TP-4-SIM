@@ -101,6 +101,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 var i = 0;
                 foreach(IAvion aa in this.avionesAerolinea)
                 {
+                    
                     if(aa.estado == "EP" && i == 0)
                     {
                         avionAAterrizar = aa;
@@ -192,7 +193,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             return (nextEvent, smaller);
         }
 
-        public string[] ListaString( int cantAvionesTotales)
+        public string[] ListaString(int cantAvionesTotales, int condicionCorte)
         {
             //programar para devolver un vector de string con los datos de la fila
             var str = new string[]
@@ -225,7 +226,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.finCarga.tiempoCarga != 0? this.finCarga.tiempoCarga.ToString(): " ",
                 this.finCarga.tiempoFinCarga !=0? this.finCarga.tiempoFinCarga.ToString(): " ",
                 this.puestoCarga.estado,
-                this.puestoCarga.cola.ToString(),
+                this.puestoCarga.cola.Count.ToString(),
                 this.pista.estado,
                 this.pista.cola.ToString(),
                 this.pista.colaPrioritaria.ToString(),
@@ -236,18 +237,28 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.acumuladores.cantAvionesAterrDescuento.ToString(),
 
             }).ToArray();
-            
+            var j = -1;
             foreach (Avion a in this.aviones)
             {
-                str = str.Concat(new string[] { a.estado, a.horaLlegada.ToString() }).ToArray();
+                j++;
+                if (j == condicionCorte)
+                    break;
+                str = str.Concat(new string[] { a.estado == "morido" ? "": a.estado, a.estado == "morido" ? "" : a.horaLlegada.ToString() }) .ToArray();
+                
             }
             for (int i = 0; i< cantAvionesTotales - this.aviones.Count; i++)
             {
+                j++;
+                if (j == condicionCorte)
+                    break;
                     str = str.Concat(new string[] { " ", " " }).ToArray();
             }
             foreach (AvionAerolinea a in this.avionesAerolinea)
             {
-                str = str.Concat(new string[] { a.estado, a.horaLlegada.ToString() }).ToArray();
+                j++;
+                if(j == condicionCorte)
+                    break;
+                str = str.Concat(new string[] { a.estado == "morido" ? "" : a.estado, a.estado == "morido" ? "" : a.horaLlegada.ToString() }).ToArray();
             }
             return str;
         }

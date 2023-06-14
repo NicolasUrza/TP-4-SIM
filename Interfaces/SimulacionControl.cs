@@ -81,16 +81,41 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Columns.Add("Cant_avion_aterrizados", "Total aviones aterrizados");
             this.dataGridView1.Columns.Add("Cant_avion_descuento", "Cant aterrizados aviones con descuento ");
             int i = 1;
+            var contador = 0;
+            bool overflow = false;
             foreach (Avion a in simulacion[simulacion.Length - 1].aviones)
             {
+                try { 
                 this.dataGridView1.Columns.Add("estado_avion" + i.ToString(), "Estado");
                 this.dataGridView1.Columns.Add("hora_llegada" + i.ToString(), "Hora Llegada");
+                    contador++;
+                }
+                catch (Exception e)
+                {
+                    overflow = true;
+                    this.dataGridView1.Columns.Remove("estado_avion" + i.ToString());
+                }
+                if (overflow)
+                    break;
             }
             i = 0;
-            foreach (AvionAerolinea a in simulacion[simulacion.Length - 1].avionesAerolinea)
+            if (!overflow)
             {
-                this.dataGridView1.Columns.Add("estado_avion" + i.ToString(), "Estado");
-                this.dataGridView1.Columns.Add("hora_llegada" + i.ToString(), "Hora Llegada");
+                foreach (AvionAerolinea a in simulacion[simulacion.Length - 1].avionesAerolinea)
+                {
+                    try { 
+                    this.dataGridView1.Columns.Add("estado_avion" + i.ToString(), "Estado");
+                    this.dataGridView1.Columns.Add("hora_llegada" + i.ToString(), "Hora Llegada");
+                        contador++;
+                    }catch(Exception ex)
+                    {
+                        overflow = true;
+                        this.dataGridView1.Columns.Remove("estado_avion" + i.ToString());
+                    }
+                    if (overflow)
+                        break;
+                }
+
             }
 
             //this.dataGridView1.Columns.Add("estado_avion_2", "Estado");
@@ -122,7 +147,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             }
             foreach (FilaSimulacion f in simulacion)
             {
-                this.dataGridView1.Rows.Add(f.ListaString(cantAvionesTotal));
+                this.dataGridView1.Rows.Add(f.ListaString(cantAvionesTotal, contador));
             }
             
 
@@ -219,31 +244,6 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 {
                     CustomizeCell(i, e, "Pista", 3);
                 }
-
-                if (this.dataGridView1.Columns[i].Index == 38)
-                {
-                    CustomizeCell(i, e, "Avion 1", 2);
-                }
-
-                if (this.dataGridView1.Columns[i].Index == 40)
-                {
-                    CustomizeCell(i, e, "Avion 2", 2);
-                }
-
-                if (this.dataGridView1.Columns[i].Index == 42)
-                {
-                    CustomizeCell(i, e, "Avion 3", 2);
-                }
-
-                if (this.dataGridView1.Columns[i].Index == 44)
-                {
-                    CustomizeCell(i, e, "Avion 4", 2);
-                }
-
-                if (this.dataGridView1.Columns[i].Index == 46)
-                {
-                    CustomizeCell(i, e, "Avion 5", 2);
-                }
             }
 
             int c = 0;
@@ -251,10 +251,14 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             {
                 CustomizeCell(38 + c * 2, e, "Avion" + (c + 1).ToString(), 2);
                 c++;
+                if (38 + c * 2 > 652)
+                    break;
             }
             int constante = 1;
             foreach (AvionAerolinea av in simulacion[simulacion.Length - 1].avionesAerolinea)
             {
+                if (38 + c * 2 > 652)
+                    break;
                 CustomizeCell(38 + c * 2, e, " Avion A" + (constante).ToString(), 2);
                 c++;
                 constante++;
