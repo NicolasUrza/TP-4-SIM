@@ -19,11 +19,16 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             avionEnMuelle = null ;
         }
 
-        public Muelle(Muelle m)
+        public Muelle(Muelle m, FilaSimulacion filaActual)
         {
             estado = m.estado;
             horaFin = m.horaFin;
-            avionEnMuelle = m.avionEnMuelle;
+            if(m.avionEnMuelle is not null)
+            {
+
+                avionEnMuelle = filaActual.BuscarAvion(m.avionEnMuelle);
+
+            }
 
         }
 

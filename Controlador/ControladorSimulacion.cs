@@ -51,9 +51,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     resultadosDesde[indice] = new FilaSimulacion(filaActual, true);
                     indice++;
                 }
-                else if (i > parametros.Desde + 499)
+                else if (i > parametros.Desde + 499 & desdeActivado)
                 {
+                    filaActual = new FilaSimulacion(filaActual, true);
                     desdeActivado = false;
+                    
                 }
                 //determinamos el proximo estado y reloj
                 //programar este metodo
@@ -112,89 +114,188 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         //programar lo que pasaria en cada caso
         public FilaSimulacion LlegadaAvion(FilaSimulacion filaActual,double nuevoReloj)
         {
-            var nuevaFila = new FilaSimulacion(filaActual);
+            FilaSimulacion nuevaFila;
+            if (desdeActivado)
+            {
+                nuevaFila = new FilaSimulacion(filaActual);
+            }
+            else
+            {
+                nuevaFila = filaActual;
+            }
             nuevaFila.evento = "llegada_avion";
             nuevaFila.reloj = nuevoReloj;
             //programar
+            var rnd = GenerarRandom();
+            var nuevaLlegada = new LlegadaAvion(rnd, parametros.MediaLlegadaAvion, nuevoReloj);
+            if (filaActual.buscarAterrizaje())
+            {
+                var avion = new Avion("EP", nuevoReloj);
+                nuevaFila.pista.AumentarCola();
+                nuevaFila.aviones.Add(avion);
+            }
+            else
+            {
+                //cuando no hay aviones aterrizando
+                var rndAterrizaje = GenerarRandom();
+                var finAterrizaje = new FinAterrizaje(rnd, parametros.MediaAterrizaje, nuevoReloj);
+                var avion = new Avion("AT", nuevoReloj);
+                nuevaFila.aviones.Add(avion);
+                nuevaFila.finAterrizaje = finAterrizaje;
 
-            return new FilaSimulacion();
+            }
+            nuevaFila.llegadaAvion = nuevaLlegada;
+
+            return nuevaFila;
         }
         public FilaSimulacion FinAterrizaje(FilaSimulacion filaActual, double nuevoReloj)
         {
- 
-            var nuevaFila = new FilaSimulacion(filaActual);
+
+            FilaSimulacion nuevaFila;
+            if (desdeActivado)
+            {
+                nuevaFila = new FilaSimulacion(filaActual);
+            }
+            else
+            {
+                nuevaFila = filaActual;
+            }
             nuevaFila.evento = "fin_aterrizaje";
             nuevaFila.reloj = nuevoReloj;
-            // programar
+            nuevaFila.acumuladores.totalAvionesAterr++;
+            var avion =  nuevaFila.AvionAterrizaje();
+            var rnd = GenerarRandom();
+            Intencion nuevaIntencion = new Intencion(rnd, parametros.IntencionCarga, parametros.IntencionMuelle);
+            nuevaFila.intencion = nuevaIntencion;
+            if(nuevaIntencion.intencion == "Carga")
+            {
+                if (nuevaFila.puestoCarga.EstaLibre())
+                {
+                    avion.Cargando();
+                    nuevaFila.puestoCarga.OcuparPuestoCarga();
+                    FinCarga nuevoFinCarga = new FinCarga(GenerarRandom(), parametros.MediaCarga, nuevoReloj);
+                    nuevaFila.finCarga = nuevoFinCarga;
+                }
+                else
+                {
+                    // hay que sumar al final de la cola
+                    nuevaFila.puestoCarga.AumentarCola(avion);
 
-            return new FilaSimulacion();
+                }
+                if (nuevaFila.AterrizarSiguienteAvion())
+                {
+                    var nuevoFinAterrizaje = new FinAterrizaje(GenerarRandom(), parametros.MediaAterrizaje, nuevoReloj);
+                    nuevaFila.finAterrizaje = nuevoFinAterrizaje;
+                }
+                else
+                {
+                        nuevaFila.finAterrizaje.proximoFinAterrizaje = 0;
+                }
+            }
+            else
+            {
+                if (nuevaFila.finOperacion.HayMuelleLibre())
+                {
+
+                    Muelle muelleLibre = nuevaFila.finOperacion.BuscarMuelleLibre();
+                    var rndFinOperacion = GenerarRandom();
+                    nuevaFila.finOperacion.ocuparMuelle(rndFinOperacion, parametros.MediaMuelle, muelleLibre, avion, nuevoReloj);
+                    if (nuevaFila.AterrizarSiguienteAvion())
+                    {
+                        var nuevoFinAterrizaje = new FinAterrizaje(GenerarRandom(), parametros.MediaAterrizaje, nuevoReloj);
+                        nuevaFila.finAterrizaje = nuevoFinAterrizaje;
+                    }
+                    else
+                    {
+                        nuevaFila.finAterrizaje.proximoFinAterrizaje = 0;
+                    }
+                }
+                else
+                {
+                    avion.EsperandoMuelle();
+                    nuevaFila.acumuladores.AumentarAvionesAterrDescuento();
+                    nuevaFila.finAterrizaje.proximoFinAterrizaje = 0;
+                }
+            }
+
+            return nuevaFila;
         }
         public FilaSimulacion FinCarga(FilaSimulacion filaActual, double nuevoReloj)
         {
-            var nuevaFila = new FilaSimulacion(filaActual);
+            FilaSimulacion nuevaFila;
+            if (desdeActivado)
+            {
+                nuevaFila = new FilaSimulacion(filaActual);
+            }
+            else
+            {
+                nuevaFila = filaActual;
+            }
+            if (desdeActivado)
+            {
+                nuevaFila = new FilaSimulacion(filaActual);
+            }
+            else
+            {
+                nuevaFila = filaActual;
+            }
+
+
             nuevaFila.evento = "fin_carga";
             nuevaFila.reloj = nuevoReloj;
             // mato y libero al puesto de cargga y avion 
             nuevaFila.puestoCarga.LiberarPuestoCarga();
-           
+            IAvion avionAMatar = new IAvion();
+            bool banderaSeMatoAvion = false;
            foreach (var avion in nuevaFila.avionesAerolinea)
            {
                 if (desdeActivado && avion.estado =="C")
                 {
                     avion.MATAR();
+                    banderaSeMatoAvion = true;
                     break;
                 }
-                if (!desdeActivado && avion.estado =="C")
+                if (avion.estado =="C")
                 {
-                    nuevaFila.avionesAerolinea.Remove(avion);
+                    avionAMatar = avion;
+                    banderaSeMatoAvion = true;
+                    break;
                 }
 
            }
-           foreach (var avion in nuevaFila.aviones)
+            if (!desdeActivado && banderaSeMatoAvion)
+            {
+                nuevaFila.avionesAerolinea.Remove((AvionAerolinea)avionAMatar);
+            }
+            if (!banderaSeMatoAvion) { 
+            foreach (var avion in nuevaFila.aviones)
             {
                 if (desdeActivado && avion.estado == "C")
                 {
                     avion.MATAR();
                     break;
                 }
-                if (!desdeActivado && avion.estado == "C")
+                if (avion.estado == "C")
                 {
-                    nuevaFila.aviones.Remove(avion);
+                    avionAMatar = avion;
+                        banderaSeMatoAvion = true;
+                        break;
                 }
 
-            }
 
-           // compruevo cola y ocupo servidor, y cambio estado avion
-            if (nuevaFila.puestoCarga.cola != 0 )
+            }
+            if (!desdeActivado && banderaSeMatoAvion)
+            {
+                nuevaFila.aviones.Remove((Avion)avionAMatar);
+            }
+            }
+            // compruevo cola y ocupo servidor, y cambio estado avion
+            if (nuevaFila.puestoCarga.HayCola() )
             {
                 nuevaFila.puestoCarga.OcuparPuestoCarga();
 
-                var banderaPrioridad = false;
-
-                foreach (var avion in nuevaFila.avionesAerolinea)
-                {
-                    if (avion.estado == "EC")
-                    {
-                        avion.Cargando();
-                        banderaPrioridad = true;
-                        break;
-                    }
-
-                }
-
-                if (!banderaPrioridad)
-                {
-                    foreach (var a in nuevaFila.aviones)
-                    {
-                        if (a.estado == "EC")
-                        {
-                            a.Cargando();
-
-                            break;
-                        }
-                    }
-                }
-
+                IAvion siguienteAvion = nuevaFila.puestoCarga.ReducirCola();
+                siguienteAvion.Cargando();
 
             }
             var rnd = GenerarRandom();
@@ -205,7 +306,15 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         }
         public FilaSimulacion FinOperaciones(FilaSimulacion filaActual, double nuevoReloj)
         {
-            var nuevaFila = new FilaSimulacion(filaActual);
+            FilaSimulacion nuevaFila;
+            if (desdeActivado)
+            {
+                nuevaFila = new FilaSimulacion(filaActual);
+            }
+            else
+            {
+                nuevaFila = filaActual;
+            }
             nuevaFila.evento = "fin_operaciones";
             nuevaFila.reloj = nuevoReloj;
             
@@ -270,8 +379,10 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     }
                 }
             }
+            if(banderaPrioritario){
+                nuevaFila.finOperacion.ocuparMuelle(rnd, this.parametros.MediaMuelle, muelleOcupar, avionOcupa, nuevoReloj);
 
-            nuevaFila.finOperacion.ocuparMuelle(rnd, this.parametros.MediaMuelle, muelleOcupar, avionOcupa, nuevoReloj);
+            }
             return nuevaFila;
         }
 
@@ -280,7 +391,15 @@ namespace TP_4_SIM_Aeropuerto.Controlador
 
         public FilaSimulacion LlegadaAvionAerolinea(FilaSimulacion filaActual, double nuevoReloj)
         {
-            var nuevaFila = new FilaSimulacion(filaActual);
+            FilaSimulacion nuevaFila;
+            if (desdeActivado)
+            {
+                nuevaFila = new FilaSimulacion(filaActual);
+            }
+            else
+            {
+                nuevaFila = filaActual;
+            }
             nuevaFila.evento = "llegada_avion_aerolinea";
             nuevaFila.reloj = nuevoReloj;
             //programar
@@ -290,7 +409,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             {
                 var avionAero = new AvionAerolinea("EP", nuevoReloj);
                 nuevaFila.pista.AumentarColaPrioritaria();
-                nuevaFila.avionesAerolinea.Append(avionAero);
+                nuevaFila.avionesAerolinea.Add(avionAero);
             }
             else
             {

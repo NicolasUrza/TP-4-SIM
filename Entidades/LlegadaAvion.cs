@@ -39,7 +39,9 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             //programar
             //usar el generador con el random y la media
-            
+            this.tiempoEntreAviones = Math.Truncate(GeneradorAleatorios.GenerarExponencial(rnd, media) * 100) / 100;
+            this.proximaLlegada = Math.Truncate((relojActual + tiempoEntreAviones) * 100) / 100;
+
         }
     }
 }

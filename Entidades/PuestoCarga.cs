@@ -9,19 +9,35 @@ namespace TP_4_SIM_Aeropuerto.Entidades
     public class PuestoCarga
     {
         public string estado { get; set; }
-        public int cola { get; set; }
+        public Queue<IAvion> cola { get; set; }
+
         public PuestoCarga()
         {
             estado = "Libre";
-            cola = 0;
+            cola = new Queue<IAvion>();
         }
-        public PuestoCarga(PuestoCarga p)
+        public PuestoCarga(PuestoCarga p, FilaSimulacion f)
         {
             //sirve para clonar un puesto de carga
                 estado = p.estado;
-                cola = p.cola;
+            var c1 = new Queue<IAvion>();
+            var c2 = new Queue<IAvion>();
+            this.cola = new Queue<IAvion>();
+            for (int i = 0; i < p.cola.Count; i++)
+            {
+                var avion = p.cola.Dequeue();
+                c1.Enqueue(avion);
+                c2.Enqueue(avion);
+            }
+            
+           
+            for (int j = 0; j < c1.Count ; j++)
+            {
+                p.cola.Enqueue(c1.Dequeue());
+                this.cola.Enqueue(f.BuscarAvion(c2.Dequeue()));
+            }
         }
-        public PuestoCarga(string estado, int cola)
+        public PuestoCarga(string estado, Queue<IAvion> cola)
         {
             this.estado = estado;
             this.cola = cola;
@@ -32,28 +48,28 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         }
         public void LiberarPuestoCarga()
         {
-            if (cola == 0)
-            {
-                estado = "Libre";
-            }
-            else
-            {
-                cola--;
-            }
-        }
 
-        public void AumentarCola()
+                estado = "Libre";
+           
+        }
+        
+
+        public void AumentarCola(IAvion nuevoAvion)
         {
-            cola++;
+            cola.Enqueue(nuevoAvion);
+            nuevoAvion.EsperandoCarga();
         }
         public bool EstaLibre()
         {
             return estado == "Libre";
         }
 
-        public void ReducirCola()
+        public IAvion ReducirCola()
         {
-            cola--;
+            return cola.Dequeue();
+        }
+        public bool HayCola(){
+            return cola.Count > 0;
         }
     }
 }

@@ -19,7 +19,15 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         }
 
 
-
+        public IAvion()
+        {
+            
+        }
+        public IAvion(IAvion a)
+        {
+                estado = a.estado;
+                horaLlegada = a.horaLlegada;
+        }
 
 
         public void Aterrizar()

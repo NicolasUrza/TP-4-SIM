@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace TP_4_SIM_Aeropuerto.Entidades
 {
@@ -34,7 +35,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 intencion = new Intencion();
                 finOperacion = new FinOperacion();
 
-            var ae = new AvionAerolinea();
+            var ae = new AvionAerolinea("M", 0.0);
             finOperacion.muelles[0].OcuparMuelle(0.2, ae);
             llegadaAvionAerolinea = new LlegadaAvionAerolinea();
             llegadaAvionAerolinea.proximaLlegada = 0.67;
@@ -49,17 +50,6 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public FilaSimulacion(FilaSimulacion f, bool keep =false)
         {
             //para copiar una fila simulacion
-            this.evento = f.evento;
-            this.reloj = f.reloj;
-            this.llegadaAvion = new LlegadaAvion(f.llegadaAvion, keep);
-            this.pista = new Pista(f.pista);
-            this.finCarga = new FinCarga(f.finCarga, keep);
-            this.puestoCarga = new PuestoCarga(f.puestoCarga);
-            this.acumuladores = new Acumuladores(f.acumuladores);
-            this.finAterrizaje = new FinAterrizaje(f.finAterrizaje, keep);
-            this.intencion = new Intencion(f.intencion, keep);
-            this.llegadaAvionAerolinea = new LlegadaAvionAerolinea(f.llegadaAvionAerolinea, keep);
-            this.finOperacion = new FinOperacion(f.finOperacion, keep);
             this.aviones = new List<Avion>();
             foreach (var avion in f.aviones)
             {
@@ -68,9 +58,108 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.avionesAerolinea = new List<AvionAerolinea>();
             foreach (var avionAerolinea in f.avionesAerolinea)
             {
-                    this.avionesAerolinea.Add(new AvionAerolinea(avionAerolinea));
+                this.avionesAerolinea.Add(new AvionAerolinea(avionAerolinea));
             }
+            this.evento = f.evento;
+            this.reloj = f.reloj;
+            this.llegadaAvion = new LlegadaAvion(f.llegadaAvion, keep);
+            this.pista = new Pista(f.pista);
+            this.finCarga = new FinCarga(f.finCarga,  keep);
+            this.puestoCarga = new PuestoCarga(f.puestoCarga, this);
+            this.acumuladores = new Acumuladores(f.acumuladores);
+            this.finAterrizaje = new FinAterrizaje(f.finAterrizaje, keep);
+            this.intencion = new Intencion(f.intencion, keep);
+            this.llegadaAvionAerolinea = new LlegadaAvionAerolinea(f.llegadaAvionAerolinea, keep);
+            this.finOperacion = new FinOperacion(f.finOperacion,this, keep);
+            
+            
         }
+
+        public IAvion BuscarAvion(IAvion avionBuscado)
+        {
+            foreach (var avion in aviones)
+            {
+                if (avion.estado == avionBuscado.estado && avion.horaLlegada == avionBuscado.horaLlegada)
+                {
+                    return avion;
+                }
+            }
+            foreach(var avion in avionesAerolinea)
+            {
+                if (avion.estado == avionBuscado.estado && avion.horaLlegada == avionBuscado.horaLlegada)
+                {
+                    return avion;
+                }
+            }
+            return new Avion();
+        }
+        public bool AterrizarSiguienteAvion()
+        {
+            if (HayAvionesEsperandoAterrizaje())
+            {
+                IAvion avionAAterrizar = new IAvion();
+                var i = 0;
+                foreach(IAvion aa in this.avionesAerolinea)
+                {
+                    if(aa.estado == "EP" && i == 0)
+                    {
+                        avionAAterrizar = aa;
+                        i++;
+                    }
+                    else if (aa.estado == "EP" && aa.horaLlegada < avionAAterrizar.horaLlegada)
+                    {
+                        avionAAterrizar = aa;
+                        
+                    }
+                    
+                    
+                }
+                if(i > 0)
+                {
+                    
+                    avionAAterrizar.Aterrizar();
+                    this.pista.OcuparPista();
+                    this.pista.DisminuirColaPrioritaria();
+                    var TiempoEsperaAterrizaje = this.reloj - avionAAterrizar.horaLlegada;
+                    this.acumuladores.AumentarAcumTiempoEsperaAterr(TiempoEsperaAterrizaje);
+                    if(TiempoEsperaAterrizaje > 20)
+                    {
+                        this.acumuladores.AumentarAvionesAterrGratis();
+                    }
+                    return true;
+                }
+                i = 0;
+                foreach(IAvion a in this.aviones)
+                {
+                    if (a.estado == "EP" && i == 0)
+                    {
+                        avionAAterrizar = a;
+                        i++;
+                    }
+                    else if (a.estado == "EP" && a.horaLlegada < avionAAterrizar.horaLlegada)
+                    {
+                        avionAAterrizar = a;
+
+                    }
+                }
+                if (i > 0)
+                {
+                    avionAAterrizar.Aterrizar();
+                    this.pista.OcuparPista();
+                    this.pista.DisminuirCola();
+                    var TiempoEsperaAterrizaje = this.reloj - avionAAterrizar.horaLlegada;
+                    this.acumuladores.AumentarAcumTiempoEsperaAterr(TiempoEsperaAterrizaje);
+                    if (TiempoEsperaAterrizaje > 20)
+                    {
+                        this.acumuladores.AumentarAvionesAterrGratis();
+                    }
+                    return true;
+                }
+            }
+            
+            return false;
+    }
+
 
         public (string, double) siguienteEventoyReloj()
         {
@@ -168,7 +257,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             foreach(var avion in aviones)
             {
-                if(avion.estado == "AT")
+                if(avion.estado == "AT" || avion.estado == "EM")
                 {
                     return true;
                 }
@@ -176,13 +265,51 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
             foreach (var avion in avionesAerolinea)
             {
-                if (avion.estado == "AT")
+                if (avion.estado == "AT" || avion.estado == "EM")
                 {
                     return true;
                 }
             }
 
             return false;
+        }
+        public bool HayAvionesEsperandoAterrizaje()
+        {
+            foreach (var avion in aviones)
+            {
+                if (avion.estado == "EP")
+                {
+                    return true;
+                }
+            }
+            foreach (var avion in avionesAerolinea)
+            {
+                    if (avion.estado == "EP")
+                    {
+                        return true;
+                    }
+            }
+            return false;
+        }
+        public IAvion AvionAterrizaje()
+        {
+                foreach (var avion in aviones)
+                {
+                    if (avion.estado == "AT")
+                    {
+                        return avion;
+                    }
+                }
+
+                foreach (var avion in avionesAerolinea)
+                {
+                    if (avion.estado == "AT")
+                    {
+                        return avion;
+                    }
+                }
+
+                return null;
         }
 
     }

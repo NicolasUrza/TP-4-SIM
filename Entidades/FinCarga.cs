@@ -21,6 +21,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.rnd = rnd;
             this.mediaCarga = mediaCarga;
             GenerarTiempoCarga();
+            this.tiempoFinCarga = Math.Truncate((this.tiempoCarga + relojActual) * 100) / 100;
         }
         public FinCarga(FinCarga f, bool keep=false)
         {

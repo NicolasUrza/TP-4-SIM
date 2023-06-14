@@ -38,6 +38,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             //programar
             //usar el generador con el random y la media
+            this.tiempoAterrizaje = Math.Truncate(GeneradorAleatorios.GenerarExponencial(rnd, media) * 100) / 100;
+            this.proximoFinAterrizaje = Math.Truncate((relojActual + tiempoAterrizaje) * 100) / 100;
         }
     }
 }

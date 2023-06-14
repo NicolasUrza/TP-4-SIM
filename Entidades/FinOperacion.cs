@@ -20,7 +20,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 muelles[i] = new Muelle();
             }
         }
-        public FinOperacion(FinOperacion finOperacion, bool keep = false)
+        public FinOperacion(FinOperacion finOperacion, FilaSimulacion filaActual, bool keep = false)
         {
             if (keep)
             {
@@ -32,7 +32,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             var i = 0;
             foreach (Muelle m in finOperacion.muelles)
             {
-                muelles[i] = new Muelle(m);
+                muelles[i] = new Muelle(m, filaActual);
                 i++;
             }
             this.muelles = muelles;
@@ -51,7 +51,17 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.tiempo = GeneradorAleatorios.GenerarExponencial(this.rnd, mediaMuelle);
         }
 
-
+        public bool HayMuelleLibre()
+        {
+                foreach (Muelle m in muelles)
+                {
+                    if (m.estado == "Libre")
+                    {
+                        return true;
+                    }
+                }
+                return false;
+        }
         public Muelle BuscarMuelleLibre()
         {
             foreach (var m in muelles)
@@ -67,6 +77,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             this.rnd = rnd;
             this.mediaMuelle = media;
+            a.EnMuelle();
             calcularSiguienteFin();
 
             muelle.OcuparMuelle(this.tiempo+reloj, a);
@@ -80,7 +91,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             foreach (Muelle muell in muelles)
             {
-                if (muell.horaFin== reloj)
+                if (muell.horaFin == reloj)
                 {
                     return muell;
                 }

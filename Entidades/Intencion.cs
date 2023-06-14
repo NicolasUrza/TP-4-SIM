@@ -20,6 +20,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public Intencion(double rnd, double intencionCarga, double IntencionMuelle)
         {
             this.rnd = rnd;
+            this.intencionCarga = intencionCarga;
+            this.intencionMuelle = IntencionMuelle;
             GenerarIntencion();    
         }
         public Intencion(Intencion i, bool keep =false)
@@ -37,6 +39,14 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public void GenerarIntencion()
         {
             //programar para decidir la intencion
+            if (this.rnd < this.intencionCarga)
+            {
+                this.intencion = "Carga";
+            }
+            else
+            {
+                this.intencion = "Muelle";
+            }
         }
         
         
