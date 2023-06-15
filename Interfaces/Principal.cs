@@ -16,12 +16,46 @@ namespace TP_4_SIM_Aeropuerto
       
         public bool ValidarParametros()
         {
-            //programar
-            if (Convert.ToDouble(txtIntencionCarga.Text) > 1 || Convert.ToDouble(txtIntencionMuelle.Text) > 1)
+            try{
+                var cantIter = double.Parse(txtCantIteraciones.Text);
+                var desde = double.Parse(txtDesde.Text);
+                double.Parse(txtLlegadaAvion.Text);
+                var a = double.Parse(txtAerolineaA.Text);
+                var b = double.Parse(txtAerolineaB.Text);
+                Convert.ToDouble(txtMediaCarga.Text);
+                Convert.ToDouble(txtMediaMuelle.Text);
+
+                if (Convert.ToDouble(txtIntencionCarga.Text) > 1 || Convert.ToDouble(txtIntencionMuelle.Text) > 1)
+                {
+                    MessageBox.Show("El valor de la intencion de carga debe estar entre 0 y 1");
+                    return false;
+                }
+                if (Convert.ToDouble(txtIntencionCarga.Text) + Convert.ToDouble(txtIntencionMuelle.Text) != 1)
+                {
+                    MessageBox.Show("La suma de las intenciones debe ser 1");
+                    return false;
+                }
+                if(a > b)
+                {
+                    MessageBox.Show("El limite Inferior de la llegada de avion de aerolinea no debe superar su limite superior");
+                    return false;
+                }
+                if (desde > cantIter)
+                {
+                    MessageBox.Show("La cantidad de iteraciones debe ser mayor a la cantidad de iteraciones desde");
+                    return false;
+
+                }
+                
+
+            }
+            catch (Exception e)
             {
-                MessageBox.Show("El valor de la intencion de carga debe estar entre 0 y 1");
+                MessageBox.Show("Verifique los valores ingresados");
                 return false;
             }
+            //programar
+
 
             return true;
         }
@@ -45,31 +79,34 @@ namespace TP_4_SIM_Aeropuerto
         private void btnGenerarSimulacion_Click_1(object sender, EventArgs e)
         {
 
-            // cargamos los parametros
-            // se podria poner un ValidarParametros() en lugar del try
-            //try
-            //{
-            ValidarParametros();
-                var param = new Parametros();
-                param.MediaLlegadaAvion = double.Parse(this.txtLlegadaAvion.Text);
-                param.MediaAterrizaje = double.Parse(this.txtAterrizaje.Text);
-                param.MediaMuelle = double.Parse(this.txtMediaMuelle.Text);
-                param.MediaCarga = double.Parse(this.txtMediaCarga.Text);
-                param.IntencionCarga = double.Parse(this.txtIntencionCarga.Text);
-                param.IntencionMuelle = double.Parse(this.txtIntencionMuelle.Text);
-                param.AerolineaA = int.Parse(this.txtAerolineaA.Text);
-                param.AerolineaB = int.Parse(this.txtAerolineaB.Text);
-                param.CantidadDeIteraciones = int.Parse(this.txtCantIteraciones.Text);
-                param.Desde = int.Parse(this.txtDesde.Text);
-                var controlador = new ControladorSimulacion(this, param);
 
-                controlador.GenerarSimulacion();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Los parametros ingresados no son validos", "informacion", MessageBoxButtons.OK);
-            //    return;
-            //}
+            try
+            {
+                if (ValidarParametros())
+                {
+                    var param = new Parametros();
+                    param.MediaLlegadaAvion = double.Parse(this.txtLlegadaAvion.Text);
+                    param.MediaAterrizaje = double.Parse(this.txtAterrizaje.Text);
+                    param.MediaMuelle = double.Parse(this.txtMediaMuelle.Text);
+                    param.MediaCarga = double.Parse(this.txtMediaCarga.Text);
+                    param.IntencionCarga = double.Parse(this.txtIntencionCarga.Text);
+                    param.IntencionMuelle = double.Parse(this.txtIntencionMuelle.Text);
+                    param.AerolineaA = int.Parse(this.txtAerolineaA.Text);
+                    param.AerolineaB = int.Parse(this.txtAerolineaB.Text);
+                    param.CantidadDeIteraciones = int.Parse(this.txtCantIteraciones.Text);
+                    param.Desde = int.Parse(this.txtDesde.Text);
+                    var controlador = new ControladorSimulacion(this, param);
+
+                    controlador.GenerarSimulacion();
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("los parametros ingresados no son validos", "informacion", MessageBoxButtons.OK);
+                return;
+            }
         }
 
         private void Principal_Load_1(object sender, EventArgs e)
