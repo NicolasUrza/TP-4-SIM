@@ -152,7 +152,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             {
                 //cuando no hay aviones aterrizando
                 var rndAterrizaje = GenerarRandom();
-                var finAterrizaje = new FinAterrizaje(rnd, parametros.MediaAterrizaje, nuevoReloj);
+                var finAterrizaje = new FinAterrizaje(rndAterrizaje, parametros.MediaAterrizaje, nuevoReloj);
                 var avion = new Avion("AT", nuevoReloj);
                 nuevaFila.aviones.Add(avion);
                 nuevaFila.finAterrizaje = finAterrizaje;
@@ -442,8 +442,8 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             else
             {
                 //cuando no hay aviones aterrizando
-                var rndAterrizaje = generadorRandom.NextDouble();
-                var finAterrizaje = new FinAterrizaje(rnd, parametros.MediaAterrizaje, nuevoReloj);
+                var rndAterrizaje = GenerarRandom();
+                var finAterrizaje = new FinAterrizaje(rndAterrizaje, parametros.MediaAterrizaje, nuevoReloj);
                 var avionAero = new AvionAerolinea("AT", nuevoReloj);
                 nuevaFila.avionesAerolinea.Add(avionAero);
                 nuevaFila.finAterrizaje = finAterrizaje;
