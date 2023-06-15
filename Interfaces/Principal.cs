@@ -46,6 +46,11 @@ namespace TP_4_SIM_Aeropuerto
                     return false;
 
                 }
+                if(desde <= 0)
+                {
+                    MessageBox.Show("La cantidad de iteraciones desde debe ser mayor 0");
+                    return false;
+                }
                 
 
             }
