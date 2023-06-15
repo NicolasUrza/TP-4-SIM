@@ -57,6 +57,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     desdeActivado = false;
                     
                 }
+
+                if (i + 1 == this.parametros.CantidadDeIteraciones)
+                {
+                    break;
+                }
                 //determinamos el proximo estado y reloj
                 //programar este metodo
                 var proximo = filaActual.siguienteEventoyReloj();
@@ -151,6 +156,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 var avion = new Avion("AT", nuevoReloj);
                 nuevaFila.aviones.Add(avion);
                 nuevaFila.finAterrizaje = finAterrizaje;
+                nuevaFila.pista.OcuparPista();
 
             }
             nuevaFila.llegadaAvion = nuevaLlegada;
@@ -185,6 +191,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     nuevaFila.puestoCarga.OcuparPuestoCarga();
                     FinCarga nuevoFinCarga = new FinCarga(GenerarRandom(), parametros.MediaCarga, nuevoReloj);
                     nuevaFila.finCarga = nuevoFinCarga;
+                    
                 }
                 else
                 {
@@ -200,7 +207,9 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 else
                 {
                         nuevaFila.finAterrizaje.proximoFinAterrizaje = 0;
+                    nuevaFila.pista.LiberarPista();
                 }
+                
             }
             else
             {
@@ -218,7 +227,9 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     else
                     {
                         nuevaFila.finAterrizaje.proximoFinAterrizaje = 0;
+                        nuevaFila.pista.LiberarPista();
                     }
+
                 }
                 else
                 {
@@ -227,9 +238,13 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                     nuevaFila.finAterrizaje.proximoFinAterrizaje = 0;
                 }
             }
-
+            
+            
             return nuevaFila;
         }
+
+        
+        
         public FilaSimulacion FinCarga(FilaSimulacion filaActual, double nuevoReloj)
         {
             FilaSimulacion nuevaFila;
@@ -246,8 +261,13 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.evento = "fin_carga";
             nuevaFila.reloj = nuevoReloj;
             nuevaFila.acumuladores.AumentarAvionesCargaron();
-            // mato y libero al puesto de cargga y avion 
+            
+            // mato y libero al puesto de carga y avion 
+            
+            
             nuevaFila.puestoCarga.LiberarPuestoCarga();
+            
+            
             IAvion avionAMatar = new IAvion();
             bool banderaSeMatoAvion = false;
            foreach (var avion in nuevaFila.avionesAerolinea)
@@ -299,11 +319,15 @@ namespace TP_4_SIM_Aeropuerto.Controlador
 
                 IAvion siguienteAvion = nuevaFila.puestoCarga.ReducirCola();
                 siguienteAvion.Cargando();
+                var rnd = GenerarRandom();
 
+                nuevaFila.finCarga.OcuparCarga(rnd, this.parametros.MediaCarga, nuevoReloj);
             }
-            var rnd = GenerarRandom();
-
-            nuevaFila.finCarga.OcuparCarga(rnd, this.parametros.MediaCarga, nuevoReloj); 
+            else
+            {
+                nuevaFila.finCarga.tiempoFinCarga = 0 ;
+            }
+            
 
             return  nuevaFila;
         }
@@ -412,6 +436,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             {
                 var avionAero = new AvionAerolinea("EP", nuevoReloj);
                 nuevaFila.pista.AumentarColaPrioritaria();
+                
                 nuevaFila.avionesAerolinea.Add(avionAero);
             }
             else
@@ -422,6 +447,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 var avionAero = new AvionAerolinea("AT", nuevoReloj);
                 nuevaFila.avionesAerolinea.Add(avionAero);
                 nuevaFila.finAterrizaje = finAterrizaje;
+                nuevaFila.pista.OcuparPista();
 
             }
             nuevaFila.llegadaAvionAerolinea = nuevaLlegadaAerolinea;

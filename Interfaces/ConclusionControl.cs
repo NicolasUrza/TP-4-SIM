@@ -22,10 +22,10 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         }
         private void CargarConclusion()
         {
-            porcAterrFree.Text = resultadosSimulacion.porcentajeAterrGratis.ToString() + "%";
-            porcCargoComb.Text = resultadosSimulacion.porcentajeCargaronCombustible.ToString() + "%";
-            tiempoMedioAt.Text = resultadosSimulacion.tiempoEsperaPromedioAterrizaje.ToString() + " minutos";
-            benefPorHora.Text = "€ " + resultadosSimulacion.beneficiosPorHora.ToString();
+            porcAterrFree.Text = (Math.Truncate(resultadosSimulacion.porcentajeAterrGratis*100)/100).ToString() + "%";
+            porcCargoComb.Text = (Math.Truncate(resultadosSimulacion.porcentajeCargaronCombustible * 100) / 100).ToString() + "%";
+            tiempoMedioAt.Text = (Math.Truncate(resultadosSimulacion.tiempoEsperaPromedioAterrizaje * 100) / 100).ToString() + " minutos";
+            benefPorHora.Text = "€ " + (Math.Truncate(resultadosSimulacion.beneficiosPorHora * 100) / 100).ToString();
         }
     }
 }

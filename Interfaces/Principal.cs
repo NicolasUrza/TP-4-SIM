@@ -17,6 +17,12 @@ namespace TP_4_SIM_Aeropuerto
         public bool ValidarParametros()
         {
             //programar
+            if (Convert.ToDouble(txtIntencionCarga.Text) > 1 || Convert.ToDouble(txtIntencionMuelle.Text) > 1)
+            {
+                MessageBox.Show("El valor de la intencion de carga debe estar entre 0 y 1");
+                return false;
+            }
+
             return true;
         }
 
@@ -43,7 +49,7 @@ namespace TP_4_SIM_Aeropuerto
             // se podria poner un ValidarParametros() en lugar del try
             //try
             //{
-
+            ValidarParametros();
                 var param = new Parametros();
                 param.MediaLlegadaAvion = double.Parse(this.txtLlegadaAvion.Text);
                 param.MediaAterrizaje = double.Parse(this.txtAterrizaje.Text);
@@ -76,6 +82,103 @@ namespace TP_4_SIM_Aeropuerto
             this.txtIntencionMuelle.Text = valoresIniciales[5].ToString();
             this.txtAerolineaA.Text = valoresIniciales[6].ToString();
             this.txtAerolineaB.Text = valoresIniciales[7].ToString();
+        }
+
+        private void txtLlegadaAvion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+           
+        }
+
+        private void txtAterrizaje_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMediaMuelle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMediaCarga_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAerolineaB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAerolineaA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txtCantIteraciones_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCantIteraciones_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDesde_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIntencionCarga_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIntencionMuelle_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtIntencionMuelle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIntencionCarga_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

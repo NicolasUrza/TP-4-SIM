@@ -35,18 +35,9 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         }
         public void LiberarPista()
         {
-            if (cola == 0 && colaPrioritaria == 0)
-            {
+
                 estado = "Libre";
-            }
-            else if (colaPrioritaria > 0)
-            {
-                colaPrioritaria--;
-            }
-            else
-            {
-                cola--;
-            }
+
         }
         public void AumentarCola()
         {

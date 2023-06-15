@@ -95,6 +95,7 @@
             this.txtMediaCarga.Name = "txtMediaCarga";
             this.txtMediaCarga.Size = new System.Drawing.Size(100, 23);
             this.txtMediaCarga.TabIndex = 24;
+            this.txtMediaCarga.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMediaCarga_KeyPress);
             // 
             // label5
             // 
@@ -136,6 +137,7 @@
             this.txtAerolineaB.Name = "txtAerolineaB";
             this.txtAerolineaB.Size = new System.Drawing.Size(60, 23);
             this.txtAerolineaB.TabIndex = 20;
+            this.txtAerolineaB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAerolineaB_KeyPress);
             // 
             // label3
             // 
@@ -155,6 +157,7 @@
             this.txtAerolineaA.Name = "txtAerolineaA";
             this.txtAerolineaA.Size = new System.Drawing.Size(60, 23);
             this.txtAerolineaA.TabIndex = 18;
+            this.txtAerolineaA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAerolineaA_KeyPress);
             // 
             // label1
             // 
@@ -174,6 +177,8 @@
             this.txtIntencionMuelle.Name = "txtIntencionMuelle";
             this.txtIntencionMuelle.Size = new System.Drawing.Size(60, 23);
             this.txtIntencionMuelle.TabIndex = 16;
+            this.txtIntencionMuelle.TextChanged += new System.EventHandler(this.txtIntencionMuelle_TextChanged);
+            this.txtIntencionMuelle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIntencionMuelle_KeyPress);
             // 
             // lblCarga
             // 
@@ -211,6 +216,8 @@
             this.txtIntencionCarga.Name = "txtIntencionCarga";
             this.txtIntencionCarga.Size = new System.Drawing.Size(60, 23);
             this.txtIntencionCarga.TabIndex = 11;
+            this.txtIntencionCarga.TextChanged += new System.EventHandler(this.txtIntencionCarga_TextChanged);
+            this.txtIntencionCarga.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIntencionCarga_KeyPress);
             // 
             // lblIntención
             // 
@@ -230,6 +237,7 @@
             this.txtMediaMuelle.Name = "txtMediaMuelle";
             this.txtMediaMuelle.Size = new System.Drawing.Size(100, 23);
             this.txtMediaMuelle.TabIndex = 9;
+            this.txtMediaMuelle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMediaMuelle_KeyPress);
             // 
             // lblMuelle
             // 
@@ -249,6 +257,7 @@
             this.txtAterrizaje.Name = "txtAterrizaje";
             this.txtAterrizaje.Size = new System.Drawing.Size(100, 23);
             this.txtAterrizaje.TabIndex = 7;
+            this.txtAterrizaje.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAterrizaje_KeyPress);
             // 
             // lblAterrizaje
             // 
@@ -268,6 +277,7 @@
             this.txtLlegadaAvion.Name = "txtLlegadaAvion";
             this.txtLlegadaAvion.Size = new System.Drawing.Size(100, 23);
             this.txtLlegadaAvion.TabIndex = 5;
+            this.txtLlegadaAvion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLlegadaAvion_KeyPress);
             // 
             // lblLLegadaAviones
             // 
@@ -288,6 +298,7 @@
             this.txtDesde.Name = "txtDesde";
             this.txtDesde.Size = new System.Drawing.Size(100, 23);
             this.txtDesde.TabIndex = 3;
+            this.txtDesde.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDesde_KeyPress);
             // 
             // lblMostrarDesde
             // 
@@ -309,6 +320,8 @@
             this.txtCantIteraciones.Name = "txtCantIteraciones";
             this.txtCantIteraciones.Size = new System.Drawing.Size(100, 23);
             this.txtCantIteraciones.TabIndex = 1;
+            this.txtCantIteraciones.TextChanged += new System.EventHandler(this.txtCantIteraciones_TextChanged);
+            this.txtCantIteraciones.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantIteraciones_KeyPress);
             // 
             // lblCantIteraciones
             // 

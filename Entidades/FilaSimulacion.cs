@@ -35,8 +35,6 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 intencion = new Intencion();
                 finOperacion = new FinOperacion();
 
-            var ae = new AvionAerolinea("M", 0.0);
-            finOperacion.muelles[0].OcuparMuelle(0.2, ae);
             llegadaAvionAerolinea = new LlegadaAvionAerolinea();
             llegadaAvionAerolinea.proximaLlegada = 0.67;
                 finCarga = new FinCarga();
@@ -45,7 +43,6 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 acumuladores = new Acumuladores();
             aviones = new List<Avion>();
             avionesAerolinea = new List<AvionAerolinea>();
-            avionesAerolinea.Add(ae);
         }
         public FilaSimulacion(FilaSimulacion f, bool keep =false)
         {
@@ -203,10 +200,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.llegadaAvion.rnd != 0? this.llegadaAvion.rnd.ToString(): " ",
                 this.llegadaAvion.tiempoEntreAviones!= 0? this.llegadaAvion.tiempoEntreAviones.ToString(): " ",
                 this.llegadaAvion.proximaLlegada.ToString(),
+                this.llegadaAvionAerolinea.rnd != 0? this.llegadaAvionAerolinea.rnd.ToString(): " ",
+                this.llegadaAvionAerolinea.tiempoEntreLlegadas != 0? this.llegadaAvionAerolinea.tiempoEntreLlegadas.ToString(): " ",
+                this.llegadaAvionAerolinea.proximaLlegada.ToString(),
                 this.finAterrizaje.rnd != 0? this.finAterrizaje.rnd.ToString():  " ",
                 this.finAterrizaje.tiempoAterrizaje != 0 ? this.finAterrizaje.tiempoAterrizaje.ToString(): " ",
                 this.finAterrizaje.proximoFinAterrizaje !=0 ? this.finAterrizaje.proximoFinAterrizaje.ToString(): " ",
-                this.intencion.rnd!=0? this.finAterrizaje.rnd.ToString():" ",
+                this.intencion.rnd!=0? this.intencion.rnd.ToString():" ",
                 this.intencion.intencion,
                 this.finOperacion.rnd != 0? this.finOperacion.rnd.ToString(): " ",
                 this.finOperacion.tiempo != 0? this.finOperacion.tiempo.ToString(): " ",
@@ -216,12 +216,10 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             };
             foreach (Muelle m in this.finOperacion.muelles)
             {
-                str = str.Concat(new string[] { m.estado, m.horaFin.ToString() }).ToArray();
+                str = str.Concat(new string[] { m.estado, m.horaFin != 0? m.horaFin.ToString() : " " }).ToArray();
             }
             str = str.Concat(new string[] {
-                this.llegadaAvionAerolinea.rnd != 0? this.llegadaAvionAerolinea.rnd.ToString(): " ",
-                this.llegadaAvionAerolinea.tiempoEntreLlegadas != 0? this.llegadaAvionAerolinea.tiempoEntreLlegadas.ToString(): " ",
-                this.llegadaAvionAerolinea.proximaLlegada.ToString(),
+                
                 this.finCarga.rnd != 0? this.finCarga.rnd.ToString(): " ",
                 this.finCarga.tiempoCarga != 0? this.finCarga.tiempoCarga.ToString(): " ",
                 this.finCarga.tiempoFinCarga !=0? this.finCarga.tiempoFinCarga.ToString(): " ",

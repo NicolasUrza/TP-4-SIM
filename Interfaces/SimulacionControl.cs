@@ -36,11 +36,16 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Columns.Add("tiempo_entre_aviones", "Tiempo Entre Aviones");
             this.dataGridView1.Columns.Add("proxima_llegada", "Proxima Llegada");
 
+            this.dataGridView1.Columns.Add("RND_LlegadaAvion_Aerolinea", "RND");
+            this.dataGridView1.Columns.Add("tiempo_entre_aviones_aerolinea", "Tiempo Entre Llegadas");
+            this.dataGridView1.Columns.Add("proxima_llegada", "Proxima Llegada");
+
             this.dataGridView1.Columns.Add("RND_Aterrizaje", "RND");
             this.dataGridView1.Columns.Add("tiempo_aterrizaje", "Tiempo Aterrizaje");
             this.dataGridView1.Columns.Add("fin_aterrizaje", "Fin Aterrizaje");
             this.dataGridView1.Columns.Add("rnd_intencion", "RND Intencion");
             this.dataGridView1.Columns.Add("intencion", "Intencion");
+
 
             this.dataGridView1.Columns.Add("RND_finOperaciones", "RND");
             this.dataGridView1.Columns.Add("tiempo_operaciones", "Tiempo");
@@ -60,9 +65,6 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Columns.Add("estado_5", "Estado");
             this.dataGridView1.Columns.Add("hora_fin_5", "Hora Fin");
 
-            this.dataGridView1.Columns.Add("RND_LlegadaAvion_Aerolinea", "RND");
-            this.dataGridView1.Columns.Add("tiempo_entre_aviones_aerolinea", "Tiempo Entre Llegadas");
-            this.dataGridView1.Columns.Add("proxima_llegada", "Proxima Llegada");
 
             this.dataGridView1.Columns.Add("RND_fin_carga", "RND");
             this.dataGridView1.Columns.Add("tiempo_carga", "Tiempo Carga");
@@ -117,18 +119,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 }
 
             }
-
-            //this.dataGridView1.Columns.Add("estado_avion_2", "Estado");
-            //this.dataGridView1.Columns.Add("hora_llegada_2", "Hora Llegada");
-
-            //this.dataGridView1.Columns.Add("estado_avion_3", "Estado");
-            //this.dataGridView1.Columns.Add("hora_llegada_3", "Hora Llegada");
-
-            //this.dataGridView1.Columns.Add("estado_avion_4", "Estado");
-            //this.dataGridView1.Columns.Add("hora_llegada_4", "Hora Llegada");
-
-            //this.dataGridView1.Columns.Add("estado_avion_5", "Estado");
-            //this.dataGridView1.Columns.Add("hora_llegada_5", "Hora Llegada");
+            
 
             this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dataGridView1.ColumnHeadersHeight = this.dataGridView1.ColumnHeadersHeight * 3 + 20;
@@ -189,45 +180,45 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
                 }
                 if (this.dataGridView1.Columns[i].Index == 5)
                 {
+                    CustomizeCell(i, e, "Llegada Avion Aerolinea", 3);
+                }
+                if (this.dataGridView1.Columns[i].Index == 8)
+                {
                     CustomizeCell(i, e, "Fin Aterrizaje", 5);
                 }
-                if (this.dataGridView1.Columns[i].Index == 10)
+                if (this.dataGridView1.Columns[i].Index == 13)
                 {
                     CustomizeCell(i, e, "Fin Operaciones", 2);
                 }
 
-                if (this.dataGridView1.Columns[i].Index == 12)
+                if (this.dataGridView1.Columns[i].Index == 15)
                 {
                     CustomizeCell(i, e, "Muelle 1", 2);
                 }
 
-                if (this.dataGridView1.Columns[i].Index == 14)
+                if (this.dataGridView1.Columns[i].Index == 17)
                 {
                     CustomizeCell(i, e, "Muelle 2", 2);
                 }
 
 
-                if (this.dataGridView1.Columns[i].Index == 16)
+                if (this.dataGridView1.Columns[i].Index == 19)
                 {
                     CustomizeCell(i, e, "Muelle 3", 2);
                 }
 
 
-                if (this.dataGridView1.Columns[i].Index == 18)
+                if (this.dataGridView1.Columns[i].Index == 21)
                 {
                     CustomizeCell(i, e, "Muelle 4", 2);
                 }
 
 
-                if (this.dataGridView1.Columns[i].Index == 20)
+                if (this.dataGridView1.Columns[i].Index == 23)
                 {
                     CustomizeCell(i, e, "Muelle 5", 2);
                 }
 
-                if (this.dataGridView1.Columns[i].Index == 22)
-                {
-                    CustomizeCell(i, e, "Llegada Avion Aerolinea", 3);
-                }
 
 
                 if (this.dataGridView1.Columns[i].Index == 25)

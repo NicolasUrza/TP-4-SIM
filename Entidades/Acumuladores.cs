@@ -47,6 +47,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public void AumentarAcumTiempoEsperaAterr(double tiempo)
         {
             acumTiempoEsperaAterr += tiempo;
+            acumTiempoEsperaAterr = Math.Truncate(acumTiempoEsperaAterr * 100) / 100;
         }
         public void AumentarTotalAvionesAterr()
         {

@@ -38,7 +38,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         }
         public void GenerarTiempoCarga()
         {
-            this.tiempoCarga = GeneradorAleatorios.GenerarExponencial(rnd, mediaCarga);   
+            this.tiempoCarga = Math.Truncate(GeneradorAleatorios.GenerarExponencial(rnd, mediaCarga) * 100) /100;   
         }
 
 
@@ -47,7 +47,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.rnd = rnd;
             mediaCarga = mediaCarg; 
             GenerarTiempoCarga();
-            this.tiempoFinCarga = tiempoCarga + Reloj;
+            this.tiempoFinCarga = Math.Truncate((tiempoCarga + Reloj) * 100) / 100;
 
         }
 
