@@ -65,14 +65,14 @@ namespace TP_4_SIM_Aeropuerto
             return true;
         }
 
-        public void CargarResultados(FilaSimulacion[] simulacion, Metricas metricas)
+        public void CargarResultados(FilaSimulacion[] simulacion, List<RungeKuta> rungeKutas, Metricas metricas)
         {
             //programar
             //el controlador llama a este metodo para mostrar los resultados
             //limpiamos el panel
             this.pnSolucion.Controls.Clear();
             // creamos el control de resultados
-            var res = new ResultadosControl(simulacion, metricas);
+            var res = new ResultadosControl(simulacion,rungeKutas, metricas);
             res.Dock = DockStyle.Fill;
 
             //lo mostramos

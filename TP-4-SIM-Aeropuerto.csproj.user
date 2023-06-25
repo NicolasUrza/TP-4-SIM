@@ -13,6 +13,9 @@
     <Compile Update="Interfaces\ResultadosControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Interfaces\RungeKutaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Interfaces\SimulacionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

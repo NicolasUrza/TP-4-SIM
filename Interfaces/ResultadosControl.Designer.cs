@@ -28,80 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnSimulacion = new Button();
-            panel1 = new Panel();
-            btnConclusion = new Button();
-            pnResultados = new Panel();
-            panel1.SuspendLayout();
-            SuspendLayout();
+            this.btnSimulacion = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnConclusion = new System.Windows.Forms.Button();
+            this.btnRungeKuta = new System.Windows.Forms.Button();
+            this.pnResultados = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // btnSimulacion
             // 
-            btnSimulacion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnSimulacion.Cursor = Cursors.Hand;
-            btnSimulacion.Dock = DockStyle.Left;
-            btnSimulacion.FlatStyle = FlatStyle.Flat;
-            btnSimulacion.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSimulacion.ForeColor = Color.FromArgb(230, 230, 240);
-            btnSimulacion.Location = new Point(0, 0);
-            btnSimulacion.Margin = new Padding(3, 4, 3, 4);
-            btnSimulacion.Name = "btnSimulacion";
-            btnSimulacion.Size = new Size(576, 133);
-            btnSimulacion.TabIndex = 0;
-            btnSimulacion.Text = "Simulacion";
-            btnSimulacion.UseVisualStyleBackColor = true;
-            btnSimulacion.Click += btnSimulacion_Click;
+            this.btnSimulacion.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSimulacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSimulacion.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSimulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSimulacion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSimulacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.btnSimulacion.Location = new System.Drawing.Point(0, 0);
+            this.btnSimulacion.Name = "btnSimulacion";
+            this.btnSimulacion.Size = new System.Drawing.Size(328, 100);
+            this.btnSimulacion.TabIndex = 0;
+            this.btnSimulacion.Text = "Simulacion";
+            this.btnSimulacion.UseVisualStyleBackColor = true;
+            this.btnSimulacion.Click += new System.EventHandler(this.btnSimulacion_Click);
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnConclusion);
-            panel1.Controls.Add(btnSimulacion);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1125, 133);
-            panel1.TabIndex = 1;
+            this.panel1.Controls.Add(this.btnConclusion);
+            this.panel1.Controls.Add(this.btnRungeKuta);
+            this.panel1.Controls.Add(this.btnSimulacion);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(984, 100);
+            this.panel1.TabIndex = 1;
             // 
             // btnConclusion
             // 
-            btnConclusion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnConclusion.Cursor = Cursors.Hand;
-            btnConclusion.Dock = DockStyle.Left;
-            btnConclusion.FlatStyle = FlatStyle.Flat;
-            btnConclusion.Font = new Font("Arial Rounded MT Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnConclusion.ForeColor = Color.FromArgb(230, 230, 240);
-            btnConclusion.Location = new Point(576, 0);
-            btnConclusion.Margin = new Padding(3, 4, 3, 4);
-            btnConclusion.Name = "btnConclusion";
-            btnConclusion.Size = new Size(549, 133);
-            btnConclusion.TabIndex = 1;
-            btnConclusion.Text = "Conclusion";
-            btnConclusion.UseVisualStyleBackColor = true;
-            btnConclusion.Click += btnConclusion_Click;
+            this.btnConclusion.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnConclusion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConclusion.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnConclusion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConclusion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnConclusion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.btnConclusion.Location = new System.Drawing.Point(656, 0);
+            this.btnConclusion.Name = "btnConclusion";
+            this.btnConclusion.Size = new System.Drawing.Size(328, 100);
+            this.btnConclusion.TabIndex = 1;
+            this.btnConclusion.Text = "Conclusion";
+            this.btnConclusion.UseVisualStyleBackColor = true;
+            this.btnConclusion.Click += new System.EventHandler(this.btnConclusion_Click);
+            // 
+            // btnRungeKuta
+            // 
+            this.btnRungeKuta.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnRungeKuta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRungeKuta.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRungeKuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRungeKuta.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnRungeKuta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
+            this.btnRungeKuta.Location = new System.Drawing.Point(328, 0);
+            this.btnRungeKuta.Name = "btnRungeKuta";
+            this.btnRungeKuta.Size = new System.Drawing.Size(328, 100);
+            this.btnRungeKuta.TabIndex = 1;
+            this.btnRungeKuta.Text = "Tablas Runge Kuta";
+            this.btnRungeKuta.UseVisualStyleBackColor = true;
+            this.btnRungeKuta.Click += new System.EventHandler(this.btnRungeKuta_Click);
             // 
             // pnResultados
             // 
-            pnResultados.Dock = DockStyle.Fill;
-            pnResultados.Location = new Point(0, 133);
-            pnResultados.Margin = new Padding(3, 4, 3, 4);
-            pnResultados.Name = "pnResultados";
-            pnResultados.Size = new Size(1125, 347);
-            pnResultados.TabIndex = 2;
+            this.pnResultados.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnResultados.Location = new System.Drawing.Point(0, 100);
+            this.pnResultados.Name = "pnResultados";
+            this.pnResultados.Size = new System.Drawing.Size(984, 260);
+            this.pnResultados.TabIndex = 2;
             // 
             // ResultadosControl
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(28, 30, 40);
-            Controls.Add(pnResultados);
-            Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "ResultadosControl";
-            Size = new Size(1125, 480);
-            SizeChanged += ResultadosControl_SizeChanged;
-            panel1.ResumeLayout(false);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(40)))));
+            this.Controls.Add(this.pnResultados);
+            this.Controls.Add(this.panel1);
+            this.Name = "ResultadosControl";
+            this.Size = new System.Drawing.Size(984, 360);
+            this.SizeChanged += new System.EventHandler(this.ResultadosControl_SizeChanged);
+            this.panel1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -110,5 +124,6 @@
         private Panel panel1;
         private Button btnConclusion;
         private Panel pnResultados;
+        private Button btnRungeKuta;
     }
 }

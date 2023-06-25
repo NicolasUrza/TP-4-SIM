@@ -12,6 +12,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         private Principal principalForm;
         private Parametros parametros;
         private FilaSimulacion[] resultadosDesde;
+        private List<RungeKuta> rungeKutas;
         private Random generadorRandom = new Random();
         private bool desdeActivado = false; // para matar no para desligar-destruir 
 
@@ -20,7 +21,8 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         {
             this.principalForm = pri;
             this.parametros = par;
-            if(parametros.CantidadDeIteraciones < parametros.Desde + 499)
+            this.rungeKutas = new List<RungeKuta>();
+            if (parametros.CantidadDeIteraciones < parametros.Desde + 499)
             {
                 resultadosDesde = new FilaSimulacion[parametros.CantidadDeIteraciones - parametros.Desde + 1];
             }
@@ -38,7 +40,8 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             //simulacion, usar los parametros de la inicializacion
             var filaActual = new FilaSimulacion();
             var indice = 0;
-
+            rungeKutas.Add(GeneradorAleatorios.GenerarRungeKuta(0.5, 1, 2, 3));
+            rungeKutas.Add(GeneradorAleatorios.GenerarRungeKuta(0.7, 10, 3, 90));
             //hacemos un for hasta la cantidad de iteraciones
 
             for (int i=0; i< parametros.CantidadDeIteraciones; i++)
@@ -92,7 +95,6 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 }
 
 
-                //programar
                
 
                 
@@ -121,7 +123,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             metricas.beneficiosPorHora = ((filaActual.acumuladores.cantAvionesAterrDescuento * 3000) + ((filaActual.acumuladores.totalAvionesAterr - filaActual.acumuladores.cantAvionesAterrDescuento - filaActual.acumuladores.cantAvionesAterrGratis) * 6000)) / filaActual.reloj;
 
             //deovlvemos los resultados al form
-            this.principalForm.CargarResultados(resultadosDesde, metricas);
+            this.principalForm.CargarResultados(resultadosDesde, rungeKutas, metricas);
 
         }
         //Eventos
