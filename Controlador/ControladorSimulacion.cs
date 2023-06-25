@@ -14,6 +14,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         private FilaSimulacion[] resultadosDesde;
         private List<RungeKuta> rungeKutas;
         private Random generadorRandom = new Random();
+        private bool banderaVirusLlegada = false;
         private bool desdeActivado = false; // para matar no para desligar-destruir 
 
 
@@ -93,7 +94,13 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 {
                     filaActual = FinAterrizaje(filaActual, nuevoReloj);
                 }
-
+                else if(proximoEstado == "ataque_virus")
+                {
+                    banderaVirusLlegada = true;
+                }else if(proximoEstado == "fin_ataque")
+                {
+                    banderaVirusLlegada = false;
+                }
 
                
 
@@ -130,6 +137,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         //programar lo que pasaria en cada caso
         public FilaSimulacion LlegadaAvion(FilaSimulacion filaActual,double nuevoReloj)
         {
+            
             FilaSimulacion nuevaFila;
             if (desdeActivado)
             {
@@ -139,10 +147,17 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             {
                 nuevaFila = filaActual;
             }
+            var rnd = GenerarRandom();
+            if (banderaVirusLlegada)
+            {
+                var nLlegada = new LlegadaAvion(rnd, parametros.MediaLlegadaAvion, nuevoReloj);
+                nuevaFila.llegadaAvion = nLlegada;
+                return nuevaFila;
+            }
             nuevaFila.evento = "llegada_avion";
             nuevaFila.reloj = nuevoReloj;
             //programar
-            var rnd = GenerarRandom();
+            
             var nuevaLlegada = new LlegadaAvion(rnd, parametros.MediaLlegadaAvion, nuevoReloj);
             if (filaActual.buscarAterrizaje())
             {

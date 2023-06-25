@@ -22,7 +22,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public Acumuladores acumuladores { get; set; }
         public List<Avion> aviones { get; set; }
         public List<AvionAerolinea> avionesAerolinea { get; set; }
-        
+        public AtaqueVirus ataqueVirus { get; set; }
         public FilaSimulacion()
         {
             //estado inicial
@@ -43,6 +43,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 acumuladores = new Acumuladores();
             aviones = new List<Avion>();
             avionesAerolinea = new List<AvionAerolinea>();
+            ataqueVirus = new AtaqueVirus();
         }
         public FilaSimulacion(FilaSimulacion f, bool keep =false)
         {
@@ -68,8 +69,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.intencion = new Intencion(f.intencion, keep);
             this.llegadaAvionAerolinea = new LlegadaAvionAerolinea(f.llegadaAvionAerolinea, keep);
             this.finOperacion = new FinOperacion(f.finOperacion,this, keep);
-            
-            
+            this.ataqueVirus = new AtaqueVirus(f.ataqueVirus, keep);
+
         }
 
         public IAvion BuscarAvion(IAvion avionBuscado)
@@ -169,7 +170,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             Events.Add(("fin_operaciones", this.finOperacion.ProximoFinOperacion()));
             Events.Add(("llegada_avion_aerolinea", this.llegadaAvionAerolinea.proximaLlegada));
             Events.Add(("fin_aterrizaje", this.finAterrizaje.proximoFinAterrizaje));
-
+            Events.Add(("ataque_virus", this.ataqueVirus.proximoAtaque));
+            Events.Add(("fin_ataque", this.ataqueVirus.finAtaque));
             double smaller = -1;
             string nextEvent = "";
 

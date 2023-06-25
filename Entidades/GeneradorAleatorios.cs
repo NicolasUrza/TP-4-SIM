@@ -62,7 +62,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             } while (filaActual.yi < Yf);
 
             // obtengo la solucion que podria ser tiempo por ejemplo en nuestra simulacion
-            solucion.resultado = filaActual.yi;
+            solucion.resultado = filaActual.xi;
             return solucion; 
         }
         
