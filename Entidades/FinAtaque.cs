@@ -37,7 +37,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             {
                 double yf = relojActual * 1.5;
 
-                RungeKuta runge = GeneradorAleatorios.GenerarRungeKuta(0.1, relojActual, 1, yf, 2);
+                RungeKuta runge = GeneradorAleatorios.GenerarRungeKuta(0.1, 1, relojActual, yf, 2);
 
                 return runge.resultado * 8;
             }

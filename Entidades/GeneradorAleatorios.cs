@@ -58,7 +58,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 // Lo agrego al DGV
                 solucion.AñadirFila(filaActual);
 
-                if (filaActual.nextYi - filaActual.yi < 1)
+                if (filaActual.nextYi - filaActual.yi < 1 && Equation ==1)
                 {
                     solucion.resultado = filaActual.nextXi;
                     return solucion;
@@ -82,7 +82,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             }
             else if (Equation ==1)
             {
-                double k =  (y / (0.8 * (x*x))) - y/2;
+                double k =  -(y / (0.8 * (x*x))) - y;
                 return k;
             }
             else if (Equation == 2)

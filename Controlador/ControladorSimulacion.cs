@@ -103,6 +103,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 else if(proximoEstado == "fin_ataque")
                 {
                     banderaVirusLlegada = false;
+                    filaActual.finAtaque.finAtaque = 0;
                 }
 
                
@@ -153,23 +154,25 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             var rnd = GenerarRandom();
 
 
+            nuevaFila.evento = "llegada_avion";
+            nuevaFila.reloj = nuevoReloj;
+
             if (banderaVirusLlegada)
             {
                 var nLlegada = new LlegadaAvion(rnd, parametros.MediaLlegadaAvion, nuevoReloj);
                 nuevaFila.llegadaAvion = nLlegada;
+                
                 return nuevaFila;
             }
-            nuevaFila.evento = "llegada_avion";
-            nuevaFila.reloj = nuevoReloj;
             //programar
 
-            if (cantLlegadasAvion < 150)
+            if (cantLlegadasAvion < 149)
             {
                 cantLlegadasAvion++;
                 
 
             }
-            else if (cantLlegadasAvion == 150)
+            else if (cantLlegadasAvion == 149)
             {
                 cantLlegadasAvion++;
                 this.a = filaActual.reloj;
@@ -468,13 +471,13 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.evento = "llegada_avion_aerolinea";
             nuevaFila.reloj = nuevoReloj;
             //programar
-            if (cantLlegadasAvion < 150)
+            if (cantLlegadasAvion < 149)
             {
                 cantLlegadasAvion++;
 
 
             }
-            else if (cantLlegadasAvion == 150)
+            else if (cantLlegadasAvion == 149)
             {
                 cantLlegadasAvion++;
                 this.a = filaActual.reloj;

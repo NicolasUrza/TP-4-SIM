@@ -71,6 +71,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             this.dataGridView1.Columns.Add("fin_carga", "Fin Carga");
 
             this.dataGridView1.Columns.Add("estado_carga", "Estado");
+            this.dataGridView1.Columns.Add("tiempo_remanente", "Tiempo Remanente");
             this.dataGridView1.Columns.Add("cola_carga", "Cola Carga");
 
             this.dataGridView1.Columns.Add("estado_pista", "Estado Pista");
@@ -244,19 +245,19 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
 
                 if (this.dataGridView1.Columns[i].Index == 28)
                 {
-                    CustomizeCell(i, e, "Puesto de Carga", 2);
+                    CustomizeCell(i, e, "Puesto de Carga", 3);
                 }
 
-                if (this.dataGridView1.Columns[i].Index == 30)
+                if (this.dataGridView1.Columns[i].Index == 31)
                 {
                     CustomizeCell(i, e, "Pista", 3);
                 }
 
-                if (this.dataGridView1.Columns[i].Index == 38)
+                if (this.dataGridView1.Columns[i].Index == 39)
                 {
                     CustomizeCell(i, e, "ataque_virus", 5);
                 }
-                if (this.dataGridView1.Columns[i].Index == 43)
+                if (this.dataGridView1.Columns[i].Index == 44)
                 {
                     CustomizeCell(i, e, "fin_ataque", 2);
                 }
@@ -265,7 +266,7 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             int c = 0;
             foreach (Avion a in simulacion[simulacion.Length - 1].aviones)
             {
-                CustomizeCell(45 + c * 2, e, "Avion" + (c + 1).ToString(), 2);
+                CustomizeCell(46 + c * 2, e, "Avion" + (c + 1).ToString(), 2);
                 c++;
                 if (45 + c * 2 > 652)
                     break;
@@ -273,9 +274,9 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
             int constante = 1;
             foreach (AvionAerolinea av in simulacion[simulacion.Length - 1].avionesAerolinea)
             {
-                if (45 + c * 2 > 652)
+                if (46 + c * 2 > 652)
                     break;
-                CustomizeCell(45 + c * 2, e, " Avion A" + (constante).ToString(), 2);
+                CustomizeCell(46 + c * 2, e, " Avion A" + (constante).ToString(), 2);
                 c++;
                 constante++;
             }
