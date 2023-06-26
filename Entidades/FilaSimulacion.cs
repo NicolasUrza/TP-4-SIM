@@ -23,6 +23,9 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public List<Avion> aviones { get; set; }
         public List<AvionAerolinea> avionesAerolinea { get; set; }
         public AtaqueVirus ataqueVirus { get; set; }
+
+        public FinAtaque finAtaque { get; set; }
+
         public FilaSimulacion()
         {
             //estado inicial
@@ -44,6 +47,10 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             aviones = new List<Avion>();
             avionesAerolinea = new List<AvionAerolinea>();
             ataqueVirus = new AtaqueVirus();
+            finAtaque = new FinAtaque();
+           
+
+            
         }
         public FilaSimulacion(FilaSimulacion f, bool keep =false)
         {
@@ -70,6 +77,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             this.llegadaAvionAerolinea = new LlegadaAvionAerolinea(f.llegadaAvionAerolinea, keep);
             this.finOperacion = new FinOperacion(f.finOperacion,this, keep);
             this.ataqueVirus = new AtaqueVirus(f.ataqueVirus, keep);
+            this.finAtaque = new FinAtaque(f.finAtaque, keep);
 
         }
 
@@ -171,7 +179,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             Events.Add(("llegada_avion_aerolinea", this.llegadaAvionAerolinea.proximaLlegada));
             Events.Add(("fin_aterrizaje", this.finAterrizaje.proximoFinAterrizaje));
             Events.Add(("ataque_virus", this.ataqueVirus.proximoAtaque));
-            Events.Add(("fin_ataque", this.ataqueVirus.finAtaque));
+            Events.Add(("fin_ataque", this.finAtaque.finAtaque));
             double smaller = -1;
             string nextEvent = "";
 
@@ -182,6 +190,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                     smaller = Events[i].Item2;
                     nextEvent = Events[i].Item1;
                 }
+                
                 else if ((smaller == 0 )|| (Events[i].Item2 < smaller && Events[i].Item2 != 0))
                 {
                     smaller = Events[i].Item2;
@@ -212,7 +221,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.intencion.intencion,
                 this.finOperacion.rnd != 0? this.finOperacion.rnd.ToString(): " ",
                 this.finOperacion.tiempo != 0? this.finOperacion.tiempo.ToString(): " ",
-
+                //this.ataqueVirus.rndAtaque != 0? this.ataqueVirus.rndAtaque.ToString(): " ",
+                //this.ataqueVirus.intencionAtaqueVirus != null? this.ataqueVirus.intencionAtaqueVirus.ToString(): " ",
+                //this.ataqueVirus.beta !=0? this.ataqueVirus.beta.ToString(): " ",
+                //this.ataqueVirus.tiempoEntreAtaque !=0? this.ataqueVirus.tiempoEntreAtaque.ToString(): " ",
+                //this.ataqueVirus.tiempoDetenido !=0? this.ataqueVirus.tiempoDetenido.ToString():" ",
+                //this.finAtaque.tiempoDetenido!=0? this.finAtaque.tiempoDetenido.ToString(): " ",
+                //this.finAtaque.finAtaque != 0 ? this.finAtaque.finAtaque.ToString() : " ",
 
 
             };
@@ -221,7 +236,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 str = str.Concat(new string[] { m.estado, m.horaFin != 0? m.horaFin.ToString() : " " }).ToArray();
             }
             str = str.Concat(new string[] {
-                
+
                 this.finCarga.rnd != 0? this.finCarga.rnd.ToString(): " ",
                 this.finCarga.tiempoCarga != 0? this.finCarga.tiempoCarga.ToString(): " ",
                 this.finCarga.tiempoFinCarga !=0? this.finCarga.tiempoFinCarga.ToString(): " ",
@@ -235,6 +250,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.acumuladores.acumTiempoEsperaAterr.ToString(),
                 this.acumuladores.totalAvionesAterr.ToString(),
                 this.acumuladores.cantAvionesAterrDescuento.ToString(),
+                //this.ataqueVirus.rndAtaque.ToString(),
+                //this.ataqueVirus.intencionAtaqueVirus.ToString(),
+                //this.ataqueVirus.beta.ToString(),
+                //this.ataqueVirus.tiempoEntreAtaque.ToString(),
+                //this.ataqueVirus.tiempoDetenido.ToString(),
+                //this.finAtaque.tiempoDetenido.ToString(),
+                //this.finAtaque.finAtaque.ToString(),
 
             }).ToArray();
             var j = -1;

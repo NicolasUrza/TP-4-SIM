@@ -39,11 +39,11 @@ namespace TP_4_SIM_Aeropuerto.Interfaces
         }
         public void MostrarRunge()
         {
-            this.dgvRungeKuta.Rows.Clear();
-            foreach (FilaRunge fila in rungeKutas[indice].filasRunge)
-            {
-                this.dgvRungeKuta.Rows.Add(fila.ListaString());
-            }
+            //this.dgvRungeKuta.Rows.Clear();
+            //foreach (FilaRunge fila in rungeKutas[indice].filasRunge)
+            //{
+            //    this.dgvRungeKuta.Rows.Add(fila.ListaString());
+            //}
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)

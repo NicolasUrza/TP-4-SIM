@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TP_4_SIM_Aeropuerto.Entidades
 {
     public class AtaqueVirus
@@ -20,6 +21,24 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             
         }
+
+        public AtaqueVirus(double rnd, double relojActual, double A)
+        {
+            this.beta = rnd;
+            this.A = A;
+
+            double yf = (this.beta * this.A) * 3;
+
+
+             RungeKuta runge = GeneradorAleatorios.GenerarRungeKuta(0.1,0,this.A,yf,0);
+
+            this.tiempoDetenido = runge.resultado * 30;
+
+            this.proximoAtaque = tiempoDetenido + relojActual;
+
+        }
+
+
         public AtaqueVirus(AtaqueVirus av, bool keep = false)
         {
             if (keep)

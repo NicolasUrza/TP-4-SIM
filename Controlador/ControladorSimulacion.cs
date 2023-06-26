@@ -16,7 +16,9 @@ namespace TP_4_SIM_Aeropuerto.Controlador
         private Random generadorRandom = new Random();
         private bool banderaVirusLlegada = false;
         private bool desdeActivado = false; // para matar no para desligar-destruir 
-
+        private int cantLlegadasAvion = 0;
+        private double a = 0;
+      
 
         public ControladorSimulacion( Principal pri, Parametros par)
         {
@@ -41,8 +43,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             //simulacion, usar los parametros de la inicializacion
             var filaActual = new FilaSimulacion();
             var indice = 0;
-            rungeKutas.Add(GeneradorAleatorios.GenerarRungeKuta(0.5, 1, 2, 3));
-            rungeKutas.Add(GeneradorAleatorios.GenerarRungeKuta(0.7, 10, 3, 90));
+          
             //hacemos un for hasta la cantidad de iteraciones
 
             for (int i=0; i< parametros.CantidadDeIteraciones; i++)
@@ -97,7 +98,9 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 else if(proximoEstado == "ataque_virus")
                 {
                     banderaVirusLlegada = true;
-                }else if(proximoEstado == "fin_ataque")
+                    filaActual = AtaqueVirus(filaActual, nuevoReloj);
+                }
+                else if(proximoEstado == "fin_ataque")
                 {
                     banderaVirusLlegada = false;
                 }
@@ -148,6 +151,8 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 nuevaFila = filaActual;
             }
             var rnd = GenerarRandom();
+
+
             if (banderaVirusLlegada)
             {
                 var nLlegada = new LlegadaAvion(rnd, parametros.MediaLlegadaAvion, nuevoReloj);
@@ -157,7 +162,23 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.evento = "llegada_avion";
             nuevaFila.reloj = nuevoReloj;
             //programar
-            
+
+            if (cantLlegadasAvion < 150)
+            {
+                cantLlegadasAvion++;
+                
+
+            }
+            else if (cantLlegadasAvion == 150)
+            {
+                cantLlegadasAvion++;
+                this.a = filaActual.reloj;
+
+               AtaqueVirus ataque = new AtaqueVirus();
+                ataque = primerAtaque(filaActual);
+                nuevaFila.ataqueVirus = ataque;
+            }
+
             var nuevaLlegada = new LlegadaAvion(rnd, parametros.MediaLlegadaAvion, nuevoReloj);
             if (filaActual.buscarAterrizaje())
             {
@@ -447,7 +468,34 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.evento = "llegada_avion_aerolinea";
             nuevaFila.reloj = nuevoReloj;
             //programar
+            if (cantLlegadasAvion < 150)
+            {
+                cantLlegadasAvion++;
+
+
+            }
+            else if (cantLlegadasAvion == 150)
+            {
+                cantLlegadasAvion++;
+                this.a = filaActual.reloj;
+
+                AtaqueVirus ataque = new AtaqueVirus();
+                ataque = primerAtaque(filaActual);
+                nuevaFila.ataqueVirus = ataque;
+            }
+
+
+
             var rnd = GenerarRandom();
+
+
+            if (banderaVirusLlegada)
+            {
+                var nLlegada = new LlegadaAvionAerolinea(rnd, parametros.AerolineaA, parametros.AerolineaB, nuevoReloj);
+                nuevaFila.llegadaAvionAerolinea = nLlegada;
+                return nuevaFila;
+            }
+
             var nuevaLlegadaAerolinea = new LlegadaAvionAerolinea(rnd, parametros.AerolineaA, parametros.AerolineaB, nuevoReloj);
             if (filaActual.buscarAterrizaje())
             {
@@ -470,6 +518,57 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.llegadaAvionAerolinea = nuevaLlegadaAerolinea;
 
             return nuevaFila;
+        }
+
+        public AtaqueVirus primerAtaque(FilaSimulacion filaActual)
+        {
+            var rndBeta = GenerarRandom();
+
+            var nuevoAtaqueVirus = new AtaqueVirus(rndBeta, filaActual.reloj, this.a);
+
+            return nuevoAtaqueVirus;
+        }
+
+        public FilaSimulacion AtaqueVirus(FilaSimulacion filaActual, double nuevoReloj)
+        {
+
+            FilaSimulacion nuevaFila;
+            if (desdeActivado)
+            {
+                nuevaFila = new FilaSimulacion(filaActual);
+            }
+            else
+            {
+                nuevaFila = filaActual;
+            }
+
+  
+            nuevaFila.evento = "ataque_virus";
+            nuevaFila.reloj = nuevoReloj;
+            nuevaFila.ataqueVirus = primerAtaque(nuevaFila);
+            
+
+            var rndIntencion = GenerarRandom();
+
+            if (rndIntencion <= 0.34)
+            {
+                var finAtaque = new FinAtaque(true, nuevoReloj);
+
+                nuevaFila.ataqueVirus.intencionAtaqueVirus = "Detener Llegadas";
+                nuevaFila.finAtaque = finAtaque;
+            }
+            else
+            {
+               var finAtaque = new FinAtaque(false,nuevoReloj);
+
+                nuevaFila.ataqueVirus.intencionAtaqueVirus = "Detener Carga";
+                nuevaFila.finAtaque = finAtaque;
+            }
+
+
+
+            return nuevaFila;
+
         }
 
         public double GenerarRandom()

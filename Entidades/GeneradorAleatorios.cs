@@ -21,7 +21,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
        
         }
 
-        public static RungeKuta GenerarRungeKuta(double H, double Xo, double Yo, double Yf)
+        public static RungeKuta GenerarRungeKuta(double H, double Xo, double Yo, double Yf, int Equation)
         {
             int counter = 0;
             RungeKuta solucion = new RungeKuta();
@@ -46,10 +46,10 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 }
 
                 // Obtengo todos los K
-                filaActual.k1 = ObtainK1(filaActual.xi, filaActual.yi);
-                filaActual.k2 = ObtainK23(filaActual.xi, filaActual.yi, H, filaActual.k1);
-                filaActual.k3 = ObtainK23(filaActual.xi, filaActual.yi, H, filaActual.k2);
-                filaActual.k4 = ObtainK4(filaActual.xi, filaActual.yi, H, filaActual.k3);
+                filaActual.k1 = ObtainK1(filaActual.xi, filaActual.yi, Equation);
+                filaActual.k2 = ObtainK23(filaActual.xi, filaActual.yi, H, filaActual.k1, Equation);
+                filaActual.k3 = ObtainK23(filaActual.xi, filaActual.yi, H, filaActual.k2, Equation);
+                filaActual.k4 = ObtainK4(filaActual.xi, filaActual.yi, H, filaActual.k3, Equation);
 
                 // Obtengo los valores siguientes de X e Y
                 filaActual.nextXi = ObtainNextX(filaActual.xi, H);
@@ -58,23 +58,44 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 // Lo agrego al DGV
                 solucion.AñadirFila(filaActual);
 
+                if (filaActual.nextYi - filaActual.yi < 1)
+                {
+                    solucion.resultado = filaActual.nextXi;
+                    return solucion;
+                }
+
                 // Este while chequea que se haya alcanzado la condicion del ejercicio sino seguimos aplicando metodo runge kutta
-            } while (filaActual.yi < Yf);
+            } while (filaActual.yi < Yf && Equation == 0 || filaActual.nextYi - filaActual.yi < 1 && Equation ==1 || filaActual.yi < Yf && Equation == 2);
 
             // obtengo la solucion que podria ser tiempo por ejemplo en nuestra simulacion
             solucion.resultado = filaActual.xi;
             return solucion; 
         }
         
-            private static double calculateK(double x, double y)
+            private static double calculateK(double x, double y, int Equation)
         {
 
-            // Reemplazar en el k por la formula de beto, aca uso una de superior para que funcione el metodo nomas
-            // Lo abstrai en un metodo asi podemos variar el calculo del K sin romper los demas metodos
-            double k = 2 * x * y + 6;
+            if(Equation == 0)
+            {
+                double k = x * y;
+                return k;
+            }
+            else if (Equation ==1)
+            {
+                double k =  (y / (0.8 * (x*x))) - y/2;
+                return k;
+            }
+            else if (Equation == 2)
+            {
+                double k = (0.2 * y) + 3 - x;
+                return k;
+            }
 
-            return k;
+
+            return 0.1;
         }
+
+       
 
         private static Tuple<double, double> calculateMidPoint(double x, double y, double h, double k)
         {
@@ -103,22 +124,22 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
 
 
-        private static double ObtainK1(double x, double y)
+        private static double ObtainK1(double x, double y, int Equation)
         {
             // K1 directamente aplica formula 
-            double k1 = calculateK(x, y);
+            double k1 = calculateK(x, y,Equation);
 
             return k1;
         }
 
-        private static double ObtainK23(double x, double y, double h, double k)
+        private static double ObtainK23(double x, double y, double h, double k , int Equation)
         {
             //K2 y K3 se calculan de la misma forma nomas que varia el k que le estas mandando por eso lo unifique en un solo metodo ObtainK23
 
             // Calculo el punto medio
             Tuple<double, double> midPoints = calculateMidPoint(x, y, h, k);
 
-            double kx = calculateK(midPoints.Item1, midPoints.Item2);
+            double kx = calculateK(midPoints.Item1, midPoints.Item2, Equation);
 
             return kx;
         }
@@ -126,13 +147,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
 
 
-        private static double ObtainK4(double x, double y, double h, double k3)
+        private static double ObtainK4(double x, double y, double h, double k3, int Equation)
         {
 
             //Obtengo los valores siguientes y los uso para calcular el k4
             double x1plus1 = ObtainNextX(x, h);
             double yplushk3 = y + (h * k3);
-            double k4 = calculateK(x1plus1, yplushk3);
+            double k4 = calculateK(x1plus1, yplushk3, Equation);
             return k4;
         }
 

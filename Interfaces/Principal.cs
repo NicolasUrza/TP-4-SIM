@@ -85,8 +85,6 @@ namespace TP_4_SIM_Aeropuerto
         {
 
 
-            try
-            {
                 if (ValidarParametros())
                 {
                     var param = new Parametros();
@@ -107,12 +105,7 @@ namespace TP_4_SIM_Aeropuerto
                 }
             }
 
-            catch (Exception ex)
-            {
-                MessageBox.Show("los parametros ingresados no son validos", "informacion", MessageBoxButtons.OK);
-                return;
-            }
-        }
+           
 
         private void Principal_Load_1(object sender, EventArgs e)
         {
