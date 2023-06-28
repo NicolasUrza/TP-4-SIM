@@ -13,7 +13,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
     {
         public double tiempoDetenido;
         public double finAtaque;
-        
+        public RungeKuta rungeKuta; 
         public FinAtaque() { }
 
         public FinAtaque(bool esDetenimientoLlegada, double relojActual)
@@ -28,18 +28,18 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             {
 
 
-                RungeKuta runge = GeneradorAleatorios.GenerarRungeKuta(0.1, 1, relojActual,0,1);
+                this.rungeKuta = GeneradorAleatorios.GenerarRungeKuta(0.1, 1, relojActual,0,1);
 
-                return runge.resultado * 27;
+                return this.rungeKuta.resultado * 27;
 
             }
             else
             {
                 double yf = relojActual * 1.5;
 
-                RungeKuta runge = GeneradorAleatorios.GenerarRungeKuta(0.1, 1, relojActual, yf, 2);
+                this.rungeKuta = GeneradorAleatorios.GenerarRungeKuta(0.1, 1, relojActual, yf, 2);
 
-                return runge.resultado * 8;
+                return this.rungeKuta.resultado * 8;
             }
 
         }

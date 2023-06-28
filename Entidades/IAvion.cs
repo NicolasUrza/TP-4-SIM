@@ -56,7 +56,10 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         {
             estado = "C";
         }
-
+        public void Interrumpir()
+        {
+            estado = "CI";
+        }
 
     }
 }

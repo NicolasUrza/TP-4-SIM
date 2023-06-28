@@ -103,7 +103,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 else if(proximoEstado == "fin_ataque")
                 {
                     banderaVirusLlegada = false;
-                    filaActual.finAtaque.finAtaque = 0;
+                    filaActual = FinAtaque(filaActual, nuevoReloj);
                 }
 
                
@@ -528,7 +528,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             var rndBeta = GenerarRandom();
 
             var nuevoAtaqueVirus = new AtaqueVirus(rndBeta, filaActual.reloj, this.a);
-
+            this.rungeKutas.Add(nuevoAtaqueVirus.rungeKuta);
             return nuevoAtaqueVirus;
         }
 
@@ -548,24 +548,33 @@ namespace TP_4_SIM_Aeropuerto.Controlador
   
             nuevaFila.evento = "ataque_virus";
             nuevaFila.reloj = nuevoReloj;
-            nuevaFila.ataqueVirus = primerAtaque(nuevaFila);
-            
 
+            nuevaFila.ataqueVirus.proximoAtaque = 0;
             var rndIntencion = GenerarRandom();
 
             if (rndIntencion <= 0.34)
             {
                 var finAtaque = new FinAtaque(true, nuevoReloj);
-
+                this.rungeKutas.Add(finAtaque.rungeKuta);
                 nuevaFila.ataqueVirus.intencionAtaqueVirus = "Detener Llegadas";
+                nuevaFila.ataqueVirus.intencionOcultaVirus = "Detener Llegadas";
                 nuevaFila.finAtaque = finAtaque;
+                
             }
             else
             {
                var finAtaque = new FinAtaque(false,nuevoReloj);
 
                 nuevaFila.ataqueVirus.intencionAtaqueVirus = "Detener Carga";
+                nuevaFila.ataqueVirus.intencionOcultaVirus = "Detener Carga";
+                this.rungeKutas.Add(finAtaque.rungeKuta);
                 nuevaFila.finAtaque = finAtaque;
+                nuevaFila.finCarga.pausarCarga(nuevoReloj);
+                nuevaFila.puestoCarga.InterrumpirCarga();
+                if (nuevaFila.avionCargando() is not null){
+                    
+                    nuevaFila.avionCargando().Interrumpir();
+                }
             }
 
 
@@ -573,7 +582,56 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             return nuevaFila;
 
         }
+        public FilaSimulacion FinAtaque(FilaSimulacion filaActual, double nuevoReloj)
+        {
+            FilaSimulacion nuevaFila;
+            if (desdeActivado)
+            {
+                nuevaFila = new FilaSimulacion(filaActual);
+            }
+            else
+            {
+                nuevaFila = filaActual;
+            }
 
+
+            nuevaFila.evento = "fin_ataque";
+            nuevaFila.reloj = nuevoReloj;
+            nuevaFila.finAtaque.finAtaque = 0;
+
+            if (nuevaFila.ataqueVirus.intencionOcultaVirus == "Detener Carga")
+            {
+                nuevaFila.finCarga.ReanudarCarga(nuevoReloj);
+                
+                if( nuevaFila.avionInterrumpido() is not null)
+                {
+                    nuevaFila.avionInterrumpido().Cargando();
+                    nuevaFila.puestoCarga.OcuparPuestoCarga();
+                }
+                else
+                {
+                    if (nuevaFila.puestoCarga.HayCola())
+                    {
+                        nuevaFila.puestoCarga.OcuparPuestoCarga();
+
+                        IAvion siguienteAvion = nuevaFila.puestoCarga.ReducirCola();
+                        siguienteAvion.Cargando();
+                        var rnd = GenerarRandom();
+
+                        nuevaFila.finCarga.OcuparCarga(rnd, this.parametros.MediaCarga, nuevoReloj);
+                    }
+                    else
+                    {
+                        nuevaFila.finCarga.tiempoFinCarga = 0;
+                        nuevaFila.puestoCarga.LiberarPuestoCarga();
+                    }
+                }
+                
+            }
+            nuevaFila.ataqueVirus = primerAtaque(nuevaFila);
+            nuevaFila.ataqueVirus.intencionOcultaVirus = "";
+            return nuevaFila;
+        }
         public double GenerarRandom()
         {
             return Math.Truncate(generadorRandom.NextDouble()*100)/100;

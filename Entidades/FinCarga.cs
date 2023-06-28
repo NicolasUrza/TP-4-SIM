@@ -12,6 +12,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         public double tiempoFinCarga;
         public double tiempoCarga;
         public double mediaCarga;
+        public double tiempoRemanente;
         public FinCarga()
         {
             
@@ -34,6 +35,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
             }
             tiempoFinCarga = f.tiempoFinCarga;
+            tiempoRemanente = f.tiempoRemanente;
 
         }
         public void GenerarTiempoCarga()
@@ -49,6 +51,17 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             GenerarTiempoCarga();
             this.tiempoFinCarga = Math.Truncate((tiempoCarga + Reloj) * 100) / 100;
 
+        }
+
+        public void pausarCarga(double relojActual)
+        {
+            this.tiempoRemanente = tiempoFinCarga!=0? Math.Truncate((tiempoFinCarga - relojActual) * 100) / 100: 0;
+            this.tiempoFinCarga = 0;
+        }
+        public void ReanudarCarga(double relojActual)
+        {
+            this.tiempoFinCarga = tiempoRemanente + relojActual;
+            this.tiempoRemanente = 0;
         }
 
     }

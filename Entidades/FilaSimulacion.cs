@@ -241,6 +241,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.finCarga.tiempoCarga != 0? this.finCarga.tiempoCarga.ToString(): " ",
                 this.finCarga.tiempoFinCarga !=0? this.finCarga.tiempoFinCarga.ToString(): " ",
                 this.puestoCarga.estado,
+                this.finCarga.tiempoRemanente!= 0? this.finCarga.tiempoRemanente.ToString():" ",
                 this.puestoCarga.cola.Count.ToString(),
                 this.pista.estado,
                 this.pista.cola.ToString(),
@@ -250,13 +251,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.acumuladores.acumTiempoEsperaAterr.ToString(),
                 this.acumuladores.totalAvionesAterr.ToString(),
                 this.acumuladores.cantAvionesAterrDescuento.ToString(),
-                //this.ataqueVirus.rndAtaque.ToString(),
-                //this.ataqueVirus.intencionAtaqueVirus.ToString(),
-                //this.ataqueVirus.beta.ToString(),
-                //this.ataqueVirus.tiempoEntreAtaque.ToString(),
-                //this.ataqueVirus.tiempoDetenido.ToString(),
-                //this.finAtaque.tiempoDetenido.ToString(),
-                //this.finAtaque.finAtaque.ToString(),
+                this.ataqueVirus.rndAtaque!=0? this.ataqueVirus.rndAtaque.ToString(): " ",
+                this.ataqueVirus.intencionAtaqueVirus,
+                this.ataqueVirus.beta !=0? this.ataqueVirus.beta.ToString(): " ", 
+                this.ataqueVirus.tiempoEntreAtaque !=0 ? this.ataqueVirus.tiempoEntreAtaque.ToString(): " ",
+                this.ataqueVirus.proximoAtaque!=0? this.ataqueVirus.proximoAtaque.ToString() : " ",
+                this.finAtaque.tiempoDetenido!=0?  this.finAtaque.tiempoDetenido.ToString(): " ",
+                this.finAtaque.finAtaque!= 0? this.finAtaque.finAtaque.ToString():" " ,
 
             }).ToArray();
             var j = -1;
@@ -344,6 +345,50 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
                 return null;
         }
+
+        public IAvion avionCargando()
+        {
+                foreach (var avion in aviones)
+                {
+                    if (avion.estado == "C")
+                    {
+                        return avion;
+                    }
+                }
+
+                foreach (var avion in avionesAerolinea)
+                {
+                    if (avion.estado == "C")
+                    {
+                        return avion;
+                    }
+                }
+
+                return null;
+        }
+        
+        public IAvion avionInterrumpido()
+        {
+            foreach (var avion in aviones)
+            {
+                if (avion.estado == "CI")
+                {
+                    return avion;
+                }
+            }
+
+            foreach (var avion in avionesAerolinea)
+            {
+                if (avion.estado == "CI")
+                {
+                    return avion;
+                }
+            }
+
+            return null;
+        } 
+        
+        
 
     }
 }

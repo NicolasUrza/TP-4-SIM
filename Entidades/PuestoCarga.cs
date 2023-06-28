@@ -23,7 +23,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             var c1 = new Queue<IAvion>();
             var c2 = new Queue<IAvion>();
             this.cola = new Queue<IAvion>();
-            for (int i = 0; i < p.cola.Count; i++)
+            var n = p.cola.Count;
+            for (int i = 0; i < n; i++)
             {
                 var avion = p.cola.Dequeue();
                 c1.Enqueue(avion);
@@ -31,7 +32,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
             }
             
            
-            for (int j = 0; j < c1.Count ; j++)
+            for (int j = 0; j < n ; j++)
             {
                 p.cola.Enqueue(c1.Dequeue());
                 this.cola.Enqueue(f.BuscarAvion(c2.Dequeue()));
@@ -52,7 +53,11 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 estado = "Libre";
            
         }
-        
+        public void InterrumpirCarga()
+        {
+            estado = "Interrumpido";
+            
+        }
 
         public void AumentarCola(IAvion nuevoAvion)
         {

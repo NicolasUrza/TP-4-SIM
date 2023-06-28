@@ -11,12 +11,13 @@ namespace TP_4_SIM_Aeropuerto.Entidades
     {
         public double rndAtaque { get; set; }
         public string intencionAtaqueVirus { get; set; }
+        public string intencionOcultaVirus { get; set; }
         public double beta { get; set; }
         public double tiempoEntreAtaque { get; set; }
-        public double proximoAtaque{ get; set; }
+        public double proximoAtaque { get; set; }
         public double tiempoDetenido { get; set; }
-        public double finAtaque { get; set; }
         public double A { get; set; }
+        public RungeKuta rungeKuta {get; set;}
         public AtaqueVirus()
         {
             
@@ -29,10 +30,10 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
             double yf = (this.beta * this.A) * 3;
 
+            
+              this.rungeKuta = GeneradorAleatorios.GenerarRungeKuta(0.1,0,this.A,yf,0);
 
-             RungeKuta runge = GeneradorAleatorios.GenerarRungeKuta(0.1,0,this.A,yf,0);
-
-            this.tiempoDetenido = runge.resultado * 30;
+            this.tiempoDetenido = this.rungeKuta.resultado * 30;
 
             this.proximoAtaque = tiempoDetenido + relojActual;
 
@@ -46,13 +47,12 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.rndAtaque = av.rndAtaque;
                 this.tiempoEntreAtaque = av.tiempoEntreAtaque;
                 this.tiempoDetenido = av.tiempoDetenido;
-                
                 this.beta = av.beta;
+                this.intencionAtaqueVirus = av.intencionAtaqueVirus;
             }
-            this.intencionAtaqueVirus = av.intencionAtaqueVirus;
             this.A = av.A;
-            this.finAtaque = av.finAtaque;
             this.proximoAtaque = av.proximoAtaque;
+            this.intencionOcultaVirus = av.intencionOcultaVirus; 
 
         }
     }
