@@ -32,7 +32,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.tiempoAterrizaje = f.tiempoAterrizaje;
             }
                 
-                this.proximoFinAterrizaje = f.proximoFinAterrizaje;
+                this.proximoFinAterrizaje =Math.Truncate( f.proximoFinAterrizaje*100)/100;
         }
         public void GenerarTiempoAterrizaje(double relojActual)
         {

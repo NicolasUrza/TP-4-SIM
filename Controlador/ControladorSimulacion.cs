@@ -97,12 +97,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
                 }
                 else if(proximoEstado == "ataque_virus")
                 {
-                    banderaVirusLlegada = true;
                     filaActual = AtaqueVirus(filaActual, nuevoReloj);
                 }
                 else if(proximoEstado == "fin_ataque")
                 {
-                    banderaVirusLlegada = false;
+
                     filaActual = FinAtaque(filaActual, nuevoReloj);
                 }
 
@@ -157,7 +156,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.evento = "llegada_avion";
             nuevaFila.reloj = nuevoReloj;
 
-            if (banderaVirusLlegada)
+            if (nuevaFila.ataqueVirus.intencionAtaqueVirus == "Detener Llegadas" )
             {
                 var nLlegada = new LlegadaAvion(rnd, parametros.MediaLlegadaAvion, nuevoReloj);
                 nuevaFila.llegadaAvion = nLlegada;
@@ -492,7 +491,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             var rnd = GenerarRandom();
 
 
-            if (banderaVirusLlegada)
+            if (nuevaFila.ataqueVirus.intencionAtaqueVirus == "Detener Llegadas")
             {
                 var nLlegada = new LlegadaAvionAerolinea(rnd, parametros.AerolineaA, parametros.AerolineaB, nuevoReloj);
                 nuevaFila.llegadaAvionAerolinea = nLlegada;
@@ -528,7 +527,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             var rndBeta = GenerarRandom();
 
             var nuevoAtaqueVirus = new AtaqueVirus(rndBeta, filaActual.reloj, this.a);
-            this.rungeKutas.Add(nuevoAtaqueVirus.rungeKuta);
+            if (desdeActivado)
+            {
+                this.rungeKutas.Add(nuevoAtaqueVirus.rungeKuta);
+            }
+
             return nuevoAtaqueVirus;
         }
 
@@ -552,10 +555,16 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             nuevaFila.ataqueVirus.proximoAtaque = 0;
             var rndIntencion = GenerarRandom();
 
+            nuevaFila.ataqueVirus.rndAtaque = rndIntencion;
+
             if (rndIntencion <= 0.34)
             {
                 var finAtaque = new FinAtaque(true, nuevoReloj);
-                this.rungeKutas.Add(finAtaque.rungeKuta);
+                if (desdeActivado)
+                {
+                    this.rungeKutas.Add(finAtaque.rungeKuta);
+                }
+
                 nuevaFila.ataqueVirus.intencionAtaqueVirus = "Detener Llegadas";
                 nuevaFila.ataqueVirus.intencionOcultaVirus = "Detener Llegadas";
                 nuevaFila.finAtaque = finAtaque;
@@ -567,7 +576,11 @@ namespace TP_4_SIM_Aeropuerto.Controlador
 
                 nuevaFila.ataqueVirus.intencionAtaqueVirus = "Detener Carga";
                 nuevaFila.ataqueVirus.intencionOcultaVirus = "Detener Carga";
-                this.rungeKutas.Add(finAtaque.rungeKuta);
+
+                if (desdeActivado)
+                {
+                    this.rungeKutas.Add(finAtaque.rungeKuta);
+                }
                 nuevaFila.finAtaque = finAtaque;
                 nuevaFila.finCarga.pausarCarga(nuevoReloj);
                 nuevaFila.puestoCarga.InterrumpirCarga();
@@ -630,6 +643,7 @@ namespace TP_4_SIM_Aeropuerto.Controlador
             }
             nuevaFila.ataqueVirus = primerAtaque(nuevaFila);
             nuevaFila.ataqueVirus.intencionOcultaVirus = "";
+            nuevaFila.ataqueVirus.intencionAtaqueVirus = "";
             return nuevaFila;
         }
         public double GenerarRandom()

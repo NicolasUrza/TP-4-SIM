@@ -18,8 +18,8 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
         public FinAtaque(bool esDetenimientoLlegada, double relojActual)
         {
-            this.tiempoDetenido = calculoTiempo(esDetenimientoLlegada, relojActual);
-            this.finAtaque = tiempoDetenido + relojActual;
+            this.tiempoDetenido = Math.Truncate(calculoTiempo(esDetenimientoLlegada, relojActual) * 100) / 100;
+            this.finAtaque = Math.Truncate((tiempoDetenido + relojActual)* 100 )/100 ;
         }
 
         public double calculoTiempo(bool esDetenimientoLlegada,double relojActual) {

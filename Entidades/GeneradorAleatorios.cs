@@ -33,7 +33,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 if (counter == 0)
                 {
                     filaActual.xi = Xo;
-                    filaActual.yi = Yo;
+                    filaActual.yi = Math.Truncate(Yo*100)/100;
 
                     // sumo al counter, esto se hara una sola vez porque una sola vez valdra cero para que entre en este if y no gasto recursos sumandole siempre
                     counter++;
@@ -46,14 +46,14 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 }
 
                 // Obtengo todos los K
-                filaActual.k1 = ObtainK1(filaActual.xi, filaActual.yi, Equation);
-                filaActual.k2 = ObtainK23(filaActual.xi, filaActual.yi, H, filaActual.k1, Equation);
-                filaActual.k3 = ObtainK23(filaActual.xi, filaActual.yi, H, filaActual.k2, Equation);
-                filaActual.k4 = ObtainK4(filaActual.xi, filaActual.yi, H, filaActual.k3, Equation);
+                filaActual.k1 = Math.Truncate(ObtainK1(filaActual.xi, filaActual.yi, Equation) * 100 )/100 ;
+                filaActual.k2 = Math.Truncate(ObtainK23(filaActual.xi, filaActual.yi, H, filaActual.k1, Equation)* 100) / 100;
+                filaActual.k3 = Math.Truncate(ObtainK23(filaActual.xi, filaActual.yi, H, filaActual.k2, Equation) * 100) / 100; ;
+                filaActual.k4 = Math.Truncate(ObtainK4(filaActual.xi, filaActual.yi, H, filaActual.k3, Equation) * 100) / 100; ;
 
                 // Obtengo los valores siguientes de X e Y
-                filaActual.nextXi = ObtainNextX(filaActual.xi, H);
-                filaActual.nextYi = ObtainNextY(filaActual.yi, H, filaActual.k1, filaActual.k2, filaActual.k3, filaActual.k4);
+                filaActual.nextXi = Math.Truncate(ObtainNextX(filaActual.xi, H)*100)/100;
+                filaActual.nextYi = Math.Truncate(ObtainNextY(filaActual.yi, H, filaActual.k1, filaActual.k2, filaActual.k3, filaActual.k4)*100)/100;
                 
                 // Lo agrego al DGV
                 solucion.AñadirFila(filaActual);

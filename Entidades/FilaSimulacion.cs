@@ -254,7 +254,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.ataqueVirus.rndAtaque!=0? this.ataqueVirus.rndAtaque.ToString(): " ",
                 this.ataqueVirus.intencionAtaqueVirus,
                 this.ataqueVirus.beta !=0? this.ataqueVirus.beta.ToString(): " ", 
-                this.ataqueVirus.tiempoEntreAtaque !=0 ? this.ataqueVirus.tiempoEntreAtaque.ToString(): " ",
+                this.ataqueVirus.tiempoDetenido !=0 ? this.ataqueVirus.tiempoDetenido.ToString(): " ",
                 this.ataqueVirus.proximoAtaque!=0? this.ataqueVirus.proximoAtaque.ToString() : " ",
                 this.finAtaque.tiempoDetenido!=0?  this.finAtaque.tiempoDetenido.ToString(): " ",
                 this.finAtaque.finAtaque!= 0? this.finAtaque.finAtaque.ToString():" " ,

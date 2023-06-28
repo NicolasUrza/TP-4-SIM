@@ -35,7 +35,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
 
             this.tiempoDetenido = this.rungeKuta.resultado * 30;
 
-            this.proximoAtaque = tiempoDetenido + relojActual;
+            this.proximoAtaque = Math.Truncate((tiempoDetenido + relojActual)*100)/100;
 
         }
 
@@ -48,12 +48,12 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 this.tiempoEntreAtaque = av.tiempoEntreAtaque;
                 this.tiempoDetenido = av.tiempoDetenido;
                 this.beta = av.beta;
-                this.intencionAtaqueVirus = av.intencionAtaqueVirus;
+
             }
             this.A = av.A;
             this.proximoAtaque = av.proximoAtaque;
-            this.intencionOcultaVirus = av.intencionOcultaVirus; 
-
+            this.intencionOcultaVirus = av.intencionOcultaVirus;
+            this.intencionAtaqueVirus = av.intencionAtaqueVirus;
         }
     }
 }

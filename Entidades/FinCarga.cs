@@ -34,7 +34,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
                 mediaCarga = f.mediaCarga;
 
             }
-            tiempoFinCarga = f.tiempoFinCarga;
+            tiempoFinCarga = Math.Truncate(f.tiempoFinCarga*100)/100;
             tiempoRemanente = f.tiempoRemanente;
 
         }
@@ -60,7 +60,7 @@ namespace TP_4_SIM_Aeropuerto.Entidades
         }
         public void ReanudarCarga(double relojActual)
         {
-            this.tiempoFinCarga = tiempoRemanente + relojActual;
+            this.tiempoFinCarga = Math.Truncate((tiempoRemanente + relojActual)*100)/100;
             this.tiempoRemanente = 0;
         }
 
