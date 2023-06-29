@@ -45,8 +45,9 @@
             this.btnSimulacion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSimulacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.btnSimulacion.Location = new System.Drawing.Point(0, 0);
+            this.btnSimulacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSimulacion.Name = "btnSimulacion";
-            this.btnSimulacion.Size = new System.Drawing.Size(328, 100);
+            this.btnSimulacion.Size = new System.Drawing.Size(469, 167);
             this.btnSimulacion.TabIndex = 0;
             this.btnSimulacion.Text = "Simulacion";
             this.btnSimulacion.UseVisualStyleBackColor = true;
@@ -59,8 +60,9 @@
             this.panel1.Controls.Add(this.btnSimulacion);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(984, 100);
+            this.panel1.Size = new System.Drawing.Size(1406, 167);
             this.panel1.TabIndex = 1;
             // 
             // btnConclusion
@@ -71,9 +73,10 @@
             this.btnConclusion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConclusion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnConclusion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.btnConclusion.Location = new System.Drawing.Point(656, 0);
+            this.btnConclusion.Location = new System.Drawing.Point(938, 0);
+            this.btnConclusion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConclusion.Name = "btnConclusion";
-            this.btnConclusion.Size = new System.Drawing.Size(328, 100);
+            this.btnConclusion.Size = new System.Drawing.Size(469, 167);
             this.btnConclusion.TabIndex = 1;
             this.btnConclusion.Text = "Conclusion";
             this.btnConclusion.UseVisualStyleBackColor = true;
@@ -87,31 +90,34 @@
             this.btnRungeKuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRungeKuta.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnRungeKuta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
-            this.btnRungeKuta.Location = new System.Drawing.Point(328, 0);
+            this.btnRungeKuta.Location = new System.Drawing.Point(469, 0);
+            this.btnRungeKuta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRungeKuta.Name = "btnRungeKuta";
-            this.btnRungeKuta.Size = new System.Drawing.Size(328, 100);
+            this.btnRungeKuta.Size = new System.Drawing.Size(469, 167);
             this.btnRungeKuta.TabIndex = 1;
-            this.btnRungeKuta.Text = "Tablas Runge Kuta";
+            this.btnRungeKuta.Text = "Tablas Runge Kutta";
             this.btnRungeKuta.UseVisualStyleBackColor = true;
             this.btnRungeKuta.Click += new System.EventHandler(this.btnRungeKuta_Click);
             // 
             // pnResultados
             // 
             this.pnResultados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnResultados.Location = new System.Drawing.Point(0, 100);
+            this.pnResultados.Location = new System.Drawing.Point(0, 167);
+            this.pnResultados.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnResultados.Name = "pnResultados";
-            this.pnResultados.Size = new System.Drawing.Size(984, 260);
+            this.pnResultados.Size = new System.Drawing.Size(1406, 433);
             this.pnResultados.TabIndex = 2;
             // 
             // ResultadosControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(30)))), ((int)(((byte)(40)))));
             this.Controls.Add(this.pnResultados);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ResultadosControl";
-            this.Size = new System.Drawing.Size(984, 360);
+            this.Size = new System.Drawing.Size(1406, 600);
             this.SizeChanged += new System.EventHandler(this.ResultadosControl_SizeChanged);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
